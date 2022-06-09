@@ -7,19 +7,29 @@ import {
     password: '',
     firstName: '',
     lastName: '',
+    admin: false,
+    client: [],
+    isLogged: false,
+
   };
   
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
   
       case SAVE_USER: {
-        const { email, firstName, lastName } = action.payload;
+        console.log('isLogged', action.payload.isLogged);
+        const { email, firstName, lastName, admin, client } = action.payload.user;
+        const { isLogged } = action.payload.isLogged;
         return {
             ...state,
             email,
             firstName,
             lastName,
-            password: '',
+            password:'',
+            admin,
+            client,
+            isLogged,
+
         };
       }
       

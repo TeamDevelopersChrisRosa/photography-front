@@ -5,16 +5,14 @@ import api from './utils/api';
 const authmiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      console.log('LOGIN');
       const state = store.getState();
       api({
         method: 'POST',
         url: 'auth/login',
         data: {
-          email: state.field.email,
+          username: state.field.email,
           password: state.field.password,
         },
-       
       })
         .then((response) => {
           localStorage.setItem('token', response.data.token);
