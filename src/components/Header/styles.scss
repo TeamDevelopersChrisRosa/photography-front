@@ -1,0 +1,31 @@
+@use '../../styles/vars' as v;
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #e6e6e6;
+
+    &__logo {
+       height: 150px;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: v.$fourthColor;
+        margin: auto;
+    }
+
+    &__link {
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: auto 0;
+        border: 2px solid v.$primaryColor;
+        background-color: v.$secondaryColor;
+        padding: 1em;
+        color: v.$primaryColor;
+    }
+}
