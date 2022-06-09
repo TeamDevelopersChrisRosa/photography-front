@@ -1,8 +1,8 @@
 import React from 'react';
-//import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './styles.scss';
 
-//import Home from './../Home';
+import Home from './../Home';
 //import Login from './../Login';
 
 
@@ -10,10 +10,10 @@ function App() {
   return (
     <div className="App">
 
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-      </Routes> */}
+       {/*  <Route path="login" element={<Login />} /> */}
+      </Routes>
 
 
     </div>

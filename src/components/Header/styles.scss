@@ -8,13 +8,13 @@
     border-bottom: 1px solid #e6e6e6;
 
     &__logo {
-       height: 100px;
+       height: 150px;
     }
 
     &__title {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #333;
+        color: v.$fourthColor;
         margin: auto;
     }
 
@@ -23,9 +23,9 @@
         font-size: 1.2rem;
         font-weight: bold;
         margin: auto 0;
-        border: 2px solid v.$secondaryColor;
-        background-color: v.$primaryColor;
+        border: 2px solid v.$primaryColor;
+        background-color: v.$secondaryColor;
         padding: 1em;
-        color: v.$secondaryColor;
+        color: v.$primaryColor;
     }
 }
