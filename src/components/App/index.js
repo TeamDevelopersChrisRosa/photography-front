@@ -4,7 +4,7 @@ import './styles.scss';
 
 
 import Home from './../Home';
-import Login from './../Login';
+import Login from './../../containers/Login';
 
 
 function App() {
