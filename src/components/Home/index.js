@@ -4,6 +4,7 @@ import './styles.scss';
 
 import Nav from './../Nav';
 import Header from './../Header';
+import Footer from './../Footer';
 
 const Home = () => {
 
@@ -12,6 +13,7 @@ const Home = () => {
       <Header />
       <Nav />
       <p>Home</p>
+      <Footer />
     </div>
   );
 };
