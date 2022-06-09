@@ -1,0 +1,82 @@
+@use 'src/styles/vars';
+
+.login-form {
+  border: 4px solid #ddd;
+  background-color: vars.$secondaryColor;
+  padding: 2em;
+  padding-top: 10vh;
+  margin: auto;
+  margin-top: 20vh;
+  width: 50vw;
+  max-width: 400px;
+  height: 50vh;
+  border-radius: .3em;
+
+  &-input {
+    width: 100%;
+    padding: .7em;
+    font-size: 1.2em;
+    border: 1px solid #ddd;
+    border-radius: .3em;
+    height: 3.5em;
+    margin-top: 1em;
+
+    &:focus {
+      border-color: vars.$primaryColor;
+
+      & + .field-label {
+        color: vars.$primaryColor;
+      }
+    }
+  }
+
+
+
+
+  &-button {
+    display: block;
+    font-size: 1.2em;
+    color: white;
+    background-color: vars.$primaryColor;
+    border-radius: .3em;
+    border: 0;
+    padding: .6em;
+    margin: auto;
+    margin-top: 7vh;
+
+  }
+
+  &-mobile {
+    border: 4px solid #ddd;
+    background-color: vars.$secondaryColor;
+    padding: 2em;
+    margin: auto;
+    margin-top: 15vh;
+    max-width: 400px;
+    border-radius: .3em;
+  }
+}
+
+.logged {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 5px;
+
+  &-button {
+    display: block;
+    font-size: .9em;
+    color: white;
+    background-color: vars.$primaryColor;
+    border-radius: .3em;
+    border: 0;
+    padding: .6em;
+  }
+  &-button:hover {
+    background-color: vars.$secondaryColor;
+    color: black;
+  }
+  &-message {
+    margin: .3em 1em;
+  }
+}

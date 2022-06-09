@@ -1,96 +1,120 @@
-/* eslint-disable import/no-unresolved */
-// == Import : npm
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import MediaQuery from 'react-responsive';
 
-// == Import : local
-import Field from 'src/components/Field';
-import './modalSignIn.scss';
+import Field from './../Field';
 
-// == Component
-const ModalSignin = ({
-  email,
-  password,
+import './styles.scss';
+
+const Login = ({
   changeField,
   handleLogin,
-  isError,
-  onClickLogUp,
-  onClickCloseSignIn,
+  handleLogout,
+  isLogged,
+  loggedMessage,
 }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
     handleLogin();
   };
-  const handleOnClickLogUp = () => {
-    onClickLogUp();
-  };
-  const handleOnClickCloseSignIn = () => {
-    onClickCloseSignIn();
-  };
+
   return (
-    <div className="modalSignIn">
-      <div className="modalSignIn__container">
-        <button
-          type="submit"
-          className="modalSignIn__container__close"
-          onClick={handleOnClickCloseSignIn}
-        >
-          <IoIosCloseCircleOutline className="modalSignIn__container__close__circle" />
-        </button>
-        <h1 className="modalSignIn__container__title">Connexion</h1>
-        <form className="modalSignIn__container__form" onSubmit={handleSubmit}>
-          <div className="modalSignIn__container__form__input">
+    <>
+    <MediaQuery minWidth={481}>
+
+
+      {!isLogged && (
+        <div className="login-form">
+          <form autoComplete="off" onSubmit={handleSubmit}>
+
             <Field
-              name="email"
-              className="modalSignIn__container__form__input__field"
-              type="email"
-              placeholder="Email..."
+              name="firstName"
+              placeholder="Prénom"
               onChange={changeField}
-              value={email}
+              className="login-form-input"
             />
+
             <Field
               name="password"
-              className="modalSignIn__container__form__input__field"
               type="password"
-              placeholder="Mot de passe..."
+              placeholder="Mot de passe"
               onChange={changeField}
-              value={password}
+              className="login-form-input"
             />
-          </div>
+            <button
+              type="submit"
+              className="login-form-button"
 
-          {isError && (
-            <p className="modalSignIn__container__form__error">
-              Vérifiez vos identifiants de connexion
+            >
+              Connexion
+            </button>
+          </form>
+        </div>
+      )}
+      </MediaQuery>
+
+
+      <MediaQuery minWidth={0} maxWidth={480}>
+        {isLogged && (
+        <div className="logged">
+            <p className="logged-message">
+              {loggedMessage}
             </p>
-          )}
-          <button
-            type="submit"
-            className="modalSignIn__container__form__button"
-          >
-            Valider
-          </button>
-        </form>
-        <button
-          type="submit"
-          className="modalSignIn__container__button"
-          onClick={handleOnClickLogUp}
-        >
-          Inscription
-        </button>
-      </div>
-    </div>
+            <button
+              type="button"
+              className="logged-button"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </button>
+        </div>
+      )}
+
+
+      {!isLogged && (
+        <div className="login-form-mobile">
+          <form autoComplete="off" onSubmit={handleSubmit}>
+
+            <Field
+              name="firstName"
+              placeholder="Prénom"
+              onChange={changeField}
+              className="login-form-input"
+            />
+
+            <Field
+              name="password"
+              type="password"
+              placeholder="Mot de passe"
+              onChange={changeField}
+              className="login-form-input"
+            />
+            <button
+              type="submit"
+              className="login-form-button"
+
+            >
+              Connexion
+            </button>
+          </form>
+        </div>
+      )}
+      </MediaQuery>
+
+    </>
   );
 };
 
-ModalSignin.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  changeField: PropTypes.func.isRequired,
-  handleLogin: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
-  onClickLogUp: PropTypes.func.isRequired,
-  onClickCloseSignIn: PropTypes.func.isRequired,
-};
+// LoginForm.propTypes = {
+//   handleLogin: PropTypes.func.isRequired,
+//   handleLogout: PropTypes.func.isRequired,
+//   isLogged: PropTypes.bool,
+//   loggedMessage: PropTypes.string,
+// };
 
-// == Export
-export default ModalSignin;
+// Login.defaultProps = {
+//   isLogged: false,
+//   loggedMessage: 'Connecté',
+// };
+
+export default Login;
