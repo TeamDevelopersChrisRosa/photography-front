@@ -10,9 +10,6 @@ import Field from '../../containers/Field';
 const Contact = ({
   changeField,
   handleLogin,
-  handleLogout,
-  isLogged,
-  loggedMessage,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -24,7 +21,7 @@ const Contact = ({
       <Header />
       <Nav />
 
-      <div className="contact-form">
+      <div className="contact__form">
           <form autoComplete="off" action="mailto:c.baret28@gmail.com" method="POST">
 
             <div className="d-flex">
@@ -34,21 +31,21 @@ const Contact = ({
                   name="contact-name"
                   placeholder="Nom"
                   onChange={changeField}
-                  className="login-form-input half"
+                  className="login__form__input half"
                 />
 
                 <Field
                   name="contact-firstname"
                   placeholder="Prénom"
                   onChange={changeField}
-                  className="login-form-input half"
+                  className="login__form__input half"
                 />
 
                 <Field
                   name="contact-email"
                   placeholder="Email"
                   onChange={changeField}
-                  className="login-form-input half"
+                  className="login__form__input half"
                 />
               </div>
 
@@ -67,12 +64,12 @@ const Contact = ({
               type="password"
               placeholder="Message"
               onChange={changeField}
-              className="login-form-input"
+              className="login__form__input"
             />
 
             <button
               type="submit"
-              className="login-form-button"
+              className="myButton mx-auto mt-2"
 
             >
               Envoyer
