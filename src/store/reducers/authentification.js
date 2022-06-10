@@ -17,9 +17,7 @@ import {
     switch (action.type) {
   
       case SAVE_USER: {
-        console.log('isLogged', action.payload.isLogged);
         const { email, firstName, lastName, admin, client } = action.payload.user;
-        const { isLogged } = action.payload.isLogged;
         return {
             ...state,
             email,
@@ -28,7 +26,7 @@ import {
             password:'',
             admin,
             client,
-            isLogged,
+            isLogged: true,  
 
         };
       }
