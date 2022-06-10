@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import Field from '../../components/Field';
+import Contact from '../../components/Contact';
+import { logout } from './../../store/actions/authentification';
 import { changeValue } from '../../store/actions/field';
 
 
@@ -15,4 +16,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Field);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

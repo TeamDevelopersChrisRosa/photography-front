@@ -4,6 +4,7 @@ import './styles.scss';
 
 
 import Home from './../Home';
+import Contact from './../../containers/Contact';
 import Login from './../../containers/Login';
 
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="contact" element={<Contact />} />
 
       </Routes>
 
