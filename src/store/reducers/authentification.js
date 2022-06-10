@@ -1,6 +1,7 @@
 import {
     SAVE_USER,
-    LOGOUT
+    LOGOUT,
+    SHOW_ERROR_LOGIN_MESSAGE
   } from '../actions/authentification';
   
   export const initialState = {
@@ -11,6 +12,8 @@ import {
     admin: false,
     client: [],
     isLogged: false,
+    showErrorMessage: false,
+    errorMessage: '',
 
   };
   
@@ -27,7 +30,9 @@ import {
             password:'',
             admin,
             client,
-            isLogged: true,  
+            isLogged: true,
+            showErrorMessage: false,
+
 
         };
       }
@@ -35,6 +40,14 @@ import {
       case LOGOUT: {
         return {
           ...initialState
+        }
+      }
+
+      case SHOW_ERROR_LOGIN_MESSAGE: {
+        return {
+          ...state,
+          showErrorMessage: true,
+          errorMessage: action.message,
         }
       }
       

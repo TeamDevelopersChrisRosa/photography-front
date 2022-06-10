@@ -3,7 +3,9 @@ import Login from '../../components/Login';
 import { login } from '../../store/actions/authentification';
 
 const mapStateToProps = (state) => ({
-  
+  showErrorMessage: state.auth.showErrorMessage,
+  errorMessage: state.auth.errorMessage,
+  isLogged: state.auth.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
