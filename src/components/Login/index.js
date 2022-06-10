@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import Field from '../../containers/Field';
@@ -10,28 +10,34 @@ const Login = ({
   changeField,
   handleLogin,
   isLogged,
+  showErrorMessage,
+  errorMessage,
 }) => {
 
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
     handleLogin();
-    navigate('/');
   };
 
 
   return (
     <div className='login'>
-      {!isLogged && (
-        <div className="login-form">
-          <form autoComplete="off" onSubmit={handleSubmit}>
+
+          { isLogged
+            && (
+              <Navigate to={`/`} />
+          )}
+          
+          <form autoComplete="off" onSubmit={handleSubmit} className="login__form" >
 
             <Field
               name="email"
               placeholder="Adresse mail"
               onChange={changeField}
-              className="login-form-input"
+              className="login__form__input"
             />
 
             <Field
@@ -39,18 +45,21 @@ const Login = ({
               type="password"
               placeholder="Mot de passe"
               onChange={changeField}
-              className="login-form-input"
+              className="login__form__input"
             />
+
+            {showErrorMessage && (
+              <p className="login__form__error">{errorMessage}</p>
+            )}
+
             <button
               type="submit"
-              className="login-form-button"
+              className="login__form__button"
             >
               Connexion
             </button>
-          </form>
-        </div>
-      )}
-    </div>
+        </form>
+      </div>
   );
 };
 

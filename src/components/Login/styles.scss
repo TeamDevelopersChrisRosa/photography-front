@@ -1,6 +1,6 @@
 @use 'src/styles/vars';
 
-.login-form {
+.login__form {
   border: 4px solid #ddd;
   background-color: vars.$secondaryColor;
   padding: 2em;
@@ -12,7 +12,7 @@
   height: 50vh;
   border-radius: .3em;
 
-  &-input {
+  &__input {
     width: 100%;
     padding: .7em;
     font-size: 1.2em;
@@ -24,16 +24,23 @@
     &:focus {
       border-color: vars.$primaryColor;
 
-      & + .field-label {
+      & + .field__label {
         color: vars.$primaryColor;
       }
     }
+
+    
+  }
+
+  &__error {
+    color: vars.$primaryColor;
+    font-size: 1em;
+    margin-top: .5em;
+    text-align: center;
   }
 
 
-
-
-  &-button {
+  &__button {
     display: block;
     font-size: 1.2em;
     color: white;

@@ -4,7 +4,7 @@
   margin: .3em .3em .3em 0;
   position: relative;
 
-  &-input {
+  &__input {
     width: 100%;
     padding: .7em;
     font-size: 1.2em;
@@ -16,13 +16,13 @@
     &:focus {
       border-color: vars.$primaryColor;
 
-      & + .field-label {
+      & + .field__label {
         color: vars.$primaryColor;
       }
     }
   }
 
-  &-label {
+  &__label {
     display: none;
     position: absolute;
     top: 1.7rem;
@@ -34,10 +34,10 @@
   }
 
   &--has-content {
-    .field-label {
+    .field__label {
       display: block;
     }
-    .field-input {
+    .field__input {
       padding: 1.4em .7em .4em;
     }
   }
