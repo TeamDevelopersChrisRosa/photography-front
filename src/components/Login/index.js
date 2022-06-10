@@ -1,21 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
-import Field from './../Field';
+import Field from '../../containers/Field';
 
 import './styles.scss';
 
 const Login = ({
   changeField,
   handleLogin,
-  handleLogout,
   isLogged,
-  loggedMessage,
 }) => {
+
+  let navigate = useNavigate();
+
   const handleSubmit = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
     handleLogin();
+    navigate('/');
   };
+
 
   return (
     <div className='login'>
@@ -24,8 +28,8 @@ const Login = ({
           <form autoComplete="off" onSubmit={handleSubmit}>
 
             <Field
-              name="firstName"
-              placeholder="Prénom"
+              name="email"
+              placeholder="Adresse mail"
               onChange={changeField}
               className="login-form-input"
             />
@@ -40,7 +44,6 @@ const Login = ({
             <button
               type="submit"
               className="login-form-button"
-
             >
               Connexion
             </button>
