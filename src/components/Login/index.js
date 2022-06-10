@@ -54,7 +54,7 @@ const Login = ({
 
             <button
               type="submit"
-              className="login__form__button"
+              className="myButton mx-auto mt-5"
             >
               Connexion
             </button>

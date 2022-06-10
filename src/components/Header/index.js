@@ -24,10 +24,10 @@ const Header = ({
       { isLogged ? (
         <div className='header__messageAndButton'>
         <p className='header__messageAndButton__message'> Bonjour { firstName } { lastName } </p>
-        <button className='header__messageAndButton__button' onClick={handleLogout}> Se déconnecter </button>
+        <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
         </div>
          
-       ): <a href='/login' className='header__link'> Login </a> }
+       ): <a href='/login' className='myButton my-auto'> Login </a> }
      
       
     </div>
