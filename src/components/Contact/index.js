@@ -5,7 +5,7 @@ import './styles.scss';
 import Nav from './../Nav';
 import Header from './../Header';
 import Footer from './../Footer';
-import Field from './../Field';
+import Field from '../../containers/Field';
 
 const Contact = ({
   changeField,
@@ -25,28 +25,27 @@ const Contact = ({
       <Nav />
 
       <div className="contact-form">
-          <form autoComplete="off" onSubmit={handleSubmit}>
+          <form autoComplete="off" action="mailto:c.baret28@gmail.com" method="POST">
 
             <div className="d-flex">
 
               <div className="d-flex flex-column half">
                 <Field
-                  name="firstName"
+                  name="contact-name"
                   placeholder="Nom"
                   onChange={changeField}
                   className="login-form-input half"
                 />
 
                 <Field
-                  name="password"
-                  type="password"
+                  name="contact-firstname"
                   placeholder="Prénom"
                   onChange={changeField}
                   className="login-form-input half"
                 />
 
                 <Field
-                  name="firstName"
+                  name="contact-email"
                   placeholder="Email"
                   onChange={changeField}
                   className="login-form-input half"

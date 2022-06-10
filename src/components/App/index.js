@@ -4,7 +4,7 @@ import './styles.scss';
 
 
 import Home from './../Home';
-import Contact from './../Contact';
+import Contact from './../../containers/Contact';
 import Login from './../../containers/Login';
 
 
