@@ -22,30 +22,12 @@ const authmiddleware = (store) => (next) => (action) => {
           store.dispatch(actionSaveUser);
         })
         .catch((error) => {
-            console.log('coucou erreur', error)
+            console.log(error)
           });
       break;
     }
 
-    case CHECK_TOKEN: {
-      const token = localStorage.getItem('token');
-
-      if (token) {
-        api.get('/checkToken', {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => {
-            api.defaults.headers.common.authorization = `Bearer ${token}`;
-            const payload = { ...response.data };
-            const actionSaveUser = saveUser(payload);
-            store.dispatch(actionSaveUser);
-          })
-          .catch((error) => console.log(error));
-      }
-      break;
-    }
+    
 
     default:
       next(action);

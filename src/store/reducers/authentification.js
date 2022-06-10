@@ -1,5 +1,6 @@
 import {
-    SAVE_USER
+    SAVE_USER,
+    LOGOUT
   } from '../actions/authentification';
   
   export const initialState = {
@@ -31,6 +32,11 @@ import {
         };
       }
       
+      case LOGOUT: {
+        return {
+          ...initialState
+        }
+      }
       
       default:
         return state;

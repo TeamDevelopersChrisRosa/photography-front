@@ -1,5 +1,6 @@
 export const LOGIN = 'LOGIN';
 export const SAVE_USER = 'SAVE_USER';
+export const LOGOUT = 'LOGOUT';
 
 
 export const login = () => ({
@@ -9,4 +10,8 @@ export const login = () => ({
 export const saveUser = (payload) => ({
   type: SAVE_USER,
   payload,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });

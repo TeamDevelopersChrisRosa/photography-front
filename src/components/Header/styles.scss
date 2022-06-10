@@ -2,30 +2,53 @@
 
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0.5rem 1rem;
     background-color: #fff;
     border-bottom: 1px solid #e6e6e6;
+    margin: 0 1em;
 
-    &__logo {
-       height: 150px;
-    }
+    &__logoAndTitle {
+        display: flex;
+        justify-content: start;
 
-    &__title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: v.$fourthColor;
-        margin: auto;
+        &__logo {
+            height: 150px;
+         }
+     
+         &__title {
+             font-size: 1.5rem;
+             font-weight: bold;
+             color: v.$fourthColor;
+             margin: auto 1.5em;
+         }
     }
 
     &__link {
         text-decoration: none;
         font-size: 1.2rem;
-        font-weight: bold;
         margin: auto 0;
-        border: 2px solid v.$primaryColor;
-        background-color: v.$secondaryColor;
-        padding: 1em;
-        color: v.$primaryColor;
+        border: none;
+        background-color: v.$fifthColor;
+        padding: .5em 1em;
+        color: white;
+    }
+
+    &__messageAndButton {
+        margin: auto 0;
+
+        &__message {
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        &__button {
+            display: block;
+            margin: 0 auto;
+            color: white;
+            background-color: v.$fifthColor;
+            border: none;
+            padding: .5em 1em;
+        }
     }
 }

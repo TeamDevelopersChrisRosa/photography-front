@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import Field from '../../containers/Field';
@@ -8,13 +9,15 @@ import './styles.scss';
 const Login = ({
   changeField,
   handleLogin,
-  handleLogout,
   isLogged,
-  loggedMessage,
 }) => {
+
+  let navigate = useNavigate();
+
   const handleSubmit = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
     handleLogin();
+    navigate('/');
   };
 
 
