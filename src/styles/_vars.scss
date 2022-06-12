@@ -13,7 +13,25 @@ $fifthColor: #b58d34;
     color: #fff;
     border-radius: 3px;
     padding: .5em 1em;
-    font-size: 1.3em;
+    font-size: 1.1em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        background: #fff;
+        color: $primaryColor;
+        border: 1px solid $primaryColor;
+    }
+};
+
+.mySmallButton {
+    display: block;
+    background: $fourthColor;
+    color: #fff;
+    border-radius: 3px;
+    padding: .2em .5em;
+    font-size: .8em;
     text-decoration: none;
     border: none;
     cursor: pointer;
