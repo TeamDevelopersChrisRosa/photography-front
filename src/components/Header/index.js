@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 import './styles.scss';
 
 
@@ -7,7 +9,10 @@ const Header = ({
   firstName,
   lastName,
   logout,
+  
 }) => {
+
+  let location = useLocation();
 
   const handleLogout = (evt) => {
     evt.preventDefault();
@@ -19,7 +24,7 @@ const Header = ({
     <div className='header'> 
       <div className='header__logoAndTitle'> 
         <img className='header__logoAndTitle__logo' src="https://www.ville-sathonaycamp.fr/wp-content/uploads/2021/06/placeholder-1.png" alt=""/>
-        <h1 className='header__logoAndTitle__title'> App Title </h1> 
+        <a href='/' className='header__logoAndTitle__title'> App Title </a> 
       </div>
       { isLogged ? (
         <div className='header__messageAndButton'>
@@ -27,7 +32,12 @@ const Header = ({
         <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
         </div>
          
-       ): <a href='/login' className='myButton my-auto'> Login </a> }
+       ): (
+       <>
+       { location.pathname =! '/login' ? ( <a href='/login' className='myButton my-auto'> Login </a> ) : null }
+       
+       </>
+       )}
      
       
     </div>
