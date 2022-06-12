@@ -1,8 +1,10 @@
 import React from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import Field from '../../containers/Field';
+import Header from '../../containers/Header';
+import Footer from '../../components/Footer';
 
 import './styles.scss';
 
@@ -13,9 +15,6 @@ const Login = ({
   showErrorMessage,
   errorMessage,
 }) => {
-
-  //let navigate = useNavigate();
-
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -30,8 +29,12 @@ const Login = ({
             && (
               <Navigate to={`/`} />
           )}
+
+          <Header />
           
           <form autoComplete="off" onSubmit={handleSubmit} className="login__form" >
+
+          <p> Incididunt nulla laboris pariatur elit esse dolore. Nostrud voluptate consequat dolor consequat exercitation. Ea veniam dolor quis exercitation fugiat elit et laboris laboris irure labore proident.</p>
 
             <Field
               name="email"
@@ -59,6 +62,8 @@ const Login = ({
               Connexion
             </button>
         </form>
+
+        <Footer />
       </div>
   );
 };

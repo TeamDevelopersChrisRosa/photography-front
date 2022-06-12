@@ -1,16 +1,14 @@
-@use 'src/styles/vars';
+@use 'src/styles/vars' as v;
 
 .login__form {
   border: 4px solid #ddd;
-  background-color: vars.$secondaryColor;
+  background-color: v.$secondaryColor;
   padding: 2em;
-  padding-top: 10vh;
   margin: auto;
-  margin-top: 20vh;
-  width: 50vw;
-  max-width: 400px;
-  height: 50vh;
+  margin-top: 3em;
   border-radius: .3em;
+  width: 50%;
+  max-width: 500px;
 
   &__input {
     width: 100%;
@@ -22,10 +20,10 @@
     margin-top: 1em;
 
     &:focus {
-      border-color: vars.$primaryColor;
+      border-color: v.$primaryColor;
 
       & + .field__label {
-        color: vars.$primaryColor;
+        color: v.$primaryColor;
       }
     }
 
@@ -33,7 +31,7 @@
   }
 
   &__error {
-    color: vars.$primaryColor;
+    color: v.$primaryColor;
     font-size: 1em;
     margin-top: .5em;
     text-align: center;
@@ -44,7 +42,7 @@
     display: block;
     font-size: 1.2em;
     color: white;
-    background-color: vars.$primaryColor;
+    background-color: v.$primaryColor;
     border-radius: .3em;
     border: 0;
     padding: .6em;
@@ -55,7 +53,7 @@
 
   &-mobile {
     border: 4px solid #ddd;
-    background-color: vars.$secondaryColor;
+    background-color: v.$secondaryColor;
     padding: 2em;
     margin: auto;
     margin-top: 15vh;
@@ -74,13 +72,13 @@
     display: block;
     font-size: .9em;
     color: white;
-    background-color: vars.$primaryColor;
+    background-color: v.$primaryColor;
     border-radius: .3em;
     border: 0;
     padding: .6em;
   }
   &-button:hover {
-    background-color: vars.$secondaryColor;
+    background-color: v.$secondaryColor;
     color: black;
   }
   &-message {
