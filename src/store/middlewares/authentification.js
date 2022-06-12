@@ -2,6 +2,8 @@ import {
   LOGIN, 
   saveUser,
   showErrorLoginMessage,
+  FORGOT,
+  createForgotErrorAction,
 } from './../actions/authentification';
 
 import api from './utils/api';
@@ -30,6 +32,27 @@ const authmiddleware = (store) => (next) => (action) => {
             const message = 'Erreur d\'identifiants';
             store.dispatch(showErrorLoginMessage(message));
           });
+      break;
+    }
+
+    case FORGOT: {
+      const state = store.getState();
+      // const { user: { email, password } } = store.getState();
+
+      api({
+        method: 'POST',
+        url: '/login',
+        data: {
+          email: state.field.email,
+        },
+      })
+        .then((response) => {
+          console.log('REPONSE DE FORGOT MIDDLEWARE', response);
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(createForgotErrorAction());
+        });
       break;
     }
 
