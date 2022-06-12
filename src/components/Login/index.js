@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Field from '../../containers/Field';
 import Header from '../../containers/Header';
 import Footer from '../../components/Footer';
+import ForgotPassword from '../../containers/ForgotPassword';
 
 import './styles.scss';
 
@@ -14,13 +15,19 @@ const Login = ({
   isLogged,
   showErrorMessage,
   errorMessage,
+  handleForgotPasswordForm,
+  showForgotPasswordForm,
 }) => {
 
   const handleSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     handleLogin();
   };
 
+  const handleForgotPassword = (evt) => {
+    evt.preventDefault();
+    handleForgotPasswordForm();
+  }
 
   return (
     <div className='login'>
@@ -32,36 +39,45 @@ const Login = ({
 
           <Header />
           
-          <form autoComplete="off" onSubmit={handleSubmit} className="login__form" >
 
-          <p> Incididunt nulla laboris pariatur elit esse dolore. Nostrud voluptate consequat dolor consequat exercitation. Ea veniam dolor quis exercitation fugiat elit et laboris laboris irure labore proident.</p>
+            { showForgotPasswordForm ? <ForgotPassword /> : (
+              
+                <form autoComplete="off" onSubmit={handleSubmit} className="login__form" >
 
-            <Field
-              name="email"
-              placeholder="Adresse mail"
-              onChange={changeField}
-              className="login__form__input"
-            />
+                <p> Incididunt nulla laboris pariatur elit esse dolore. Nostrud voluptate consequat dolor consequat exercitation. Ea veniam dolor quis exercitation fugiat elit et laboris laboris irure labore proident.</p>
 
-            <Field
-              name="password"
-              type="password"
-              placeholder="Mot de passe"
-              onChange={changeField}
-              className="login__form__input"
-            />
+                  <Field
+                    name="email"
+                    placeholder="Adresse mail"
+                    onChange={changeField}
+                    className="login__form__input"
+                  />
 
-            {showErrorMessage && (
-              <p className="login__form__error">{errorMessage}</p>
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="Mot de passe"
+                    onChange={changeField}
+                    className="login__form__input"
+                  />
+
+                  <button className='mySmallButton mx-auto mt-2' onClick={handleForgotPassword}> Mot de passe oublié ? </button>
+              
+                  {showErrorMessage && (
+                    <p className="login__form__error">{errorMessage}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="myButton mx-auto mt-5"
+                  >
+                    Connexion
+                  </button>
+                </form>
+              
             )}
 
-            <button
-              type="submit"
-              className="myButton mx-auto mt-5"
-            >
-              Connexion
-            </button>
-        </form>
+            
 
         <Footer />
       </div>
