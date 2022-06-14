@@ -1,7 +1,10 @@
 import {
     SAVE_USER,
     LOGOUT,
-    SHOW_ERROR_LOGIN_MESSAGE
+    SHOW_ERROR_LOGIN_MESSAGE,
+    SHOW_FORGOT_PASSWORD_FORM,
+    FORGOT_ERROR,
+    FORGOT_SUCCESS,
   } from '../actions/authentification';
   
   export const initialState = {
@@ -14,6 +17,11 @@ import {
     isLogged: false,
     showErrorMessage: false,
     errorMessage: '',
+    showForgotPasswordForm: false,
+    messageForgot: false,
+    successMessage: false,
+    errorMessage: '',
+    
 
   };
   
@@ -49,6 +57,36 @@ import {
           showErrorMessage: true,
           errorMessage: action.message,
         }
+      }
+
+      case SHOW_FORGOT_PASSWORD_FORM: {
+        return {
+          ...state,
+          showForgotPasswordForm: !state.showForgotPasswordForm,
+          messageForgot: true,
+          errorMessage: false,
+          successMessage: false,
+        }
+      }
+
+      case FORGOT_ERROR: {
+        return {
+          ...state,
+          messageForgot: false,
+          errorMessage: true,
+          successMessage: false,
+          email: '',
+        };
+      }
+
+      case FORGOT_SUCCESS: {
+        return {
+          ...state,
+          messageForgot: false,
+          errorMessage: false,
+          successMessage: true,
+          email: '',
+        };
       }
       
       default:

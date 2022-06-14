@@ -1,6 +1,7 @@
-@use 'src/styles/vars' as v;
+@use '../../styles/vars' as v;
 
-.login__form {
+
+.forgotPassword__form {
   border: 4px solid #ddd;
   background-color: v.$secondaryColor;
   padding: 2em;
@@ -25,16 +26,7 @@
       & + .field__label {
         color: v.$primaryColor;
       }
-    }
-
-    
-  }
-
-  &__error {
-    color: v.$primaryColor;
-    font-size: 1em;
-    margin-top: .5em;
-    text-align: center;
+    } 
   }
 }
 
