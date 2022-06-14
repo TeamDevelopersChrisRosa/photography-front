@@ -4,6 +4,7 @@ import {
     SHOW_ERROR_LOGIN_MESSAGE,
     SHOW_FORGOT_PASSWORD_FORM,
     FORGOT_ERROR,
+    FORGOT_SUCCESS,
   } from '../actions/authentification';
   
   export const initialState = {
@@ -17,7 +18,7 @@ import {
     showErrorMessage: false,
     errorMessage: '',
     showForgotPasswordForm: false,
-    messageForgot: true,
+    messageForgot: false,
     successMessage: false,
     errorMessage: '',
     
@@ -62,6 +63,9 @@ import {
         return {
           ...state,
           showForgotPasswordForm: !state.showForgotPasswordForm,
+          messageForgot: true,
+          errorMessage: false,
+          successMessage: false,
         }
       }
 
@@ -71,6 +75,16 @@ import {
           messageForgot: false,
           errorMessage: true,
           successMessage: false,
+          email: '',
+        };
+      }
+
+      case FORGOT_SUCCESS: {
+        return {
+          ...state,
+          messageForgot: false,
+          errorMessage: false,
+          successMessage: true,
           email: '',
         };
       }

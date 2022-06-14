@@ -4,6 +4,7 @@ import {
   showErrorLoginMessage,
   FORGOT,
   createForgotErrorAction,
+  createForgotAction,
 } from './../actions/authentification';
 
 import api from './utils/api';
@@ -37,21 +38,25 @@ const authmiddleware = (store) => (next) => (action) => {
 
     case FORGOT: {
       const state = store.getState();
-      // const { user: { email, password } } = store.getState();
 
       api({
         method: 'POST',
-        url: '/login',
+        url: '/auth/forgot-password',
         data: {
           email: state.field.email,
         },
       })
         .then((response) => {
-          console.log('REPONSE DE FORGOT MIDDLEWARE', response);
+          console.log(response.data);
+          if (response.data == true ) {
+          store.dispatch(createForgotAction());
+          } else {
+            store.dispatch(createForgotErrorAction());
+
+          }
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(createForgotErrorAction());
+          console.log('REPONSE DE FORGOT MIDDLEWARE', error);
         });
       break;
     }

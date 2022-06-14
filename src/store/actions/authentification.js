@@ -5,6 +5,7 @@ export const SHOW_ERROR_LOGIN_MESSAGE = 'SHOW_ERROR_LOGIN_MESSAGE';
 export const SHOW_FORGOT_PASSWORD_FORM = 'SHOW_FORGOT_PASSWORD_FORM';
 export const FORGOT = 'FORGOT';
 export const FORGOT_ERROR = 'FORGOT_ERROR';
+export const FORGOT_SUCCESS = 'FORGOT_SUCCESS';
 
 
 export const login = () => ({
@@ -37,3 +38,6 @@ export const createForgotErrorAction = () => ({
   type: FORGOT_ERROR 
 });
 
+export const createForgotAction = () => ({
+  type: FORGOT_SUCCESS,
+});
