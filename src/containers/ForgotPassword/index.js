@@ -5,7 +5,7 @@ import { showForgotPasswordForm, forgot } from '../../store/actions/authentifica
 
 // transforme le state en props
 const mapStateToProps = (state) => ({
-  errorMessage: state.auth.isError,
+  errorMessage: state.auth.errorMessage,
   messageForgot: state.auth.messageForgot,
   successMessage: state.auth.successMessage,
 });

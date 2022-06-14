@@ -27,7 +27,7 @@ const ForgotPassword = ({
   };
 
   const handleForgotPassword = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault();    
     handleForgotPasswordForm();
   }
 
@@ -37,7 +37,7 @@ const ForgotPassword = ({
 
             <p className="">
               {messageForgot && 'Remplissez le formulaire et nous vous enverrons un email vous permettant de réinitialiser votre mot de passe.'}
-              {errorMessage && <p className="">Oups! Erreur de saisie</p>}
+              {errorMessage && <p className="">Oups! Adresse email inconnue</p>}
               {successMessage && <p className="">Demande envoyée !</p>}
             </p>
 
