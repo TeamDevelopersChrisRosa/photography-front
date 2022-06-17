@@ -1,0 +1,9 @@
+@use '../../styles/vars' as v;
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+}
