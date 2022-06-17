@@ -18,6 +18,7 @@ $fifthColor: #b58d34;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
     &:hover {
         background: #fff;
         color: $primaryColor;

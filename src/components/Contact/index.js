@@ -11,10 +11,10 @@ const Contact = ({
   changeField,
   handleLogin,
 }) => {
-  const handleSubmit = (evt) => {
+ /*  const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
-  };
+  }; */
 
   return (
     <div className='contact'>
