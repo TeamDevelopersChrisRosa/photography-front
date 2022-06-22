@@ -12,6 +12,8 @@ import Lightbox from "yet-another-react-lightbox";
 const Gallery = ({
   isLogged,
   wantedGallery,
+  setFavorite,
+  favoriteIds
 }) => {
 
   const [index, setIndex] = useState(-1);
@@ -19,19 +21,20 @@ const Gallery = ({
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
   const photos = wantedGallery.pictures.map((photo, index) => {
-    const width = photo.width * 4;
-    const height = photo.height * 4;
+    const width = photo.width;
+    const height = photo.height;
     return {
       src: `/images/${photo.name}`,
       key: `${index}`,
       width,
       height,
+      id: `${photo.id}`,
       images: breakpoints.map((breakpoint) => {
         const breakpointHeight = Math.round((height / width) * breakpoint);
         return {
           src: `/images/${photo.name}`,
           width: breakpoint,
-          height: breakpointHeight
+          height: breakpointHeight,
         };
       })
     };
@@ -46,6 +49,20 @@ const Gallery = ({
       width: image.width
     }))
   }));
+
+  const renderPhoto = ({ 
+    imageProps: { alt, style, ...restImageProps },
+    photo
+  }) => (
+    <div style={{ width: style?.width}}>
+        <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
+        <i className={favoriteIds.includes(photo.id) ? "bi bi-heart-fill gallery__heart text-danger" : "bi bi-heart gallery__heart"} id={photo.id} onClick={handleSetFavorite}></i>
+    </div>
+);
+
+const handleSetFavorite = (evt) => {
+  setFavorite(evt.target.id);
+}
   
 
   return (
@@ -57,7 +74,7 @@ const Gallery = ({
         <div className='gallery__header'> 
             <a href='/dashboard' className='myButton'> Tableau de bord</a>
             <h2 className='gallery__header__title'> - {wantedGallery.name} - </h2>
-            <a href='/' className='myButton'> Favorites </a>
+            <a href='/' className='myButton'> Favorites {favoriteIds.length}/20 </a>
         </div>
 
         <PhotoAlbum
@@ -67,6 +84,8 @@ const Gallery = ({
           targetRowHeight={150}
           onClick={(event, photo, index) => setIndex(index)}
           componentsProps={{ imageProps: { loading: "lazy" } }}
+          renderPhoto={renderPhoto}
+
         />
 
         <Lightbox

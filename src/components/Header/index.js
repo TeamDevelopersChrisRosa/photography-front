@@ -32,7 +32,7 @@ const Header = ({
             <p className='header__messageAndButton__content__message'> Bonjour { firstName } { lastName } </p>
             <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
           </div>
-          <i class="bi bi-person header__messageAndButton__content__icon"></i>
+          <i className="bi bi-person header__messageAndButton__content__icon"></i>
         </div>
          
        ): (
