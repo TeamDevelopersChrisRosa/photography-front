@@ -28,8 +28,11 @@ const Header = ({
       </div>
       { isLogged ? (
         <div className='header__messageAndButton'>
-        <p className='header__messageAndButton__message'> Bonjour { firstName } { lastName } </p>
-        <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
+          <div className='header__messageAndButton__content'>
+            <p className='header__messageAndButton__content__message'> Bonjour { firstName } { lastName } </p>
+            <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
+          </div>
+          <i class="bi bi-person header__messageAndButton__content__icon"></i>
         </div>
          
        ): (
