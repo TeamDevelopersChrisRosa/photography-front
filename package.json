@@ -25,7 +25,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.52.3",
     "web-vitals": "^2.1.4",
-    "yet-another-react-lightbox": "^1.7.1"
+    "yet-another-react-lightbox": "^1.8.1"
   },
   "scripts": {
     "start": "PORT=6060 react-scripts start",

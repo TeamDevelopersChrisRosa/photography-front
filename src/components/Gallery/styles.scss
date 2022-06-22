@@ -1,9 +1,22 @@
 @use '../../styles/vars' as v;
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 80%;
+    margin: 3em auto;
 
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1em;
 
+        &__title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: v.$fourthColor;
+        }
+
+        
+    }
+    
 }

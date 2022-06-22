@@ -11,16 +11,24 @@ import Dashboard from '../../containers/Dashboard';
 import Gallery from '../../containers/Gallery';
 
 
-function App() {
+function App({
+  isLogged,
+}) {
   return (
     <div className="App">
 
       <Routes>
+        {isLogged ? (
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="gallery" element={<Gallery />} />
+          </>
+        ) : (
+          <Route path="/" element={<Home />} />
+        )}
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="gallery" element={<Gallery />} />
 
         <Route path="*" element={<NotFound />} />
 
