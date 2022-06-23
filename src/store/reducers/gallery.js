@@ -1,7 +1,8 @@
 import {
     SAVE_GALLERIES,
     SET_WANTED_GALLERY,
-    SET_ID_IN_FAVORITE
+    SET_ID_IN_FAVORITE,
+    VALIDATE_FAVORITES_MESSAGE
   } from '../actions/gallery';
 
   import {
@@ -11,7 +12,8 @@ import {
   export const initialState = {
     galleries: [],
     wantedGallery: {},
-    favoriteIds: [],
+    
+    
   };
   
   const reducer = (state = initialState, action = {}) => {
@@ -30,17 +32,40 @@ import {
         };
 
       case SET_ID_IN_FAVORITE:
-        if (state.favoriteIds.includes(action.id)) {
+        if ( 'favoriteIds' + action.galleryId in state ) {
+          if (state['favoriteIds' + action.galleryId].includes(Number(action.id))) {
+            return {
+              ...state,
+              ['favoriteIds' + action.galleryId]: state['favoriteIds' + action.galleryId].filter(id => id !== Number(action.id)),
+            };
+            } else {
+            return {
+              ...state,
+              ['favoriteIds' + action.galleryId]: [...state['favoriteIds' + action.galleryId], Number(action.id)],
+            };
+          }
+        }
+        return {
+          ...state,
+          ['favoriteIds' + action.galleryId]: [Number(action.id)],
+        };
+
+      case VALIDATE_FAVORITES_MESSAGE:
+        if (action.response === 200 ) {
           return {
             ...state,
-            favoriteIds: state.favoriteIds.filter(id => id !== action.id),
+            ['validateFavoritesMessage' + action.galleryId]: 'Votre demande a bien été envoyée à votre photographe, vous recevrez très vite un mail vous informant la possibilité de télécharger vos photos.',
+            ['sendEmailWithFavorites' + action.galleryId]: true,
           };
         } else {
           return {
             ...state,
-            favoriteIds: [...state.favoriteIds, action.id],
+            ['validateFavoritesMessage' + action.galleryId]: 'Une erreur est survenue, merci de recommencer.',
+            ['sendEmailWithFavorites' + action.galleryId]: false,
           };
         }
+
+
         
 
 
