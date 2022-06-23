@@ -4,24 +4,24 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-    background-color: #fff;
     margin: 0 1em;
 
     &__logoAndTitle {
         display: flex;
         justify-content: flex-start;
+        margin: auto 0;
 
         &__logo {
             height: 150px;
-         }
+        }
      
-         &__title {
-             font-size: 1.5rem;
-             font-weight: bold;
-             color: v.$fourthColor;
-             margin: auto 1.5em;
-             text-decoration: none;
-         }
+        &__title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: v.$fourthColor;
+            margin: auto 1.5em;
+            text-decoration: none;
+        }
     }
 
     &__link {
@@ -35,12 +35,28 @@
     }
 
     &__messageAndButton {
-        margin: auto 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
 
-        &__message {
-            text-align: center;
-            font-size: 1.3em;
+        &__content {
+            display: flex;
+            flex-direction: column;
+
+            &__message {
+                text-align: center;
+                font-size: 1.3em;
+            }
+
+            &__icon {
+                display: block;
+                //margin: auto;
+                font-size: 5em;
+                padding: 1rem;
+            }
         }
+
+        
         
         &__button {
             display: block;

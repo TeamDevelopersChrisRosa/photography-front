@@ -34,7 +34,7 @@ const Login = ({
 
           { isLogged
             && (
-              <Navigate to={`/`} />
+              <Navigate to={`/dashboard`} />
           )}
 
           <Header />

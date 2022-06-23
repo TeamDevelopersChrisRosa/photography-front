@@ -6,6 +6,7 @@ import {
   createForgotErrorAction,
   createForgotAction,
 } from './../actions/authentification';
+import { fetchGalleriesOfUser } from './../actions/gallery';
 
 import api from './utils/api';
 
@@ -26,6 +27,10 @@ const authmiddleware = (store) => (next) => (action) => {
           api.defaults.headers.common.authorization = `Bearer ${response.data.token}`;
           const actionSaveUser = saveUser(response.data);
           store.dispatch(actionSaveUser);
+          if(response.data.user.client !== null) {
+            const clientId = response.data.user.client.id;
+            store.dispatch(fetchGalleriesOfUser(clientId));
+          }
         })
         .catch((error) => {
             console.log(error)
@@ -47,8 +52,7 @@ const authmiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
-          if (response.data == true ) {
+          if (response.data === true ) {
           store.dispatch(createForgotAction());
           } else {
             store.dispatch(createForgotErrorAction());
