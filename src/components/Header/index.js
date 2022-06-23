@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -14,9 +14,12 @@ const Header = ({
 
   let location = useLocation();
 
+  const nav = useNavigate();
+
   const handleLogout = (evt) => {
     evt.preventDefault();
     logout();
+    nav('/')
   }
 
   return (

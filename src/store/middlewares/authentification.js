@@ -52,7 +52,6 @@ const authmiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
           if (response.data === true ) {
           store.dispatch(createForgotAction());
           } else {

@@ -12,7 +12,6 @@ const Dashboard = ({
   wantedGallery
 }) => {
 
-  console.log(wantedGallery);
 
   const handleChangeGallery = (evt) => {
     const gallery = galleries.find(gallery => gallery.id === Number(evt.target.value));
