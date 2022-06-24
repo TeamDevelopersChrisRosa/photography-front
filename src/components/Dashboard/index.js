@@ -29,8 +29,8 @@ const Dashboard = ({
 
           <select onChange={handleChangeGallery} className='dashboard__select'>
             <option key={null} value={null} className='dashboard__select__option'> Sélection ... </option>
-            {galleries.map((gallery, index) => (
-              <option key={index} value={gallery.id} className='dashboard__select__option'>{gallery.name}</option>
+            {galleries.map((shooting, index) => (
+              <option key={index} value={shooting.id} className='dashboard__select__option'>{shooting.nameOfGallery}</option>
             ))}
           </select>
 

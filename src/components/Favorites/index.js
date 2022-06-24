@@ -87,7 +87,7 @@ const Favorites = ({
 
       <div className='favorites__header'> 
           <a href='gallery' className='myButton'> Retour à ma galerie </a>
-          <h2 className='favorites__header__title'> - Mes favorites de {wantedGallery.name} - </h2>
+          <h2 className='favorites__header__title'> - Mes favorites de {wantedGallery.nameOfGallery} - </h2>
           <a href='/dashboard' className='myButton'> Tableau de bord </a>
       </div>
 

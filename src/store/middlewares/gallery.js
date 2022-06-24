@@ -11,7 +11,7 @@ const gallerymiddleware = (store) => (next) => (action) => {
       const id = action.clientId;
       api({
         method: 'GET',
-        url: `gallery/client/${id}`,
+        url: `shooting/client/${id}`,
         
       })
         .then((response) => {

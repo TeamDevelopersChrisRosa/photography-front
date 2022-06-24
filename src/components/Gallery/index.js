@@ -77,7 +77,7 @@ const Gallery = ({
 
         <div className='gallery__header'> 
             <a href='/dashboard' className='myButton'> Tableau de bord</a>
-            <h2 className='gallery__header__title'> - {wantedGallery.name} - </h2>
+            <h2 className='gallery__header__title'> - {wantedGallery.nameOfGallery} - </h2>
             <a href='/favorites' className='myButton'> Favorites {favoriteIds.length}/20 </a>
         </div>
 
