@@ -10,10 +10,12 @@ import NotFound from './../../components/NotFound';
 import Dashboard from '../../containers/Dashboard';
 import Shooting from '../../containers/Shooting';
 import Favorites from '../../containers/Favorites';
+import Page from '../../containers/Page';
 
 
 function App({
   isLogged,
+  pages
 }) {
   return (
     <div className="App">
@@ -23,6 +25,9 @@ function App({
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="contact" element={<Contact />} />
+        {pages.map((page, index) => (
+          <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} />} />
+        ))}
 
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="shooting" element={<Shooting />} />
