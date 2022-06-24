@@ -9,14 +9,17 @@ import Footer from './../Footer';
 const Home = () => {
 
   return (
+    <>
+    <Header />
+    <Nav />
     <div className='home'>
-      <Header />
-      <Nav />
-      <p>Home</p>
-      <Footer />
+      <img src='/images/10.jpeg' alt='home' className='home__picture' />
     </div>
-  );
-};
+
+    <Footer />
+
+    </>
+  )};
 
 Home.propTypes = {
 };
