@@ -5,10 +5,7 @@ import { getValidateFavoritesMessage } from '../../store/actions/shooting';
 
 const mapStateToProps = (state, ownProps) => ({
   wantedShooting: state.shooting.wantedShooting,
-  favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [],
-  clientFirstName: state.auth.firstName,
-  clientLastName: state.auth.lastName,
-  clientEmail: state.auth.email,
+  favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [] ,
   validateFavoritesMessage: state.shooting['validateFavoritesMessage'+state.shooting.wantedShooting.id] || '',
   sendEmailWithFavorites: state.shooting['sendEmailWithFavorites'+state.shooting.wantedShooting.id] || false,
 });

@@ -14,9 +14,6 @@ import './styles.scss';
 const Favorites = ({
   wantedShooting,
   favoriteIds,
-  clientFirstName,
-  clientLastName,
-  clientEmail,
   getValidateFavoritesMessage,
   validateFavoritesMessage,
   sendEmailWithFavorites,
@@ -55,10 +52,10 @@ const Favorites = ({
   });
   
   const templateParams = {
-    from_name: clientFirstName + ' ' + clientLastName,
-    to_name: 'Laura', // Change this when we have the photographer in photographer entity
-    shooting_name: wantedShooting.name,
-    email_of_client: clientEmail,
+    from_name: wantedShooting.client.user.firstName + ' ' + wantedShooting.client.user.lastName,
+    to_name: wantedShooting.photographer.user.firstName,
+    shooting_nameOfGallery: wantedShooting.nameOfGallery,
+    email_of_client: wantedShooting.client.user.email,
     favorites: favorites.map((photo) => {
       return `${photo.name}`;
     }
