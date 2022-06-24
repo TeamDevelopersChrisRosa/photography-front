@@ -7,7 +7,7 @@ const NotFound = () => {
   return (
 
     <div className='notFound'> 
-      Page 404 à venir
+      Oups !! Page non trouvée    
     </div>
 
   )};

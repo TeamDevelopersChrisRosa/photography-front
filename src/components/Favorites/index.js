@@ -12,11 +12,8 @@ import './styles.scss';
 
 
 const Favorites = ({
-  wantedGallery,
+  wantedShooting,
   favoriteIds,
-  clientFirstName,
-  clientLastName,
-  clientEmail,
   getValidateFavoritesMessage,
   validateFavoritesMessage,
   sendEmailWithFavorites,
@@ -25,7 +22,7 @@ const Favorites = ({
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
   const favorites = [];
-  wantedGallery.pictures.map((photo) => {
+  wantedShooting.pictures.map((photo) => {
     favoriteIds.map((id) => {
       if (photo.id === Number(id)) {
         favorites.push(photo);
@@ -55,10 +52,10 @@ const Favorites = ({
   });
   
   const templateParams = {
-    from_name: clientFirstName + ' ' + clientLastName,
-    to_name: 'Laura', // Change this when we have the photographer in photographer entity
-    gallery_name: wantedGallery.name,
-    email_of_client: clientEmail,
+    from_name: wantedShooting.client.user.firstName + ' ' + wantedShooting.client.user.lastName,
+    to_name: wantedShooting.photographer.user.firstName,
+    shooting_nameOfGallery: wantedShooting.nameOfGallery,
+    email_of_client: wantedShooting.client.user.email,
     favorites: favorites.map((photo) => {
       return `${photo.name}`;
     }
@@ -71,9 +68,9 @@ const Favorites = ({
 
     emailjs.send('service_2vfenrf', 'send_favorites_template', templateParams, 'tL2dfN4vvBegRFqw1')
       .then(function(response) {
-        getValidateFavoritesMessage(response.status, wantedGallery.id);
+        getValidateFavoritesMessage(response.status, wantedShooting.id);
       }, function(error) {
-        getValidateFavoritesMessage(error.status, wantedGallery.id);
+        getValidateFavoritesMessage(error.status, wantedShooting.id);
       });
   }
 
@@ -86,8 +83,8 @@ const Favorites = ({
       <div className='favorites'>
 
       <div className='favorites__header'> 
-          <a href='gallery' className='myButton'> Retour à ma galerie </a>
-          <h2 className='favorites__header__title'> - Mes favorites de {wantedGallery.name} - </h2>
+          <a href='shooting' className='myButton'> Retour à ma galerie </a>
+          <h2 className='favorites__header__title'> - Mes favorites de {wantedShooting.nameOfGallery} - </h2>
           <a href='/dashboard' className='myButton'> Tableau de bord </a>
       </div>
 

@@ -1,22 +1,22 @@
 import { 
-  FETCH_GALLERIES_OF_USER,
-  saveGalleries
-} from '../actions/gallery';
+  FETCH_SHOOTINGS_OF_USER,
+  saveShootings
+} from '../actions/shooting';
 
 import api from './utils/api';
 
-const gallerymiddleware = (store) => (next) => (action) => {
+const shootingmiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_GALLERIES_OF_USER: {
+    case FETCH_SHOOTINGS_OF_USER: {
       const id = action.clientId;
       api({
         method: 'GET',
-        url: `gallery/client/${id}`,
+        url: `shooting/client/${id}`,
         
       })
         .then((response) => {
           console.log(response.data);
-          store.dispatch(saveGalleries(response.data));
+          store.dispatch(saveShootings(response.data));
         })
         .catch((error) => {
             console.log(error)
@@ -32,4 +32,4 @@ const gallerymiddleware = (store) => (next) => (action) => {
   }
 };
 
-export default gallerymiddleware;
+export default shootingmiddleware;

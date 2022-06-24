@@ -1,22 +1,19 @@
 import { connect } from 'react-redux';
 import Favorites from '../../components/Favorites';
 
-import { getValidateFavoritesMessage } from '../../store/actions/gallery';
+import { getValidateFavoritesMessage } from '../../store/actions/shooting';
 
 const mapStateToProps = (state, ownProps) => ({
-  wantedGallery: state.gallery.wantedGallery,
-  favoriteIds: state.gallery['favoriteIds'+state.gallery.wantedGallery.id] || [],
-  clientFirstName: state.auth.firstName,
-  clientLastName: state.auth.lastName,
-  clientEmail: state.auth.email,
-  validateFavoritesMessage: state.gallery['validateFavoritesMessage'+state.gallery.wantedGallery.id] || '',
-  sendEmailWithFavorites: state.gallery['sendEmailWithFavorites'+state.gallery.wantedGallery.id] || false,
+  wantedShooting: state.shooting.wantedShooting,
+  favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [] ,
+  validateFavoritesMessage: state.shooting['validateFavoritesMessage'+state.shooting.wantedShooting.id] || '',
+  sendEmailWithFavorites: state.shooting['sendEmailWithFavorites'+state.shooting.wantedShooting.id] || false,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-  getValidateFavoritesMessage: (response, galleryId) => {
-    dispatch(getValidateFavoritesMessage(response, galleryId));
+  getValidateFavoritesMessage: (response, shootingId) => {
+    dispatch(getValidateFavoritesMessage(response, shootingId));
   }
   
 });

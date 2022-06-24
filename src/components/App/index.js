@@ -8,7 +8,7 @@ import Contact from './../../containers/Contact';
 import Login from './../../containers/Login';
 import NotFound from './../../components/NotFound';
 import Dashboard from '../../containers/Dashboard';
-import Gallery from '../../containers/Gallery';
+import Shooting from '../../containers/Shooting';
 import Favorites from '../../containers/Favorites';
 
 
@@ -25,7 +25,7 @@ function App({
         <Route path="contact" element={<Contact />} />
 
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="gallery" element={<Gallery />} />
+        <Route path="shooting" element={<Shooting />} />
         <Route path="favorites" element={<Favorites />} />
 
         <Route path="*" element={<NotFound />} />

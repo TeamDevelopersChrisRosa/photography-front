@@ -7,15 +7,15 @@ import Footer from '../Footer';
 
 const Dashboard = ({
   isLogged,
-  galleries,
-  setWantedGallery,
-  wantedGallery
+  shootings,
+  setWantedShooting,
+  wantedShooting
 }) => {
 
 
-  const handleChangeGallery = (evt) => {
-    const gallery = galleries.find(gallery => gallery.id === Number(evt.target.value));
-    setWantedGallery(gallery.id);
+  const handleChangeShooting = (evt) => {
+    const shooting = shootings.find(shooting => shooting.id === Number(evt.target.value));
+    setWantedShooting(shooting.id);
   }
 
   return (
@@ -27,14 +27,14 @@ const Dashboard = ({
         <>
         <p className='dashboard__title'> Mes galeries photos : </p>
 
-          <select onChange={handleChangeGallery} className='dashboard__select'>
+          <select onChange={handleChangeShooting} className='dashboard__select'>
             <option key={null} value={null} className='dashboard__select__option'> Sélection ... </option>
-            {galleries.map((gallery, index) => (
-              <option key={index} value={gallery.id} className='dashboard__select__option'>{gallery.name}</option>
+            {shootings.map((shooting, index) => (
+              <option key={index} value={shooting.id} className='dashboard__select__option'>{shooting.nameOfGallery}</option>
             ))}
           </select>
 
-          <a href='/gallery' className="myButton mx-auto mt-5 w-25"> Valider </a>
+          <a href='/shooting' className="myButton mx-auto mt-5 w-25"> Valider </a>
         </>
       ) : (
         <p>Vous n'êtes pas connecté</p>

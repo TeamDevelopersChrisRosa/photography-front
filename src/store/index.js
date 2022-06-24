@@ -5,12 +5,12 @@ import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducers';
 import authmiddleware from './middlewares/authentification';
-import gallerymiddleware from './middlewares/gallery';
+import shootingmiddleware from './middlewares/shooting';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancers = composeEnhancers(applyMiddleware(authmiddleware, gallerymiddleware)// all middlewares of folder middlewares
+const enhancers = composeEnhancers(applyMiddleware(authmiddleware, shootingmiddleware)// all middlewares of folder middlewares
 );
 
 const persistConfig = {
