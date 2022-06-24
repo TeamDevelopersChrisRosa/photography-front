@@ -1,6 +1,11 @@
 import {
-    CHANGE_VALUE
+    CHANGE_VALUE,
   } from '../actions/field';
+
+  import {
+    SAVE_USER,
+    LOGOUT,
+  } from '../actions/authentification';
   
   export const initialState = {
     email: '',
@@ -17,6 +22,19 @@ import {
         };
   
       
+      case SAVE_USER: {
+        return {
+            ...state,
+            password:'', 
+        };
+      }
+
+      case LOGOUT: {
+        return {
+          ...initialState
+        }
+      }
+
       default:
         return state;
     }
