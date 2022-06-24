@@ -9,9 +9,9 @@ import Footer from '../Footer';
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
-const Gallery = ({
+const Shooting = ({
   isLogged,
-  wantedGallery,
+  wantedShooting,
   setFavorite,
   favoriteIds,
 
@@ -22,7 +22,7 @@ const Gallery = ({
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
   
-    const photos = wantedGallery.pictures.map((photo, index) => {
+    const photos = wantedShooting.pictures.map((photo, index) => {
       const width = photo.width;
       const height = photo.height;
       return {
@@ -60,24 +60,24 @@ const Gallery = ({
     }) => (
       <div style={{ width: style?.width}}>
           <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
-          <i className={favoriteIds.includes(Number(photo.id)) ? "bi bi-heart-fill gallery__heart text-danger" : "bi bi-heart gallery__heart"} id={photo.id} onClick={handleSetFavorite}></i>
+          <i className={favoriteIds.includes(Number(photo.id)) ? "bi bi-heart-fill shooting__heart text-danger" : "bi bi-heart shooting__heart"} id={photo.id} onClick={handleSetFavorite}></i>
       </div>
     );
   
 
   const handleSetFavorite = (evt) => {
-    setFavorite(evt.target.id, wantedGallery.id);
+    setFavorite(evt.target.id, wantedShooting.id);
   }
 
   return (
     <>
       <Header />
         
-      <div className='gallery'>
+      <div className='shooting'>
 
-        <div className='gallery__header'> 
+        <div className='shooting__header'> 
             <a href='/dashboard' className='myButton'> Tableau de bord</a>
-            <h2 className='gallery__header__title'> - {wantedGallery.nameOfGallery} - </h2>
+            <h2 className='shooting__header__title'> - {wantedShooting.nameOfGallery} - </h2>
             <a href='/favorites' className='myButton'> Favorites {favoriteIds.length}/20 </a>
         </div>
 
@@ -107,10 +107,10 @@ const Gallery = ({
   );
 };
 
-Gallery.propTypes = {
+Shooting.propTypes = {
 };
 
-Gallery.defaultProps = {
+Shooting.defaultProps = {
 };
 
-export default Gallery;
+export default Shooting;

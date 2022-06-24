@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
 import Dashboard from '../../components/Dashboard';
 
-import { setWantedGallery } from '../../store/actions/gallery';
+import { setWantedShooting } from '../../store/actions/shooting';
 
 
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.auth.isLogged,
-  galleries: state.gallery.galleries,
-  wantedGallery: state.gallery.wantedGallery
+  shootings: state.shooting.shootings,
+  wantedShooting: state.shooting.wantedShooting
   
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-  setWantedGallery: (galleryId) => {
-    dispatch(setWantedGallery(galleryId));
+  setWantedShooting: (shootingId) => {
+    dispatch(setWantedShooting(shootingId));
   }
 
 });
