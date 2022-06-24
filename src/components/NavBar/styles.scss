@@ -1,0 +1,44 @@
+@use '../../styles/vars' as v;
+
+.navbar {
+background-color: whitesmoke;
+margin-bottom: 2em;
+
+&__link {
+    margin: .3em .7em;
+    font-size: 1.2em;
+    cursor: pointer;
+    letter-spacing: .2em;
+
+    &:hover {
+        border-bottom: 3px solid v.$fifthColor;
+    }
+}
+
+}
+
+#nav-dropdown {
+margin: .3em .7em;
+font-size: 1.2em;
+cursor: pointer;
+letter-spacing: .2em;
+
+    &:hover {
+        border-bottom: 3px solid v.$fifthColor;
+    }
+
+    &-link {
+        font-size: 1.2em;
+        cursor: pointer;
+
+        &:hover {
+            background-color: v.$fifthColor;
+        }
+        
+    }
+}
+
+.active {
+color: red;
+border-bottom: 3px solid v.$fifthColor;
+}

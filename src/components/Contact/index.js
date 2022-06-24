@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.scss';
 
-import Nav from './../Nav';
+import NavBar from './../NavBar';
 import Header from './../Header';
 import Footer from './../Footer';
 import Field from '../../containers/Field';
@@ -19,7 +19,7 @@ const Contact = ({
   return (
     <div className='contact'>
       <Header />
-      <Nav />
+      <NavBar />
 
       <div className="contact__form">
           <form autoComplete="off" action="mailto:c.baret28@gmail.com" method="POST">

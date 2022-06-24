@@ -40,7 +40,7 @@ const Header = ({
          
        ): (
        <>
-       { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Login </a> ) }
+       { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
        </>
        )}
      
