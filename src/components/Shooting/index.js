@@ -78,7 +78,7 @@ const Shooting = ({
         <div className='shooting__header'> 
             <a href='/dashboard' className='myButton'> Tableau de bord</a>
             <h2 className='shooting__header__title'> - {wantedShooting.nameOfGallery} - </h2>
-            <a href='/favorites' className='myButton'> Favorites {favoriteIds.length}/20 </a>
+            <a href='/favorites' className='myButton'> Favorites {favoriteIds.length}/{wantedShooting.rate.nbPhotos} </a>
         </div>
 
         <PhotoAlbum
