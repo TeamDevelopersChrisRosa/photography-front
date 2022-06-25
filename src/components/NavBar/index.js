@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import { FETCH_ALL_PAGES_OF_PHOTOGRAPHER } from '../../store/actions/visitor';
 
 
 const NavBar = ({
-  FetchPages,
+  FetchShootingPagesPages,
   pages,
 }) => {
 
@@ -16,9 +15,8 @@ const NavBar = ({
       setUrl(location.pathname);
     }, [location]);
 
-    const handleFetchPages = () => {
-      console.log('fetching pages');
-      FetchPages();
+    const handleFetchShootingPages = () => {
+      FetchShootingPagesPages();
     }
 
 
@@ -39,7 +37,7 @@ const NavBar = ({
               <NavDropdown.Item href="/portfolio/family" id="nav-dropdown-link">Famille</NavDropdown.Item>
               <NavDropdown.Item href="/portfolio/lifestyle" id="nav-dropdown-link">Lifestyle</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Les séances" id="nav-dropdown" onClick={handleFetchPages}>
+            <NavDropdown title="Les séances" id="nav-dropdown" onClick={handleFetchShootingPages}>
               {pages.map((page, index) => (
                 <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.title}</NavDropdown.Item>
               ))}

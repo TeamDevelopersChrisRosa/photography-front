@@ -22,9 +22,15 @@ const Page = ({
       <div className='page__content'>
         <img src={'/images/'+page.picture.name} alt={page.title} className='page__content__image'/>
         <div>
-        <p className='page__content__description'>{page.description}</p>
-        <p> tarifs </p>
-        </div>
+          <p className='page__content__description'>{page.description}</p>
+
+          <p> Tarifs : </p>
+          {page.rates.map((rate, index) => (
+            <div key={index}>
+              <p>{rate.nbPhotos} - {rate.price} e</p>
+            </div>
+          ))}
+          </div>
       </div>
      
       

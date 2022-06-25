@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import NavBar from '../../components/NavBar';
 
-import { fetchAllPagesOfPhotographer } from '../../store/actions/visitor';
+import { fetchAllShootingPagesOfPhotographer } from '../../store/actions/visitor';
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    FetchPages: () => {
-        dispatch(fetchAllPagesOfPhotographer());
+    FetchShootingPagesPages: () => {
+        dispatch(fetchAllShootingPagesOfPhotographer());
     }
 
 });
