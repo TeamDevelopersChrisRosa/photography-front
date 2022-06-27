@@ -1,0 +1,16 @@
+@use 'src/styles/vars' as v;
+
+.account {
+  width: 80%;
+  margin: 2rem auto;
+  margin-bottom: 4rem;
+
+  &__informations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+}
