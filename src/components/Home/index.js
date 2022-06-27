@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.scss';
 
-import NavBar from './../NavBar';
+import NavBar from './../../containers/NavBar';
 import Header from './../../containers/Header';
 import Footer from './../Footer';
 
