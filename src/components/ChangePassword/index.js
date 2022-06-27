@@ -15,7 +15,8 @@ const ChangePassword = ({
   ChangePasswordSuccess,
   ChangePasswordError,
   ChangePasswordSuccessMessage,
-  ChangePasswordErrorMessage
+  ChangePasswordErrorMessage,
+  removePasswordMessage
 }) => {
 
   const handleSubmit = (evt) => {
@@ -26,6 +27,11 @@ const ChangePassword = ({
       alert('La confirmation du mot de passe ne correspond pas');
     }
   }
+
+  const handlePasswordMessage = (evt) => {
+    evt.preventDefault();
+    removePasswordMessage(evt.target.id);
+  }
  
 
   return (
@@ -34,15 +40,22 @@ const ChangePassword = ({
       <h4> Modifier mon mot de passe </h4>
 
       { ChangePasswordSuccess === true ? (
-        <div className="alert alert-success" role="alert">
-          { ChangePasswordSuccessMessage }
+        <div className="alert alert-success changePassword__alert">
+          <div  role="alert">
+            { ChangePasswordSuccessMessage }
+            
+          </div>
+          <div onClick={handlePasswordMessage} id="success"> x </div>
         </div>
       ) : null }
        
        { ChangePasswordError === true ? (
-        <div className="alert alert-danger" role="alert">
-          { ChangePasswordErrorMessage }
-        </div>
+        <div className="alert alert-danger changePassword__alert">
+          <div role="alert">
+            { ChangePasswordErrorMessage }
+          </div>
+          <div onClick={handlePasswordMessage} id="error"> x </div>
+      </div>
       ) : null }
 
       <form autoComplete="off" onSubmit={handleSubmit} className="">

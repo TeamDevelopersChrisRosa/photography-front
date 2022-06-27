@@ -6,10 +6,18 @@ import {
     SAVE_USER,
     LOGOUT,
   } from '../actions/authentification';
+
+  import {
+    CHANGE_PASSWORD_SUCCESS,
+    CHANGE_PASSWORD_ERROR,
+  } from '../actions/user';
   
   export const initialState = {
     email: '',
     password: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   };
   
   const reducer = (state = initialState, action = {}) => {
@@ -28,6 +36,17 @@ import {
             password:'', 
         };
       }
+
+      case CHANGE_PASSWORD_ERROR: 
+      case CHANGE_PASSWORD_SUCCESS: {
+        return {
+          ...state,
+          oldPassword: '',
+          newPassword: '',
+          confirmPassword: '',
+        }
+      }
+
 
       case LOGOUT: {
         return {

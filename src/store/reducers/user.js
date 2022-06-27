@@ -1,6 +1,7 @@
   import {
     CHANGE_PASSWORD_SUCCESS,
-    CHANGE_PASSWORD_ERROR
+    CHANGE_PASSWORD_ERROR,
+    REMOVE_PASSWORD_MESSAGE
   } from '../actions/user';
   
   export const initialState = {
@@ -27,6 +28,21 @@
           changePasswordError: true,
           changePasswordErrorMessage: 'Erreur lors de la modification du mot de passe'
         };
+
+      case REMOVE_PASSWORD_MESSAGE:
+        if (action.name === 'success') {
+          return {
+            ...state,
+            changePasswordSuccess: false,
+            changePasswordSuccessMessage: ''
+          };
+        } else if (action.name === 'error') {
+          return {
+            ...state,
+            changePasswordError: false,
+            changePasswordErrorMessage: ''
+          };
+        }
       
   
       
