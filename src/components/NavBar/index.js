@@ -5,8 +5,11 @@ import { useLocation } from 'react-router-dom';
 
 
 const NavBar = ({
-  FetchShootingPagesPages,
-  pages,
+  FetchShootingPages,
+  shootingPages,
+  FetchPortfolioPages,
+  portfolioPages,
+  getSharedPictures,
 }) => {
 
     const location = useLocation(); 
@@ -16,12 +19,16 @@ const NavBar = ({
     }, [location]);
 
     const handleFetchShootingPages = () => {
-      FetchShootingPagesPages();
+      FetchShootingPages();
+    }
+
+    const handleFetchPortfolioPages = () => {
+      FetchPortfolioPages();
+      getSharedPictures();
     }
 
 
   return (
-
 
     <Navbar>
       <Container>
@@ -29,17 +36,14 @@ const NavBar = ({
         <Navbar.Collapse>
           <Nav className="navbar mx-auto">
             <Nav.Link className={url === "/" ? "navbar__link active" : "navbar__link"} href="/">Home</Nav.Link>
-            <NavDropdown title={"Portfolio"} id="nav-dropdown">
-              <NavDropdown.Item href="/portfolio/round_belly" id="nav-dropdown-link">Ventre rond</NavDropdown.Item>
-              <NavDropdown.Item href="/portfolio/newborn" id="nav-dropdown-link">Nouveau né</NavDropdown.Item>
-              <NavDropdown.Item href="/portfolio/baby_6_18_months" id="nav-dropdown-link">Bébé 6 / 18 mois</NavDropdown.Item>
-              <NavDropdown.Item href="/portfolio/smash_the_cake" id="nav-dropdown-link">Smash The Cake</NavDropdown.Item>
-              <NavDropdown.Item href="/portfolio/family" id="nav-dropdown-link">Famille</NavDropdown.Item>
-              <NavDropdown.Item href="/portfolio/lifestyle" id="nav-dropdown-link">Lifestyle</NavDropdown.Item>
+            <NavDropdown title={"Portfolio"} id="nav-dropdown" onClick={handleFetchPortfolioPages}>
+              {portfolioPages.map((page, index) => (
+                <NavDropdown.Item key={index} href={`/portfolio/${page.slug}`}>{page.title}</NavDropdown.Item>
+              ))}
             </NavDropdown>
             <NavDropdown title="Les séances" id="nav-dropdown" onClick={handleFetchShootingPages}>
-              {pages.map((page, index) => (
-                <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.title}</NavDropdown.Item>
+              {shootingPages.map((page, index) => (
+                <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
               ))}
             </NavDropdown>
             <Nav.Link className={url === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me">C'est moi !</Nav.Link>

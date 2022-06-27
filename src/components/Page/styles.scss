@@ -1,3 +1,5 @@
+@use '../../styles/vars' as v;
+
 .page {
 
     &__title {
@@ -13,8 +15,24 @@
         margin-bottom: 4em;
 
         &__image {
-            width: 40%;
+            //width: ???;
+            height: 500px;
             margin-right: 1rem;
         }
+
+        &__prices {
+            width: 60%;
+            margin: 2em auto;
+            margin-bottom: 4em;
+            border: 2px solid v.$fifthColor;
+            text-align: center;
+            padding: 2em;
+
+            &__price {
+                font-size: 1.2rem;
+            }
+        }
     }
+
+    
 }

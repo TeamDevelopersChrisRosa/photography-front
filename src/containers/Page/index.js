@@ -3,6 +3,7 @@ import Page from '../../components/Page';
 
 
 const mapStateToProps = (state, ownProps) => ({
+    sharedPictures: state.visitor.sharedPictures,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

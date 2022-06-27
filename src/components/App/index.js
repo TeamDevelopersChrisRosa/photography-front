@@ -15,7 +15,8 @@ import Page from '../../containers/Page';
 
 function App({
   isLogged,
-  pages
+  shootingPages,
+  portfolioPages,
 }) {
   return (
     <div className="App">
@@ -25,10 +26,12 @@ function App({
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="contact" element={<Contact />} />
-        {pages.map((page, index) => (
-          <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} />} />
+        {shootingPages.map((page, index) => (
+          <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} />} />
         ))}
-
+        {portfolioPages.map((page, index) => (
+          <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} />} />
+        ))}
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="shooting" element={<Shooting />} />
         <Route path="favorites" element={<Favorites />} />

@@ -1,18 +1,28 @@
 import { connect } from 'react-redux';
 import NavBar from '../../components/NavBar';
 
-import { fetchAllShootingPagesOfPhotographer } from '../../store/actions/visitor';
+import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchSharedPicturesOfPhotographer } from '../../store/actions/visitor';
 
 
 const mapStateToProps = (state, ownProps) => ({
-    pages: state.visitor.pages,
+    shootingPages: state.visitor.shootingPages,
+    portfolioPages: state.visitor.portfolioPages,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    FetchShootingPagesPages: () => {
+    FetchShootingPages: () => {
         dispatch(fetchAllShootingPagesOfPhotographer());
-    }
+    },
+
+    FetchPortfolioPages: () => {
+        dispatch(fetchAllPortfolioPagesOfPhotographer());
+    },
+
+    getSharedPictures: () => {
+        dispatch(fetchSharedPicturesOfPhotographer());
+    },
+
 
 });
 

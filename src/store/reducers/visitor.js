@@ -1,13 +1,14 @@
 import {
   SAVE_SHOOTING_PAGES,
+  SAVE_PORTFOLIO_PAGES,
+  SAVE_SHARED_PICTURES,
   } from '../actions/visitor';
 
-
-
-  
   
   export const initialState = {
-    pages: [],
+    shootingPages: [],
+    portfolioPages: [],
+    sharedPictures: [],
   };
   
   const reducer = (state = initialState, action = {}) => {
@@ -16,8 +17,21 @@ import {
         case SAVE_SHOOTING_PAGES:
             return {
                 ...state,
-                pages: action.pages,
+                shootingPages: action.shootingPages,
             };
+
+        case SAVE_PORTFOLIO_PAGES:
+            return {
+                ...state,
+                portfolioPages: action.portfolioPages,
+            };
+
+        case SAVE_SHARED_PICTURES:
+            return {
+                ...state,
+                sharedPictures: action.sharedPictures,
+            };
+
 
       
 

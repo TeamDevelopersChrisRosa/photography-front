@@ -6,7 +6,7 @@ import './styles.scss';
 
 import Header from '../../containers/Header';
 import Footer from '../Footer';
-import PhotoAlbum from "react-photo-album";
+import Gallery from '../../containers/Gallery';
 
 import './styles.scss';
 
@@ -19,7 +19,6 @@ const Favorites = ({
   sendEmailWithFavorites,
   
 }) => {
-  const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
   const favorites = [];
   wantedShooting.pictures.map((photo) => {
@@ -31,25 +30,6 @@ const Favorites = ({
     });
     return favorites;
   })
-
-  const photos = favorites.map((photo, index) => {
-    const width = photo.width;
-    const height = photo.height;
-    return {
-      src: `/images/${photo.name}`,
-      key: `${index}`,
-      width,
-      height,
-      images: breakpoints.map((breakpoint) => {
-        const breakpointHeight = Math.round((height / width) * breakpoint);
-        return {
-          src: `/images/${photo.name}`,
-          width: breakpoint,
-          height: breakpointHeight,
-        };
-      })
-    };
-  });
   
   const templateParams = {
     from_name: wantedShooting.client.user.firstName + ' ' + wantedShooting.client.user.lastName,
@@ -99,14 +79,8 @@ const Favorites = ({
           { validateFavoritesMessage }
         </div>
       ) : null }
-   
 
-        <PhotoAlbum
-          layout="columns"
-          columns={3}
-          photos={photos}
-          componentsProps={{ imageProps: { loading: "lazy" } }}
-        />
+        <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false}/>
 
         { sendEmailWithFavorites === false ? (     
 

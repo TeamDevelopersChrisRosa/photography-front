@@ -15,7 +15,6 @@ const shootingmiddleware = (store) => (next) => (action) => {
         
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveShootings(response.data));
         })
         .catch((error) => {
