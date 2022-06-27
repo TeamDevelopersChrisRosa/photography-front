@@ -9,6 +9,7 @@ const Header = ({
   firstName,
   lastName,
   logout,
+  id
   
 }) => {
 
@@ -33,7 +34,8 @@ const Header = ({
         <div className='header__messageAndButton'>
           <div className='header__messageAndButton__content'>
             <p className='header__messageAndButton__content__message'> Bonjour { firstName } { lastName } </p>
-            <button className='myButton m-auto' onClick={handleLogout}> Se déconnecter </button>
+            <button className='mySmallButton m-auto' onClick={handleLogout}> Se déconnecter </button>
+            <a href={/account/+id} className='myButton m-auto mt-1'> Mon compte </a>
           </div>
           <i className="bi bi-person header__messageAndButton__content__icon"></i>
         </div>
