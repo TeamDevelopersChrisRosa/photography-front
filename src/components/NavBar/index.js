@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const NavBar = ({
@@ -10,6 +10,7 @@ const NavBar = ({
   FetchPortfolioPages,
   portfolioPages,
   getSharedPictures,
+  FetchItsMePage,
 }) => {
 
     const location = useLocation(); 
@@ -18,6 +19,9 @@ const NavBar = ({
       setUrl(location.pathname);
     }, [location]);
 
+    let navigate = useNavigate();
+
+
     const handleFetchShootingPages = () => {
       FetchShootingPages();
     }
@@ -25,6 +29,13 @@ const NavBar = ({
     const handleFetchPortfolioPages = () => {
       FetchPortfolioPages();
       getSharedPictures();
+    }
+
+    const handleFetchItsMePage = (evt) => {
+      evt.preventDefault();
+      FetchItsMePage();
+      navigate('/its_me');
+
     }
 
 
@@ -46,7 +57,7 @@ const NavBar = ({
                 <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
               ))}
             </NavDropdown>
-            <Nav.Link className={url === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me">C'est moi !</Nav.Link>
+            <Nav.Link className={url === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me" onClick={handleFetchItsMePage}>C'est moi !</Nav.Link>
             <Nav.Link className={url === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
             
           </Nav>

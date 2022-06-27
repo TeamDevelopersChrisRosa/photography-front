@@ -6,7 +6,9 @@ import {
   FETCH_ALL_PORTFOLIO_PAGES_OF_PHOTOGRAPHER,
   savePortfolioPages,
   FETCH_SHARED_PICTURES_OF_PHOTOGRAPHER,
-  saveSharedPictures
+  saveSharedPictures,
+  FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER,
+  saveItsMePage
 } from '../actions/visitor';
 
 
@@ -51,6 +53,21 @@ const visitormiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(saveSharedPictures(response.data));
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+      break;
+    }
+
+    case FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER: {
+      const id = 1; //now we have just one photographer, so we can hardcode the id
+      api({
+        method: 'GET',
+        url: `page/its-me/photographer/${id}`,
+      })
+        .then((response) => {
+          store.dispatch(saveItsMePage(response.data));
         })
         .catch((error) => {
           console.log(error)

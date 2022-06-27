@@ -68,7 +68,6 @@ const Gallery = ({
     );
 
     const handleSetFavorite = (evt) => {
-      console.log('coucou');
       setFavorite(evt.target.id, wantedShooting.id);
     }
 

@@ -1,6 +1,8 @@
 @use '../../styles/vars' as v;
 
 .page {
+    width: 80%;
+    margin: 3em auto;
 
     &__title {
         font-size: 2.5rem;

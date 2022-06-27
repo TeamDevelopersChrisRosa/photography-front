@@ -14,17 +14,18 @@ const Page = ({
   isShooting,
   isPortfolio,
   sharedPictures,
+  isItsMe,
 }) => {
 
-  
-
   let sharedPicturesByThemeId = [];
-  sharedPictures.map((picture) => {
-    if (picture.shooting.themeId === page.theme.id) {
-      sharedPicturesByThemeId.push(picture);
-    }
-    return sharedPicturesByThemeId;
-  })
+  if(isPortfolio) {
+    sharedPictures.map((picture) => {
+      if (picture.shooting.themeId === page.theme.id) {
+        sharedPicturesByThemeId.push(picture);
+      }
+      return sharedPicturesByThemeId;
+    })
+  }
 
 
   return (
@@ -34,11 +35,12 @@ const Page = ({
 
     <div className='page'>
       <div className='page__title'>{page.title}</div>
-      {isShooting ? (
+      {isShooting || isItsMe ? (
         <div className='page__content'>
           <img src={'/images/'+page.picture.name} alt={page.title} className='page__content__image'/>
           <div>
             <p className='page__content__description'>{nl2br(page.description)}</p>
+            {isShooting ? (
             <div className='page__content__prices'> 
                 <h3> Tarifs : </h3>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales purus in dolor dignissim </p>
@@ -47,7 +49,8 @@ const Page = ({
                     <div className='page__content__prices__price'><b>{rate.nbPhotos}</b> photos : <b>{rate.price} €</b></div>
                   </div>
                 ))}
-            </div>   
+            </div> 
+            ) : null}  
           </div>
         </div>
 

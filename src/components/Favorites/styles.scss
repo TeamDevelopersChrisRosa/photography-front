@@ -1,7 +1,9 @@
 @use '../../styles/vars' as v;
 
 .favorites {
-
+    width: 80%;
+    margin: 3em auto;
+    
     &__header {
         display: flex;
         justify-content: space-between;

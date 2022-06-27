@@ -2,6 +2,7 @@ import {
   SAVE_SHOOTING_PAGES,
   SAVE_PORTFOLIO_PAGES,
   SAVE_SHARED_PICTURES,
+  SAVE_ITS_ME_PAGE,
   } from '../actions/visitor';
 
   
@@ -9,6 +10,7 @@ import {
     shootingPages: [],
     portfolioPages: [],
     sharedPictures: [],
+    itsMePage: [],
   };
   
   const reducer = (state = initialState, action = {}) => {
@@ -32,8 +34,12 @@ import {
                 sharedPictures: action.sharedPictures,
             };
 
-
-      
+        case SAVE_ITS_ME_PAGE:
+            return {
+                ...state,
+                itsMePage: action.itsMePage,
+            };
+            
 
       default:
         return state;
