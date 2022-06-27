@@ -21,6 +21,7 @@ import {
     messageForgot: false,
     successMessage: false,
     errorMessage: '',
+    id: null,
     
 
   };
@@ -29,7 +30,7 @@ import {
     switch (action.type) {
   
       case SAVE_USER: {
-        const { email, firstName, lastName, admin, client } = action.payload.user;
+        const { email, firstName, lastName, admin, client, id } = action.payload.user;
         return {
             ...state,
             email,
@@ -38,6 +39,7 @@ import {
             password:'',
             admin,
             client,
+            id,
             isLogged: true,
             showErrorMessage: false,
 

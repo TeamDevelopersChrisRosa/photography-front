@@ -7,6 +7,7 @@ import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotograph
 const mapStateToProps = (state, ownProps) => ({
     shootingPages: state.visitor.shootingPages,
     portfolioPages: state.visitor.portfolioPages,
+    isLogged: state.auth.isLogged,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

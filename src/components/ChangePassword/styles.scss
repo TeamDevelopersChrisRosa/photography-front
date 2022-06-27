@@ -1,0 +1,16 @@
+@use '../../styles/vars' as v;
+
+.changePassword {
+    padding: 3rem 2rem;
+    width: 50%;
+    margin: 2rem auto;
+    //text-align: center;
+    background-color: v.$thirdColor;
+    border-radius: 5px;
+  
+    &__alert {
+        display: flex;
+        justify-content: space-between;
+
+    }
+}

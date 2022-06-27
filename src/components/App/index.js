@@ -11,7 +11,7 @@ import Dashboard from '../../containers/Dashboard';
 import Shooting from '../../containers/Shooting';
 import Favorites from '../../containers/Favorites';
 import Page from '../../containers/Page';
-import ItsMe from '../../containers/ItsMe';
+import Account from '../../containers/Account';
 
 
 function App({
@@ -39,6 +39,7 @@ function App({
         <Route path="shooting" element={<Shooting />} />
         <Route path="favorites" element={<Favorites />} />
         <Route path="its_me" element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />
+        <Route path="account/:id" element={<Account />} />
 
         <Route path="*" element={<NotFound />} />
 

@@ -11,6 +11,7 @@ const NavBar = ({
   portfolioPages,
   getSharedPictures,
   FetchItsMePage,
+  isLogged,
 }) => {
 
     const location = useLocation(); 
@@ -59,6 +60,8 @@ const NavBar = ({
             </NavDropdown>
             <Nav.Link className={url === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me" onClick={handleFetchItsMePage}>C'est moi !</Nav.Link>
             <Nav.Link className={url === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
+            {isLogged &&
+              <Nav.Link className={url === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link> }
             
           </Nav>
         </Navbar.Collapse>

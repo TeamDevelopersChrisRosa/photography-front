@@ -4,6 +4,7 @@ import fieldReducer from './field';
 import authReducer from './authentification';
 import shootingReducer from './shooting';
 import visitorReducer from './visitor';
+import userReducer from './user';
 
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   shooting: shootingReducer,
   visitor: visitorReducer,
+  user: userReducer,
 
 
 });
