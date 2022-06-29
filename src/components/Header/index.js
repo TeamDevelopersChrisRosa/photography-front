@@ -30,14 +30,14 @@ const Header = ({
     <div className='header'> 
     
     {!isLogged ? (
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
+      <div Name="container-fluid">
+        <div className="row">
+          <div className="col">
           </div>
-          <div class="col">
+          <div className="col">
             <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
           </div>
-          <div class="col header__login">
+          <div className="col header__login">
             <>
               { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
             </>
@@ -46,12 +46,12 @@ const Header = ({
       </div>
       ) : 
       <>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">
             <a href='/'><img src={Logo} className="header__logo__small" alt="logo" /> </a>
           </div>
-          <div class="col header__person">
+          <div className="col header__person">
               <div className='header__person__first'>
                 <i className='bi bi-person-fill header__person__first__icon'></i>
                 <div className='header__person__first__message'> Bonjour { firstName } { lastName } </div>
