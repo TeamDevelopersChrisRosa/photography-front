@@ -1,51 +1,37 @@
 @use '../../styles/vars' as v;
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    margin: 0 1em;
+    margin-bottom: 2rem;
 
-    &__logoAndTitle {
-        display: flex;
-        justify-content: flex-start;
-        margin: auto 0;
-
-        &__logo {
+    &__logo {
+        height: 200px;
+        &__small {
             height: 150px;
-        }
-     
-        &__title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: v.$fourthColor;
-            margin: auto 1.5em;
-            text-decoration: none;
         }
     }
 
-    &__link {
-        text-decoration: none;
-        font-size: 1.2rem;
-        margin: auto 0;
-        border: none;
-        background-color: v.$fifthColor;
-        padding: .5em 1em;
-        color: white;
+    &__login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
     }
 
     &__person {
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        
 
         &__first {
             display: flex;
             align-items: center;
+            margin-right: 2rem;
 
             &__message {
                 font-size: 1.5em;
-                margin-left: .5em;
+                //margin-left: .5em;
             }
             &__icon {
                 font-size: 3rem;
@@ -57,24 +43,15 @@
             margin-top: .2em;
             display: flex;
             justify-content: flex-end;
+            margin-right: 2rem;
             
             &__button {
                 margin: 0 .5em;
             }
             
         }
-    
-    
 
-        
-        
-        &__button {
-            display: block;
-            margin: 0 auto;
-            color: white;
-            background-color: v.$fifthColor;
-            border: none;
-            padding: .5em 1em;
-        }
     }
+
+
 }

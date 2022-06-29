@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import Logo from './Logo.png';
+
 import './styles.scss';
 
 
@@ -26,31 +28,50 @@ const Header = ({
   return (
 
     <div className='header'> 
-      <div className='header__logoAndTitle'> 
-        <img className='header__logoAndTitle__logo' src="https://www.ville-sathonaycamp.fr/wp-content/uploads/2021/06/placeholder-1.png" alt=""/>
-        <a href='/' className='header__logoAndTitle__title'> App Title </a> 
-      </div>
-      { isLogged ? (
-        <div className='header__person'>
-          <div className='header__person__first'>
-            <i className='bi bi-person-fill header__person__first__icon'></i>
-            <div className='header__person__first__message'> Bonjour { firstName } { lastName } </div>
+    
+    {!isLogged ? (
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
           </div>
-
-          <div className='header__person__second'>
-            <a href={/account/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
-            <button className='mySmallButton header__person__second__button bg-danger' onClick={handleLogout}> Se déconnecter </button>
+          <div class="col">
+            <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
+          </div>
+          <div class="col header__login">
+            <>
+              { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+            </>
           </div>
         </div>
-         
-       ): (
-       <>
-       { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
-       </>
-       )}
-     
-      
+      </div>
+      ) : 
+      <>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <a href='/'><img src={Logo} className="header__logo__small" alt="logo" /> </a>
+          </div>
+          <div class="col header__person">
+              <div className='header__person__first'>
+                <i className='bi bi-person-fill header__person__first__icon'></i>
+                <div className='header__person__first__message'> Bonjour { firstName } { lastName } </div>
+              </div>
+
+              <div className='header__person__second'>
+                <a href={/account/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
+                <button className='mySmallButton header__person__second__button bg-danger' onClick={handleLogout}> Se déconnecter </button>
+              </div>
+            </div>
+        </div>
+      </div>
+      </> 
+      }
+        
+
     </div>
+    
+    
+
 
   )};
 
