@@ -31,13 +31,16 @@ const Header = ({
         <a href='/' className='header__logoAndTitle__title'> App Title </a> 
       </div>
       { isLogged ? (
-        <div className='header__messageAndButton'>
-          <div className='header__messageAndButton__content'>
-            <p className='header__messageAndButton__content__message'> Bonjour { firstName } { lastName } </p>
-            <button className='mySmallButton m-auto' onClick={handleLogout}> Se déconnecter </button>
-            <a href={/account/+id} className='myButton m-auto mt-1'> Mon compte </a>
+        <div className='header__person'>
+          <div className='header__person__first'>
+            <i className='bi bi-person-fill header__person__first__icon'></i>
+            <div className='header__person__first__message'> Bonjour { firstName } { lastName } </div>
           </div>
-          <i className="bi bi-person header__messageAndButton__content__icon"></i>
+
+          <div className='header__person__second'>
+            <a href={/account/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
+            <button className='mySmallButton header__person__second__button bg-danger' onClick={handleLogout}> Se déconnecter </button>
+          </div>
         </div>
          
        ): (
