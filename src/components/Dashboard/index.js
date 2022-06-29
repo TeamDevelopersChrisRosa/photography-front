@@ -14,7 +14,8 @@ const Dashboard = ({
 
 
   const handleChangeShooting = (evt) => {
-    const shooting = shootings.find(shooting => shooting.id === Number(evt.target.value));
+    console.log(evt.target.id);
+    const shooting = shootings.find(shooting => shooting.id === Number(evt.target.id));
     setWantedShooting(shooting.id);
   }
 
@@ -26,15 +27,29 @@ const Dashboard = ({
       {isLogged ? (
         <>
         <p className='dashboard__title'> Mes galeries photos : </p>
+        <div className='dashboard__galleries'>
+          {shootings.map((shooting) => (
+            <>
+              { wantedShooting.id === shooting.id ? (
+                <div className='dashboard__galleries__selected'>
+                  <img src={`/images/${shooting.pictures[0].name}`} alt={shooting.pictures[0].name} className='dashboard__galleries__selected__picture' onClick={handleChangeShooting} id={shooting.id}/>
+                  <p className='dashboard__galleries__selected__name'> {shooting.nameOfGallery} </p>
+                </div>
+              ) : (
+                <div className='dashboard__galleries__notSelected'>
+                  <img src={`/images/${shooting.pictures[0].name}`} alt={shooting.pictures[0].name} className='dashboard__galleries__notSelected__picture' onClick={handleChangeShooting} id={shooting.id}/>
+                  <p className='dashboard__galleries__notSelected__name'> {shooting.nameOfGallery} </p>
+                </div>
+              )}
+              
+            </>
+          ))}
+        </div>
 
-          <select onChange={handleChangeShooting} className='dashboard__select'>
-            <option key={null} value={null} className='dashboard__select__option'> Sélection ... </option>
-            {shootings.map((shooting, index) => (
-              <option key={index} value={shooting.id} className='dashboard__select__option'>{shooting.nameOfGallery}</option>
-            ))}
-          </select>
-
-          <a href='/shooting' className="myButton mx-auto mt-5 w-25"> Valider </a>
+         
+        <a href='/shooting' className="myButton mx-auto mt-5 w-25"> Valider </a>
+         
+          
         </>
       ) : (
         <p>Vous n'êtes pas connecté</p>
