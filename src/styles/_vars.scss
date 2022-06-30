@@ -4,6 +4,8 @@ $thirdColor: #bec0b5;
 $fourthColor: #82857a;
 $fifthColor: #b58d34;
 
+$breakpoint: 768px;
+
 
 
 
@@ -24,6 +26,17 @@ $fifthColor: #b58d34;
         color: $primaryColor;
         border: 1px solid $primaryColor;
     }
+
+    @media (max-width: $breakpoint) {
+        display: block;
+        background: $fifthColor;
+        color: #fff;
+        border-radius: 3px;
+        padding: .2em;
+        font-size: .8em;
+        text-decoration: none;
+        border: none;
+    }
 };
 
 .mySmallButton {
@@ -42,4 +55,16 @@ $fifthColor: #b58d34;
         color: $primaryColor;
         border: 1px solid $primaryColor;
     }
+
+    @media (max-width: $breakpoint) {
+        display: block;
+        background: $fourthColor;
+        color: #fff;
+        border-radius: 3px;
+        padding: .1em .4em;
+        font-size: .6em;
+        text-decoration: none;
+        border: none;
+    }
 };
+

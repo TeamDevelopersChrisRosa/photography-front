@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive'
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -28,8 +29,13 @@ const Shooting = ({
             <a href='/favorites' className='myButton'> Favorites {favoriteIds.length}/{wantedShooting.rate.nbPhotos} </a>
         </div>
 
-        <Gallery gallery={wantedShooting.pictures} layout={"columns"} columns={3} withFavorites={true}/>
         
+          <MediaQuery minWidth={769}>
+            <Gallery gallery={wantedShooting.pictures} layout={"columns"} columns={3} withFavorites={true}/>
+          </MediaQuery>
+          <MediaQuery maxWidth={768}>
+              <Gallery gallery={wantedShooting.pictures} layout={"columns"} columns={1} withFavorites={true}/>
+          </MediaQuery>
 
       </div>
 

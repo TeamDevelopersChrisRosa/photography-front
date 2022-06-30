@@ -7,6 +7,10 @@
     //text-align: center;
     background-color: v.$thirdColor;
     border-radius: 5px;
+
+    @media (max-width: v.$breakpoint) {
+        width: 100%;
+    }
   
     &__alert {
         display: flex;

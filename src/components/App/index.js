@@ -35,11 +35,13 @@ function App({
         {portfolioPages.map((page, index) => (
           <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} isItsMe={false} />} />
         ))}
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="shooting" element={<Shooting />} />
-        <Route path="favorites" element={<Favorites />} />
+        {isLogged && <Route path="dashboard" element={<Dashboard />} />}
+        {isLogged && <Route path="shooting" element={<Shooting />} />}
+        {isLogged && <Route path="favorites" element={<Favorites />} />}
+        
         <Route path="its_me" element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />
-        <Route path="account/:id" element={<Account />} />
+        {isLogged && (
+        <Route path="account/:id" element={<Account />} /> )}
 
         <Route path="*" element={<NotFound />} />
 
