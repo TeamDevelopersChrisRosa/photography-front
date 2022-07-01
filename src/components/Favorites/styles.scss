@@ -14,8 +14,14 @@
             font-size: 1.5em;
             font-weight: bold;
             color: v.$fourthColor;
+            text-align: center;
+
+            @media (max-width: v.$breakpoint) {
+                font-size: 1em;
+            }
+                
         }
-        
     }
-    
+        
 }
+    
