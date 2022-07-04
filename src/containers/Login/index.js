@@ -7,10 +7,11 @@ const mapStateToProps = (state) => ({
   errorMessage: state.auth.errorMessage,
   isLogged: state.auth.isLogged,
   showForgotPasswordForm: state.auth.showForgotPasswordForm,
+  firstConnect: state.auth.client.firstConnect,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  
+
   handleLogin: () => {
     dispatch(login());
   },
@@ -20,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
   
 
-  
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -6,7 +6,7 @@ import {
     FORGOT_ERROR,
     FORGOT_SUCCESS,
   } from '../actions/authentification';
-  
+
   export const initialState = {
     email: '',
     password: '',
@@ -21,14 +21,14 @@ import {
     messageForgot: false,
     successMessage: false,
     errorMessage: '',
-    id: null,
-    
+    id: null
+
 
   };
-  
+
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-  
+
       case SAVE_USER: {
         const { email, firstName, lastName, admin, client, id } = action.payload.user;
         return {
@@ -46,7 +46,7 @@ import {
 
         };
       }
-      
+
       case LOGOUT: {
         return {
           ...initialState
@@ -90,10 +90,10 @@ import {
           email: '',
         };
       }
-      
+
       default:
         return state;
     }
   };
-  
+
   export default reducer;

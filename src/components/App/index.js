@@ -12,6 +12,7 @@ import Shooting from '../../containers/Shooting';
 import Favorites from '../../containers/Favorites';
 import Page from '../../containers/Page';
 import Account from '../../containers/Account';
+import ChangeTemporaryPassword from '../../containers/ChangeTemporaryPassword';
 
 
 function App({
@@ -40,6 +41,7 @@ function App({
         {isLogged && <Route path="favorites" element={<Favorites />} />}
         
         <Route path="its_me" element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />
+        <Route path="temp" element={<ChangeTemporaryPassword />} />
         {isLogged && (
         <Route path="account/:id" element={<Account />} /> )}
 
@@ -48,7 +50,7 @@ function App({
 
       </Routes>
 
-      
+
 
 
 
