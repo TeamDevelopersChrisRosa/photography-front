@@ -6,5 +6,9 @@
 
     &__picture {
        width: 800px;
+
+       @media (max-width: 768px) {
+        width: 350px;
+    }
     }
 }

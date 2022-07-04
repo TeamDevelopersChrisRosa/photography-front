@@ -1,5 +1,9 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import MediaQuery from 'react-responsive'
+
+
+import Logo from './Logo.png';
 
 import './styles.scss';
 
@@ -12,6 +16,7 @@ const Header = ({
   id
   
 }) => {
+
 
   let location = useLocation();
 
@@ -26,28 +31,63 @@ const Header = ({
   return (
 
     <div className='header'> 
-      <div className='header__logoAndTitle'> 
-        <img className='header__logoAndTitle__logo' src="https://www.ville-sathonaycamp.fr/wp-content/uploads/2021/06/placeholder-1.png" alt=""/>
-        <a href='/' className='header__logoAndTitle__title'> App Title </a> 
-      </div>
-      { isLogged ? (
-        <div className='header__messageAndButton'>
-          <div className='header__messageAndButton__content'>
-            <p className='header__messageAndButton__content__message'> Bonjour { firstName } { lastName } </p>
-            <button className='mySmallButton m-auto' onClick={handleLogout}> Se déconnecter </button>
-            <a href={/account/+id} className='myButton m-auto mt-1'> Mon compte </a>
+    
+    {!isLogged ? (
+      <>
+      <MediaQuery minWidth={769}>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col">
+            </div>
+            <div className="col">
+              <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
+            </div>
+            <div className="col header__login">
+              <>
+                { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+              </>
+            </div>
           </div>
-          <i className="bi bi-person header__messageAndButton__content__icon"></i>
         </div>
-         
-       ): (
-       <>
-       { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
-       </>
-       )}
-     
+      </MediaQuery>
+        <MediaQuery maxWidth={768}>
+          <div className="header__mobile">
+            <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
+            { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+          </div>
+        </MediaQuery>
+      </>
+      ) : 
+      <>
+    
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col">
+              <a href='/'><img src={Logo} className="header__logo__small" alt="logo" /> </a>
+            </div>
+            <div className="col header__person">
+                <div className='header__person__first'>
+                  <i className='bi bi-person-fill header__person__first__icon'></i>
+                  <div className='header__person__first__message'> Bonjour { firstName } { lastName } </div>
+                </div>
+
+                <div className='header__person__second'>
+                  <a href={/account/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
+                  <button className='mySmallButton header__person__second__button bg-danger' onClick={handleLogout}> Se déconnecter </button>
+                </div>
+              </div>
+          </div>
+        </div>
       
+
+      </> 
+      }
+        
+
     </div>
+    
+    
+
 
   )};
 

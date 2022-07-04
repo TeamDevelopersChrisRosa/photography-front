@@ -1,5 +1,6 @@
 import React from 'react';
 import emailjs from '@emailjs/browser';
+import MediaQuery from 'react-responsive'
 
 
 import './styles.scss';
@@ -80,8 +81,15 @@ const Favorites = ({
         </div>
       ) : null }
 
-        <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false}/>
+        <MediaQuery minWidth={769}>
+          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false}/>
+        </MediaQuery>
+        <MediaQuery maxWidth={768}>
+          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false}/>
 
+          </MediaQuery>
+
+        
         { sendEmailWithFavorites === false ? (     
 
           <button className='myButton mx-auto my-3' onClick={() => { if (window.confirm('Cette action va envoyer un mail à la photographe afin de vous permettre de télécharger vos photos, vous ne pourrez donc plus les modifier, êtes-vous sûr(e) ?')) validateFavorites() } }> Valider mes favorites </button>

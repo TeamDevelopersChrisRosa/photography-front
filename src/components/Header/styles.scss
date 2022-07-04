@@ -1,70 +1,87 @@
 @use '../../styles/vars' as v;
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    margin: 0 1em;
+    margin-bottom: 2rem;
+    @media (max-width: v.$breakpoint) {
+        margin-bottom: .5rem;
+    }
 
-    &__logoAndTitle {
-        display: flex;
-        justify-content: flex-start;
-        margin: auto 0;
-
-        &__logo {
-            height: 150px;
+    &__logo {
+        height: 170px;
+        @media (max-width: v.$breakpoint) {
+            height: 60px;
         }
-     
-        &__title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: v.$fourthColor;
-            margin: auto 1.5em;
-            text-decoration: none;
+        &__small {
+            height: 130px;
+            @media (max-width: v.$breakpoint) {
+                height: 60px;
+            }
         }
     }
 
-    &__link {
-        text-decoration: none;
-        font-size: 1.2rem;
-        margin: auto 0;
-        border: none;
-        background-color: v.$fifthColor;
-        padding: .5em 1em;
-        color: white;
-    }
-
-    &__messageAndButton {
+    &__login {
         display: flex;
-        justify-content: flex-end;
         align-items: center;
+        justify-content: center;
+        
+    }
 
-        &__content {
+    &__person {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        
+
+        &__first {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            margin-right: 2rem;
+            @media (max-width: v.$breakpoint) {
+                margin-right: .1rem;
+            }
 
             &__message {
-                text-align: center;
-                font-size: 1.3em;
+                font-size: 1.5em;
+                @media (max-width: v.$breakpoint) {
+                    font-size: .8em;
+                }
             }
-
             &__icon {
-                display: block;
-                //margin: auto;
-                font-size: 5em;
-                padding: 1rem;
-            }
+                font-size: 3rem;
+                color: v.$fifthColor;
+                @media (max-width: v.$breakpoint) {
+                    font-size: 1.5rem;
+                }
+            }    
         }
 
-        
-        
-        &__button {
-            display: block;
-            margin: 0 auto;
-            color: white;
-            background-color: v.$fifthColor;
-            border: none;
-            padding: .5em 1em;
+        &__second {
+            margin-top: .2em;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 2rem;
+            @media (max-width: v.$breakpoint) {
+                margin-right: .1rem;
+            }
+            
+            &__button {
+                margin: 0 .5em;
+            }
+            
+        }
+
+    }
+    
+    &__mobile {
+        margin: 0 1em;
+        display: flex;
+        justify-content: space-between;
+
+        &__login {
+            background-color: red;
         }
     }
+
+
 }

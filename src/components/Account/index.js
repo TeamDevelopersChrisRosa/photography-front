@@ -29,7 +29,7 @@ const Account = ({
        
        <ChangePassword />
 
-        <a href='/dashboard' className='myButton mx-auto w-25'> Retour tableau de bord</a>
+        <a href='/dashboard' className='myButton mx-auto'> Retour tableau de bord</a>
         
       </div>
     <Footer />

@@ -2,13 +2,17 @@
 
 .page {
     width: 80%;
-    margin: 3em auto;
+    margin: 0 auto;
 
     &__title {
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 2rem;
         text-align: center;
+
+        @media (max-width: v.$breakpoint) {
+            font-size: 1.5em;
+        }
     }
 
     &__content {
@@ -16,10 +20,22 @@
         margin: 0 2em;
         margin-bottom: 4em;
 
+        @media (max-width: v.$breakpoint) {
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+
         &__image {
-            //width: ???;
             height: 500px;
             margin-right: 1rem;
+
+            @media (max-width: v.$breakpoint) {
+                width: 100%;
+                height: auto;
+                margin-right: 0;
+                margin-bottom: .5rem;
+            }
         }
 
         &__prices {
@@ -29,6 +45,15 @@
             border: 2px solid v.$fifthColor;
             text-align: center;
             padding: 2em;
+
+            @media (max-width: v.$breakpoint) {
+                width: 100%;
+                margin: .5em auto;
+                margin-bottom: 4em;
+                border: 2px solid v.$fifthColor;
+                text-align: center;
+                padding: .5em;
+            }
 
             &__price {
                 font-size: 1.2rem;
