@@ -1,12 +1,13 @@
 export const UPDATE_USER = 'UPDATE_USER';
 export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS';
-export const CHANGE_PASSWORD_ERROR = 'CHANGE_PASSWORD_ERROR';   
+export const CHANGE_PASSWORD_ERROR = 'CHANGE_PASSWORD_ERROR';
 export const REMOVE_PASSWORD_MESSAGE = 'REMOVE_PASSWORD_MESSAGE';
+export const CHANGE_FIRST_CONNECT = 'CHANGE_FIRST_CONNECT';
 
 export const updateUser = (userId, oldPassword, newPassword) => ({
     type: 'UPDATE_USER',
     userId,
-    oldPassword, 
+    oldPassword,
     newPassword
 });
 
@@ -21,4 +22,9 @@ export const changePasswordError = () => ({
 export const removePasswordMessage = (name) => ({
     type: 'REMOVE_PASSWORD_MESSAGE',
     name
+});
+
+export const changeFirstConnect = (userId) => ({
+  userId,
+  type: 'CHANGE_FIRST_CONNECT'
 });

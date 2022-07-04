@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -9,7 +10,8 @@ const Dashboard = ({
   isLogged,
   shootings,
   setWantedShooting,
-  wantedShooting
+  wantedShooting,
+  firstConnect
 }) => {
 
 
@@ -22,7 +24,12 @@ const Dashboard = ({
     <>
     <Header />
     <div className='dashboard'>
-      
+
+    { firstConnect
+            && (
+              <Navigate to={`/temp`} />
+          )}
+
       {isLogged ? (
         <>
         <p className='dashboard__title'> Mes galeries photos : </p>

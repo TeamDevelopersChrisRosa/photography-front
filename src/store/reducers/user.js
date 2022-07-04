@@ -3,15 +3,15 @@
     CHANGE_PASSWORD_ERROR,
     REMOVE_PASSWORD_MESSAGE
   } from '../actions/user';
-  
+
   export const initialState = {
     changePasswordSuccess : false,
     changePasswordSuccessMessage : '',
     changePasswordError : false,
-    changePasswordErrorMessage : '',
+    changePasswordErrorMessage : ''
 
   };
-  
+
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
 
@@ -21,7 +21,7 @@
           changePasswordSuccess: true,
           changePasswordSuccessMessage: 'Mot de passe modifié avec succès'
         };
-      
+
       case CHANGE_PASSWORD_ERROR:
         return {
           ...state,
@@ -43,13 +43,13 @@
             changePasswordErrorMessage: ''
           };
         }
-      
-  
-      
-    
+
+
+
+
       default:
         return state;
     }
   };
-  
+
   export default reducer;

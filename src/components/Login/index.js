@@ -17,6 +17,7 @@ const Login = ({
   errorMessage,
   handleForgotPasswordForm,
   showForgotPasswordForm,
+  firstConnect
 }) => {
 
   const handleSubmit = (evt) => {
@@ -38,10 +39,10 @@ const Login = ({
           )}
 
           <Header />
-          
+
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
-              
+
                 <form autoComplete="off" onSubmit={handleSubmit} className="login__form" >
 
                 <p> Incididunt nulla laboris pariatur elit esse dolore. Nostrud voluptate consequat dolor consequat exercitation. Ea veniam dolor quis exercitation fugiat elit et laboris laboris irure labore proident.</p>
@@ -62,7 +63,7 @@ const Login = ({
                   />
 
                   <button className='mySmallButton mx-auto mt-2' onClick={handleForgotPassword}> Mot de passe oublié ? </button>
-              
+
                   {showErrorMessage && (
                     <p className="login__form__error">{errorMessage}</p>
                   )}
@@ -74,10 +75,10 @@ const Login = ({
                     Connexion
                   </button>
                 </form>
-              
+
             )}
 
-            
+
 
         <Footer />
       </div>
