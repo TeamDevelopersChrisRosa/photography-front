@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MediaQuery from 'react-responsive'
 
 
@@ -78,28 +78,28 @@ const NavBar = ({
       </MediaQuery>
       
       <MediaQuery maxWidth={768}>
-        <div class="dropdown">
-          <a class="btn dropdown dropdown__icon" href="#" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-list"></i>
+        <div className="dropdown">
+          <a className="btn dropdown dropdown__icon" href="#" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          <i className="bi bi-list"></i>
           </a>
 
-          <ul class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="/">Home</a></li>
+          <ul className="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a className="dropdown-item" href="/">Home</a></li>
             <ul> Portfolio
               {portfolioPages.map((page, index) => (
-                <li key={index}><a class="dropdown-item" href={`/portfolio/${page.slug}`}>{page.nameInMenu}</a></li>
+                <li key={index}><a className="dropdown-item" href={`/portfolio/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
             </ul>
             <ul>
               Les séances
               {shootingPages.map((page, index) => (
-                <li key={index}><a class="dropdown-item" href={`/shooting/${page.slug}`}>{page.nameInMenu}</a></li>
+                <li key={index}><a className="dropdown-item" href={`/shooting/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
             </ul>
-            <li><a class="dropdown-item" href="/its_me">C'est moi</a></li>
-            <li><a class="dropdown-item" href="/contact">Contact</a></li>
+            <li><a className="dropdown-item" href="/its_me">C'est moi</a></li>
+            <li><a className="dropdown-item" href="/contact">Contact</a></li>
             {isLogged &&
-                  <li><a class="dropdown-item" href="/dasboard">Tableau de bord</a></li> }
+                  <li><a className="dropdown-item" href="/dasboard">Tableau de bord</a></li> }
           </ul>
         </div>
 

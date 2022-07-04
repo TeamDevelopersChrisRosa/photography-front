@@ -9,12 +9,18 @@ import Field from '../../containers/Field';
 
 const Contact = ({
   changeField,
-  handleLogin,
+  changeText,
+  message,
 }) => {
  /*  const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
   }; */
+
+  const handleChangeText = (evt) => {
+    evt.preventDefault();
+    changeText(evt.target.value, evt.target.name);
+  }
 
   return (
     <>
@@ -56,8 +62,9 @@ const Contact = ({
                 name="message"
                 type="message"
                 placeholder="Message"
-                onChange={changeField}
+                onChange={handleChangeText}
                 className="login__form__input"
+                value={message}
               />
 
               <button
