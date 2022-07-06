@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Dashboard from '../../components/Dashboard';
+import { Dashboard } from '../../components/Dashboard';
 
 import { setWantedShooting } from '../../store/actions/shooting';
 

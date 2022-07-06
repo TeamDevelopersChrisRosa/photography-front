@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 import Header from '../../containers/Header';
-import Footer from '../Footer';
+import { Footer } from '../Footer';
 
-const Dashboard = ({
+export const Dashboard = ({
   isLogged,
   shootings,
   setWantedShooting,
@@ -33,7 +33,7 @@ const Dashboard = ({
 
   return (
     <>
-    <Header />
+    {/* <Header /> */}
     <div className='dashboard'>
 
     { firstConnect
@@ -73,7 +73,7 @@ const Dashboard = ({
       )}
     </div>
 
-    <Footer />
+    {/* <Footer /> */}
 
     </>
   );
@@ -84,5 +84,3 @@ Dashboard.propTypes = {
 
 Dashboard.defaultProps = {
 };
-
-export default Dashboard;

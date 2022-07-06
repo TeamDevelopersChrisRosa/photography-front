@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.scss';
 
 
-const NotFound = () => {
+export const NotFound = () => {
 
   return (
 
@@ -13,4 +13,3 @@ const NotFound = () => {
   )};
 
 
-export default NotFound;

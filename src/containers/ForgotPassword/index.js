@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ForgotPassword from '../../components/ForgotPassword';
+import { ForgotPassword } from '../../components/ForgotPassword';
 import { showForgotPasswordForm, forgot } from '../../store/actions/authentification';
 
 

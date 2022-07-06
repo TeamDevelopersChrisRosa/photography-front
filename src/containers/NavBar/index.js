@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import NavBar from '../../components/NavBar';
+import { NavBar } from '../../components/NavBar';
 
 import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchSharedPicturesOfPhotographer, fetchItsMePageOfPhotographer } from '../../store/actions/visitor';
 

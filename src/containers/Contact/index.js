@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Contact from '../../components/Contact';
+import { Contact } from '../../components/Contact';
 import { changeValue } from '../../store/actions/field';
 
 

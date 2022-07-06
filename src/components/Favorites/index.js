@@ -6,13 +6,13 @@ import MediaQuery from 'react-responsive'
 import './styles.scss';
 
 import Header from '../../containers/Header';
-import Footer from '../Footer';
+import { Footer } from '../Footer';
 import Gallery from '../../containers/Gallery';
 
 import './styles.scss';
 
 
-const Favorites = ({
+export const Favorites = ({
   wantedShooting,
   favoriteIds,
   getValidateFavoritesMessage,
@@ -59,7 +59,7 @@ const Favorites = ({
   return (
 
     <>
-      <Header />
+      {/* <Header /> */}
 
       <div className='favorites'>
 
@@ -97,10 +97,7 @@ const Favorites = ({
 
       </div>
       
-      <Footer />
+     {/*  <Footer /> */}
     </>
 
   )};
-
-
-export default Favorites;

@@ -3,11 +3,11 @@ import React from 'react';
 import './styles.scss';
 
 import NavBar from '../../containers/NavBar';
-import Header from './../Header';
-import Footer from './../Footer';
+import { Header } from './../Header';
+import { Footer } from './../Footer';
 import Field from '../../containers/Field';
 
-const Contact = ({
+export const Contact = ({
   changeField,
   handleLogin,
 }) => {
@@ -18,8 +18,8 @@ const Contact = ({
 
   return (
     <>
-      <Header />
-      <NavBar />
+      {/* <Header /> */}
+      {/* <NavBar /> */}
 
       <div className='contact'>
 
@@ -70,7 +70,7 @@ const Contact = ({
             </form>
         </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
@@ -80,5 +80,3 @@ const Contact = ({
 
 // Contact.defaultProps = {
 // };
-
-export default Contact;

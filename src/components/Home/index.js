@@ -4,19 +4,19 @@ import './styles.scss';
 
 import NavBar from './../../containers/NavBar';
 import Header from './../../containers/Header';
-import Footer from './../Footer';
+import { Footer } from './../Footer';
 
-const Home = () => {
+export const Home = () => {
 
   return (
     <>
-    <Header />
-    <NavBar />
+    {/* <Header /> */}
+    {/* <NavBar /> */}
     <div className='home'>
       <img src='/images/10.jpeg' alt='home' className='home__picture' />
     </div>
 
-    <Footer />
+    {/* <Footer /> */}
 
     </>
   )};
@@ -27,4 +27,3 @@ Home.propTypes = {
 Home.defaultProps = {
 };
 
-export default Home;

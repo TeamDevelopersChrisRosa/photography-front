@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../../containers/Header';
-import Footer from '../Footer';
+import { Footer } from '../Footer';
 // import PropTypes from 'prop-types';
 
 import './styles.scss';
 import ChangePassword from '../../containers/ChangePassword';
 
-const Account = ({
+export const Account = ({
   firstName,
   lastName,
   email,
@@ -18,7 +18,7 @@ const Account = ({
 
   return (
     <>
-    <Header />
+    {/* <Header /> */}
       <div className='account'>
         <div className='account__informations'> 
           <p> Nom : {lastName}</p>
@@ -32,7 +32,7 @@ const Account = ({
         <a href='/dashboard' className='myButton mx-auto'> Retour tableau de bord</a>
         
       </div>
-    <Footer />
+{/*     <Footer /> */}
     </>
     
   );
@@ -44,6 +44,3 @@ Account.propTypes = {
 // Valeurs par défaut pour les props
 Account.defaultProps = {
 };
-
-// == Export
-export default Account;

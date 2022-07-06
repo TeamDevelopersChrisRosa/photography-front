@@ -7,7 +7,7 @@ import './styles.scss';
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
-const Gallery = ({
+export const Gallery = ({
   gallery,
   layout,
   columns,
@@ -105,5 +105,3 @@ Gallery.propTypes = {
 
 Gallery.defaultProps = {
 };
-
-export default Gallery;

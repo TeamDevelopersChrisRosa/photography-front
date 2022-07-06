@@ -6,10 +6,10 @@ import "yet-another-react-lightbox/styles.css";
 import './styles.scss';
 
 import Header from '../../containers/Header';
-import Footer from '../Footer';
+import { Footer } from '../Footer';
 import Gallery from '../../containers/Gallery';
 
-const Shooting = ({
+export const Shooting = ({
   isLogged,
   wantedShooting,
   setFavorite,
@@ -19,7 +19,7 @@ const Shooting = ({
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
         
       <div className='shooting'>
 
@@ -39,7 +39,7 @@ const Shooting = ({
 
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
@@ -49,5 +49,3 @@ Shooting.propTypes = {
 
 Shooting.defaultProps = {
 };
-
-export default Shooting;

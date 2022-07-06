@@ -4,12 +4,12 @@ import { Navigate } from 'react-router-dom';
 
 import Field from '../../containers/Field';
 import Header from '../../containers/Header';
-import Footer from '../../components/Footer';
+import { Footer } from '../../components/Footer';
 import ForgotPassword from '../../containers/ForgotPassword';
 
 import './styles.scss';
 
-const Login = ({
+export const Login = ({
   changeField,
   handleLogin,
   isLogged,
@@ -38,7 +38,7 @@ const Login = ({
               <Navigate to={`/dashboard`} />
           )}
 
-          <Header />
+          {/* <Header /> */}
 
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
@@ -80,7 +80,7 @@ const Login = ({
 
 
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
   );
 };
@@ -97,4 +97,3 @@ const Login = ({
 //   loggedMessage: 'Connecté',
 // };
 
-export default Login;

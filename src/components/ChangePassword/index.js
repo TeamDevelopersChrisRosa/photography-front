@@ -1,11 +1,10 @@
 import React from 'react';
 import Field from '../../containers/Field';
-import { changePasswordError, changePasswordSuccess } from '../../store/actions/user';
 
 import './styles.scss';
 
 
-const ChangePassword = ({
+export const ChangePassword = ({
   changeField,
   updateUser,
   userId,
@@ -90,6 +89,3 @@ const ChangePassword = ({
     </div>
 
   )};
-
-
-export default ChangePassword;

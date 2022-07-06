@@ -7,7 +7,7 @@ import Field from '../../containers/Field';
 
 import './styles.scss';
 
-const ForgotPassword = ({
+export const ForgotPassword = ({
   handleForgot,
   messageForgot,
   successMessage,
@@ -77,4 +77,3 @@ ForgotPassword.defaultProps = {
   errorMessage: false,
 };
 
-export default ForgotPassword;

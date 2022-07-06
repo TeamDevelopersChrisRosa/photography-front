@@ -3,7 +3,7 @@ import React from 'react';
 
 import './styles.scss';
 
-const Field = ({
+export const Field = ({
   value,
   type,
   name,
@@ -43,5 +43,3 @@ Field.propTypes = {
 Field.defaultProps = {
 };
 
-// == Export
-export default Field;
