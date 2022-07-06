@@ -41,11 +41,6 @@ const NavBar = ({
 
     }
 
-    const showSettings = (event) => {
-      event.preventDefault();
-      console.log('coucour');
-    }
-
 
   return (
     <>
@@ -79,7 +74,7 @@ const NavBar = ({
       
       <MediaQuery maxWidth={768}>
         <div className="dropdown">
-          <a className="btn dropdown dropdown__icon" href="#" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          <a className="btn dropdown dropdown__icon" href="/" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false">
           <i className="bi bi-list"></i>
           </a>
 

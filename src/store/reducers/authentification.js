@@ -20,7 +20,6 @@ import {
     showForgotPasswordForm: false,
     messageForgot: false,
     successMessage: false,
-    errorMessage: '',
     id: null
 
 

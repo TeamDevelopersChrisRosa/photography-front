@@ -1,6 +1,5 @@
 import React from 'react';
 import Field from '../../containers/Field';
-import { changePasswordError, changePasswordSuccess } from '../../store/actions/user';
 
 import './styles.scss';
 

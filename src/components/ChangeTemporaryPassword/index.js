@@ -5,9 +5,7 @@ import Footer from '../Footer';
 import './styles.scss';
 import ChangePassword from '../../containers/ChangePassword';
 
-const ChangeTemporaryPassword = ({
-
-}) => {
+const ChangeTemporaryPassword = () => {
 
   return (
     <>
