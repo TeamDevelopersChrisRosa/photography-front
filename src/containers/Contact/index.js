@@ -4,14 +4,15 @@ import { changeValue } from '../../store/actions/field';
 
 
 const mapStateToProps = (state, ownProps) => ({
-  value: state.field[ownProps.name],
+  message: state.field.message,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-  onChange: (value) => {
-    dispatch(changeValue(ownProps.name, value));
-  },
+  changeText: (value, name) => {
+    dispatch(changeValue(name, value));
+  }
+
 
 });
 
