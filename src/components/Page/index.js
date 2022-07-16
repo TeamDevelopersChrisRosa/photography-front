@@ -1,8 +1,5 @@
 import React from 'react';
 import nl2br from 'react-nl2br';
-import Header from '../../containers/Header';
-import NavBar from '../../containers/NavBar';
-import Footer from '../Footer';
 import Gallery from '../../containers/Gallery';
 import MediaQuery from 'react-responsive'
 
@@ -11,7 +8,7 @@ import MediaQuery from 'react-responsive'
 
 import './styles.scss';
 
-const Page = ({
+export const Page = ({
   page,
   isShooting,
   isPortfolio,
@@ -32,8 +29,6 @@ const Page = ({
 
   return (
     <>
-    <Header />
-    <NavBar />
 
     <div className='page'>
       <div className='page__title'>{page.title}</div>
@@ -75,7 +70,7 @@ const Page = ({
       
 
       </div>
-    <Footer />
+   
       </>
   );
 };
@@ -87,5 +82,3 @@ Page.propTypes = {
 Page.defaultProps = {
 };
 
-// == Export
-export default Page;

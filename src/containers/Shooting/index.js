@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Shooting from '../../components/Shooting';
+import { Shooting } from '../../components/Shooting';
 
 import { setIdInFavorite } from '../../store/actions/shooting';
 

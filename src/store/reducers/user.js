@@ -43,7 +43,8 @@
             changePasswordErrorMessage: ''
           };
         }
-        return state;
+
+        break;
 
 
       default:

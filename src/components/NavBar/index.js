@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
 import MediaQuery from 'react-responsive'
 
 
 
-const NavBar = ({
+export const NavBar = ({
   FetchShootingPages,
   shootingPages,
   FetchPortfolioPages,
   portfolioPages,
   getSharedPictures,
-  FetchItsMePage,
   isLogged,
+  pathName,
 }) => {
-
-    const location = useLocation(); 
-    const [url, setUrl] = useState(null);
-    useEffect(() => {
-      setUrl(location.pathname);
-    }, [location]);
-
-    let navigate = useNavigate();
-
 
     const handleFetchShootingPages = () => {
       FetchShootingPages();
@@ -32,13 +22,6 @@ const NavBar = ({
     const handleFetchPortfolioPages = () => {
       FetchPortfolioPages();
       getSharedPictures();
-    }
-
-    const handleFetchItsMePage = (evt) => {
-      evt.preventDefault();
-      FetchItsMePage();
-      navigate('/its_me');
-
     }
 
 
@@ -50,21 +33,21 @@ const NavBar = ({
             <Navbar.Toggle />
             <Navbar.Collapse>
               <Nav className="navbar mx-auto">
-                <Nav.Link className={url === "/" ? "navbar__link active" : "navbar__link"} href="/">Home</Nav.Link>
+                <Nav.Link className={pathName === "/" ? "navbar__link active" : "navbar__link"} href="/">Home</Nav.Link>
                 <NavDropdown title={"Portfolio"} id="nav-dropdown" onClick={handleFetchPortfolioPages}>
-                  {portfolioPages.map((page, index) => (
+                  {portfolioPages && portfolioPages.map((page, index) => (
                     <NavDropdown.Item key={index} href={`/portfolio/${page.slug}`}  id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
                 <NavDropdown title="Les séances" id="nav-dropdown" onClick={handleFetchShootingPages}>
-                  {shootingPages.map((page, index) => (
+                  {shootingPages && shootingPages.map((page, index) => (
                     <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <Nav.Link className={url === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me" onClick={handleFetchItsMePage}>C'est moi !</Nav.Link>
-                <Nav.Link className={url === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
+                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me">C'est moi !</Nav.Link>
+                <Nav.Link className={pathName === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
                 {isLogged &&
-                  <Nav.Link className={url === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link> }
+                   <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link>  }
                 
               </Nav>
             </Navbar.Collapse>
@@ -81,13 +64,13 @@ const NavBar = ({
           <ul className="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a className="dropdown-item" href="/">Home</a></li>
             <ul> Portfolio
-              {portfolioPages.map((page, index) => (
+              {portfolioPages && portfolioPages.map((page, index) => (
                 <li key={index}><a className="dropdown-item" href={`/portfolio/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
             </ul>
             <ul>
               Les séances
-              {shootingPages.map((page, index) => (
+              {shootingPages && shootingPages.map((page, index) => (
                 <li key={index}><a className="dropdown-item" href={`/shooting/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
             </ul>
@@ -98,10 +81,6 @@ const NavBar = ({
           </ul>
         </div>
 
-        
-
-
-
       </MediaQuery>
 
     </>
@@ -111,4 +90,3 @@ const NavBar = ({
   )};
 
 
-export default NavBar;

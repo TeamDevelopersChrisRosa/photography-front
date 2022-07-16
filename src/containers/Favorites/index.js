@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Favorites from '../../components/Favorites';
+import { Favorites } from '../../components/Favorites';
 
 import { getValidateFavoritesMessage } from '../../store/actions/shooting';
 

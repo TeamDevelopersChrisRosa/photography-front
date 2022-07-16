@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ChangeTemporaryPassword from '../../components/ChangeTemporaryPassword';
+import { ChangeTemporaryPassword } from '../../components/ChangeTemporaryPassword';
 
 const mapStateToProps = (state) => ({
 

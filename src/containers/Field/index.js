@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Field from '../../components/Field';
+import { Field } from '../../components/Field';
 import { changeValue } from '../../store/actions/field';
 
 

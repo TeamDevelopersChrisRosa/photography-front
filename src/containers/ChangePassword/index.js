@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ChangePassword from '../../components/ChangePassword';
+import { ChangePassword } from '../../components/ChangePassword';
 
 import { updateUser, removePasswordMessage } from '../../store/actions/user';
 

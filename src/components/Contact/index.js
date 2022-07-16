@@ -2,12 +2,9 @@ import React from 'react';
 
 import './styles.scss';
 
-import NavBar from '../../containers/NavBar';
-import Header from './../Header';
-import Footer from './../Footer';
 import Field from '../../containers/Field';
 
-const Contact = ({
+export const Contact = ({
   changeField,
   changeText,
   message,
@@ -24,8 +21,6 @@ const Contact = ({
 
   return (
     <>
-      <Header />
-      <NavBar />
 
       <div className='contact'>
 
@@ -77,7 +72,6 @@ const Contact = ({
             </form>
         </div>
 
-      <Footer />
     </>
   );
 };
@@ -87,5 +81,3 @@ const Contact = ({
 
 // Contact.defaultProps = {
 // };
-
-export default Contact;

@@ -4,7 +4,7 @@ import Field from '../../containers/Field';
 import './styles.scss';
 
 
-const ChangePassword = ({
+export const ChangePassword = ({
   changeField,
   updateUser,
   userId,
@@ -89,6 +89,3 @@ const ChangePassword = ({
     </div>
 
   )};
-
-
-export default ChangePassword;

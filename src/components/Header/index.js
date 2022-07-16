@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 import MediaQuery from 'react-responsive'
 
 
@@ -8,24 +8,22 @@ import Logo from './Logo.png';
 import './styles.scss';
 
 
-const Header = ({
+export const Header = ({
   isLogged,
   firstName,
   lastName,
   logout,
-  id
+  id,
+  pathName
   
 }) => {
 
-
-  let location = useLocation();
-
-  const nav = useNavigate();
+  // const nav = useNavigate();
 
   const handleLogout = (evt) => {
     evt.preventDefault();
     logout();
-    nav('/')
+    // nav('/')
   }
 
   return (
@@ -44,17 +42,17 @@ const Header = ({
             </div>
             <div className="col header__login">
               <>
-                { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+                { pathName === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
               </>
             </div>
           </div>
         </div>
       </MediaQuery>
         <MediaQuery maxWidth={768}>
-          <div className="header__mobile">
+          {/* <div className="header__mobile">
             <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
             { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
-          </div>
+          </div> */}
         </MediaQuery>
       </>
       ) : 
@@ -86,10 +84,4 @@ const Header = ({
 
     </div>
     
-    
-
-
   )};
-
-
-export default Header;
