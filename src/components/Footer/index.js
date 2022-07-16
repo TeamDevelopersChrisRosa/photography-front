@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.scss';
-import { useLocation } from 'react-router-dom';
 
 
 /* export class Footer extends React.Component {

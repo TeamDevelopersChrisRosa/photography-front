@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PhotoAlbum from 'react-photo-album';
+import Lightbox from 'yet-another-react-lightbox';
 
 import "yet-another-react-lightbox/styles.css";
 
 import './styles.scss';
 
-import PhotoAlbum from "react-photo-album";
-import Lightbox from "yet-another-react-lightbox";
+
 
 export const Gallery = ({
   gallery,

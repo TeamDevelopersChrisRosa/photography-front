@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import MediaQuery from 'react-responsive'
 
 
@@ -12,18 +11,9 @@ export const NavBar = ({
   FetchPortfolioPages,
   portfolioPages,
   getSharedPictures,
-  FetchItsMePage,
   isLogged,
+  pathName,
 }) => {
-
-    /* const location = useLocation(); 
-    const [url, setUrl] = useState(null);
-    useEffect(() => {
-      setUrl(location.);
-    }, [location]); */
-
-    //let navigate = useNavigate();
-
 
     const handleFetchShootingPages = () => {
       FetchShootingPages();
@@ -32,13 +22,6 @@ export const NavBar = ({
     const handleFetchPortfolioPages = () => {
       FetchPortfolioPages();
       getSharedPictures();
-    }
-
-    const handleFetchItsMePage = (evt) => {
-      evt.preventDefault();
-      FetchItsMePage();
-      //navigate('/its_me');
-      
     }
 
 
@@ -50,7 +33,7 @@ export const NavBar = ({
             <Navbar.Toggle />
             <Navbar.Collapse>
               <Nav className="navbar mx-auto">
-                <Nav.Link className="navbar__link" /* className={url === "/" ? "navbar__link active" : "navbar__link"} */ href="/">Home</Nav.Link>
+                <Nav.Link className={pathName === "/" ? "navbar__link active" : "navbar__link"} href="/">Home</Nav.Link>
                 <NavDropdown title={"Portfolio"} id="nav-dropdown" onClick={handleFetchPortfolioPages}>
                   {portfolioPages && portfolioPages.map((page, index) => (
                     <NavDropdown.Item key={index} href={`/portfolio/${page.slug}`}  id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
@@ -61,10 +44,10 @@ export const NavBar = ({
                     <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <Nav.Link className="navbar__link" /* className={url === "/its_me" ? "navbar__link active" : "navbar__link"} */ href="/its_me" onClick={handleFetchItsMePage}>C'est moi !</Nav.Link>
-                <Nav.Link className="navbar__link" /* className={url === "/contact" ? "navbar__link active" : "navbar__link"} */ href="/contact">Contact</Nav.Link>
+                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me">C'est moi !</Nav.Link>
+                <Nav.Link className={pathName === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
                 {isLogged &&
-                   <Nav.Link className="navbar__link" /* className={url === "/dashboard" ? "navbar__link active" : "navbar__link"} */ href="/dashboard">Tableau de bord</Nav.Link>  }
+                   <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link>  }
                 
               </Nav>
             </Navbar.Collapse>
@@ -97,10 +80,6 @@ export const NavBar = ({
                   <li><a className="dropdown-item" href="/dasboard">Tableau de bord</a></li> }
           </ul>
         </div>
-
-        
-
-
 
       </MediaQuery>
 

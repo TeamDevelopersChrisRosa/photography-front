@@ -1,8 +1,5 @@
 import React from 'react';
 import nl2br from 'react-nl2br';
-import Header from '../../containers/Header';
-import NavBar from '../../containers/NavBar';
-import { Footer } from '../Footer';
 import Gallery from '../../containers/Gallery';
 import MediaQuery from 'react-responsive'
 
@@ -32,8 +29,6 @@ export const Page = ({
 
   return (
     <>
-    {/* <Header /> */}
-    {/* <NavBar /> */}
 
     <div className='page'>
       <div className='page__title'>{page.title}</div>
@@ -75,7 +70,7 @@ export const Page = ({
       
 
       </div>
-    {/* <Footer /> */}
+   
       </>
   );
 };

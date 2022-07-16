@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 import MediaQuery from 'react-responsive'
 
 
@@ -13,19 +13,17 @@ export const Header = ({
   firstName,
   lastName,
   logout,
-  id
+  id,
+  pathName
   
 }) => {
 
-
-  //let location = useLocation();
-
-  const nav = useNavigate();
+  // const nav = useNavigate();
 
   const handleLogout = (evt) => {
     evt.preventDefault();
     logout();
-    nav('/')
+    // nav('/')
   }
 
   return (
@@ -43,9 +41,9 @@ export const Header = ({
               <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
             </div>
             <div className="col header__login">
-             {/*  <>
-                { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
-              </> */}
+              <>
+                { pathName === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+              </>
             </div>
           </div>
         </div>

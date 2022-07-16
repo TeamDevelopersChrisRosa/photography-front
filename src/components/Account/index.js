@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../../containers/Header';
-import { Footer } from '../Footer';
 // import PropTypes from 'prop-types';
 
 import './styles.scss';
@@ -18,7 +16,6 @@ export const Account = ({
 
   return (
     <>
-    {/* <Header /> */}
       <div className='account'>
         <div className='account__informations'> 
           <p> Nom : {lastName}</p>
@@ -32,7 +29,6 @@ export const Account = ({
         <a href='/dashboard' className='myButton mx-auto'> Retour tableau de bord</a>
         
       </div>
-{/*     <Footer /> */}
     </>
     
   );

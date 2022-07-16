@@ -2,9 +2,6 @@ import React from 'react';
 
 import './styles.scss';
 
-import NavBar from '../../containers/NavBar';
-import { Header } from './../Header';
-import { Footer } from './../Footer';
 import Field from '../../containers/Field';
 
 export const Contact = ({
@@ -18,8 +15,6 @@ export const Contact = ({
 
   return (
     <>
-      {/* <Header /> */}
-      {/* <NavBar /> */}
 
       <div className='contact'>
 
@@ -70,7 +65,6 @@ export const Contact = ({
             </form>
         </div>
 
-      {/* <Footer /> */}
     </>
   );
 };

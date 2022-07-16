@@ -5,8 +5,6 @@ import "yet-another-react-lightbox/styles.css";
 
 import './styles.scss';
 
-import Header from '../../containers/Header';
-import { Footer } from '../Footer';
 import Gallery from '../../containers/Gallery';
 
 export const Shooting = ({
@@ -19,7 +17,6 @@ export const Shooting = ({
 
   return (
     <>
-      {/* <Header /> */}
         
       <div className='shooting'>
 
@@ -39,7 +36,7 @@ export const Shooting = ({
 
       </div>
 
-      {/* <Footer /> */}
+      
     </>
   );
 };

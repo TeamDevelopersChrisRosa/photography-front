@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 
-import Header from '../../containers/Header';
-import { Footer } from '../Footer';
 
 export const Dashboard = ({
   isLogged,
@@ -33,7 +31,6 @@ export const Dashboard = ({
 
   return (
     <>
-    {/* <Header /> */}
     <div className='dashboard'>
 
     { firstConnect
@@ -73,7 +70,6 @@ export const Dashboard = ({
       )}
     </div>
 
-    {/* <Footer /> */}
 
     </>
   );

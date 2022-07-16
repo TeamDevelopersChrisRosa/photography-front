@@ -3,8 +3,6 @@ import { Navigate } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import Field from '../../containers/Field';
-import Header from '../../containers/Header';
-import { Footer } from '../../components/Footer';
 import ForgotPassword from '../../containers/ForgotPassword';
 
 import './styles.scss';
@@ -38,7 +36,7 @@ export const Login = ({
               <Navigate to={`/dashboard`} />
           )}
 
-          {/* <Header /> */}
+     
 
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
@@ -77,10 +75,6 @@ export const Login = ({
                 </form>
 
             )}
-
-
-
-        {/* <Footer /> */}
       </div>
   );
 };

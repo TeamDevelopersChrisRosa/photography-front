@@ -5,8 +5,6 @@ import MediaQuery from 'react-responsive'
 
 import './styles.scss';
 
-import Header from '../../containers/Header';
-import { Footer } from '../Footer';
 import Gallery from '../../containers/Gallery';
 
 import './styles.scss';
@@ -59,8 +57,6 @@ export const Favorites = ({
   return (
 
     <>
-      {/* <Header /> */}
-
       <div className='favorites'>
 
       <div className='favorites__header'> 
@@ -96,8 +92,6 @@ export const Favorites = ({
         ) : null }
 
       </div>
-      
-     {/*  <Footer /> */}
     </>
 
   )};
