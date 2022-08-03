@@ -7,11 +7,18 @@ import Field from '../../containers/Field';
 
 export const NewClient = ({
   changeField,
-  addNewClient
+  addNewClient,
+  saveRandomPassword,
+  newClientPassword
 }) => {
   const handleNewClient = (evt) => {
     evt.preventDefault();
     addNewClient();
+  }
+  const handleGenerateRandomPassword = (evt) => {
+    evt.preventDefault();
+    const randomPassword = Math.random().toString(36).slice(-8);
+    saveRandomPassword(randomPassword);
   }
 
   return (
@@ -30,9 +37,13 @@ export const NewClient = ({
           <Field
             name="newClientPassword"
             placeholder="Password"
-            onChange={changeField}
+            //onChange={changeField}
             className="newClient__form__input"
+            value={newClientPassword}
           />
+          <button onClick={handleGenerateRandomPassword} className="mySmallButton"> Générer mot de passe </button>
+
+
         </div>
 
         <div className='newClient__form__inputGroup'>

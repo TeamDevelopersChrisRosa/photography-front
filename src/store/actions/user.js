@@ -5,6 +5,7 @@ export const REMOVE_PASSWORD_MESSAGE = 'REMOVE_PASSWORD_MESSAGE';
 export const CHANGE_FIRST_CONNECT = 'CHANGE_FIRST_CONNECT';
 export const ADD_NEW_CLIENT = 'ADD_NEW_CLIENT';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
+export const SAVE_RANDOM_PASSWORD = 'SAVE_RANDOM_PASSWORD'
 
 export const updateUser = (userId, oldPassword, newPassword) => ({
     type: 'UPDATE_USER',
@@ -38,4 +39,9 @@ export const addNewClient = (userId) => ({
 
 export const addNewUser = () => ({
   type: 'ADD_NEW_USER'
+});
+
+export const saveRandomPassword = (randomPassword) =>({
+  randomPassword,
+  type: 'SAVE_RANDOM_PASSWORD'
 });

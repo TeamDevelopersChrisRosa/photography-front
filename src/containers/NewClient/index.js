@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 
 import { NewClient } from '../../components/NewClient';
 
-import { addNewUser } from '../../store/actions/user';
+import { addNewUser, saveRandomPassword } from '../../store/actions/user';
 
 const mapStateToProps = (state) => ({
+  newClientPassword: state.field.newClientPassword,
 
 
 });
@@ -13,6 +14,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   addNewClient: () => {
     dispatch(addNewUser());
+  },
+
+  saveRandomPassword : (randomPassword) => {
+    dispatch(saveRandomPassword(randomPassword))
   }
 
 });
