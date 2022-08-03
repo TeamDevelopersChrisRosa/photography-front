@@ -48,17 +48,6 @@ export function App({
             <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} isItsMe={false} />} />
           ))}
           {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
-
-            {/* {isLogged ?
-            <>
-              <Route path='dashboard' element={<Dashboard />} />
-              <Route path='shooting' element={<Shooting />} />
-              <Route path='favorites' element={<Favorites />} />
-              <Route path='account/:id' element={<Account />} />
-            </>
-              : // navigate to home
-              null
-              } */}
             
 
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
