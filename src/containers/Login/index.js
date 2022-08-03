@@ -8,6 +8,8 @@ const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   showForgotPasswordForm: state.auth.showForgotPasswordForm,
   firstConnect: state.auth.client.firstConnect,
+  client: state.auth.client,
+  photographer: state.auth.photographer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleForgotPasswordForm: () => {
     dispatch(showForgotPasswordForm());
   }
-  
+
 
 
 });

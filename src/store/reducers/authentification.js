@@ -12,8 +12,8 @@ import {
     password: '',
     firstName: '',
     lastName: '',
-    admin: false,
     client: [],
+    photographer: [],
     isLogged: false,
     showErrorMessage: false,
     errorMessage: '',
@@ -21,28 +21,25 @@ import {
     messageForgot: false,
     successMessage: false,
     id: null
-
-
   };
 
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
 
       case SAVE_USER: {
-        const { email, firstName, lastName, admin, client, id } = action.payload.user;
+      console.log('user', action.payload.user);
+        const { email, firstName, lastName, client, photographer, id } = action.payload.user;
         return {
             ...state,
             email,
             firstName,
             lastName,
             password:'',
-            admin,
             client,
+            photographer,
             id,
             isLogged: true,
             showErrorMessage: false,
-
-
         };
       }
 

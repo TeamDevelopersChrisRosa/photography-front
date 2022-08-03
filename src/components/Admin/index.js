@@ -4,26 +4,18 @@ import './styles.scss';
 
 import Field from '../../containers/Field';
 
-export const NewClient = ({
+export const Admin = ({
   changeField,
-  addNewClient,
-  saveRandomPassword,
-  newClientPassword
 }) => {
-  const handleNewClient = (evt) => {
-    evt.preventDefault();
-    addNewClient();
   }
-  const handleGenerateRandomPassword = (evt) => {
-    evt.preventDefault();
-    const randomPassword = Math.random().toString(36).slice(-8);
-    saveRandomPassword(randomPassword);
-  }
+
 
   return (
-      <div className='newClient'>
+      <div className='admin'>
 
         <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewClient}>
+
+        <button onClick={routeChange} className="mySmallButton"> Créer un compte pour un client </button>
 
         <div className='newClient__form__inputGroup'>
           <Field
@@ -113,11 +105,10 @@ export const NewClient = ({
       </div>
 
   );
-};
 
-NewClient.propTypes = {
+Admin.propTypes = {
 };
 
 // Valeurs par défaut pour les props
-NewClient.defaultProps = {
+Admin.defaultProps = {
 };

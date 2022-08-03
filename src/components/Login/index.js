@@ -15,7 +15,8 @@ export const Login = ({
   errorMessage,
   handleForgotPasswordForm,
   showForgotPasswordForm,
-  firstConnect
+  client,
+  photographer,
 }) => {
 
   const handleSubmit = (evt) => {
@@ -28,16 +29,16 @@ export const Login = ({
     handleForgotPasswordForm();
   }
 
+  console.log('client', client);
+  console.log('photo', photographer);
+
   return (
     <div className='login'>
 
-          { isLogged
+          { isLogged && client
             && (
               <Navigate to={`/dashboard`} />
           )}
-
-     
-
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
 

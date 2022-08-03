@@ -15,6 +15,8 @@ import NavBar from '../../containers/NavBar';
 import Header from '../../containers/Header';
 
 import NewClient from '../../containers/NewClient';
+import Admin from '../../containers/Admin';
+
 
 import { Footer } from '../Footer';
 
@@ -24,7 +26,8 @@ export function App({
   shootingPages,
   portfolioPages,
   itsMePage,
-  FetchItsMePage
+  FetchItsMePage,
+  photographer
 }) {
 
   let location = useLocation();
@@ -74,6 +77,9 @@ export function App({
 
 
           <Route path='newclient' element={<NewClient />} />
+
+          { isLogged && photographer && <Route path='admin' element={<Admin />} />}
+
 
 
 
