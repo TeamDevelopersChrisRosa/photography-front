@@ -13,6 +13,9 @@ import Account from '../../containers/Account';
 import ChangeTemporaryPassword from '../../containers/ChangeTemporaryPassword';
 import NavBar from '../../containers/NavBar';
 import Header from '../../containers/Header';
+
+import NewClient from '../../containers/NewClient';
+
 import { Footer } from '../Footer';
 
 
@@ -23,20 +26,20 @@ export function App({
   itsMePage,
   FetchItsMePage
 }) {
-  
+
   let location = useLocation();
 
   const handleFetchItsMePage = (evt) => {
     evt.preventDefault();
-    FetchItsMePage();    
+    FetchItsMePage();
   }
 
   return (
     <div className="app">
-        
+
         <Header pathName={location.pathname} />
         <NavBar pathName={location.pathname} />
-        
+
         <Routes>
           <Route path="/" element={ <Home pathName={location.pathname} />} />
           <Route path='login' element={<Login />} />
@@ -59,7 +62,7 @@ export function App({
               : // navigate to home
               null
               } */}
-            
+
 
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
@@ -67,13 +70,20 @@ export function App({
           {isLogged && (<Route path='account/:id' element={<Account />} /> )}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />
-          
-          
+
+
+
+          <Route path='newclient' element={<NewClient />} />
+
+
+
+
+
 
           <Route path='*' element={<Navigate to="/" replace />} />
 
         </Routes>
-        
+
         <Footer />
 
     </div>
