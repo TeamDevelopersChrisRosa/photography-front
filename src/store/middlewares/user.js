@@ -5,7 +5,11 @@ import {
   changePasswordSuccess,
   changePasswordError,
   changeFirstConnect,
-  CHANGE_FIRST_CONNECT
+  CHANGE_FIRST_CONNECT,
+  ADD_NEW_USER,
+  addNewClient,
+  ADD_NEW_CLIENT,
+
 } from '../actions/user';
 
 
@@ -50,6 +54,51 @@ const usermiddleware = (store) => (next) => (action) => {
     break;
   }
 
+  case ADD_NEW_CLIENT: {
+    const state = store.getState();
+    api({
+      method: 'POST',
+      url: `client`,
+      data: {
+        address: state.field.newClientAddress,
+        postalCode: state.field.newClientPostalCode,
+        city: state.field.newClientCity,
+        country: state.field.newClientCountry,
+        phoneNumber: state.field.newClientPhoneNumber,
+        firstConnect: true,
+        userId: action.userId,
+      }
+    })
+      .then((response) => {
+          console.log(response);
+      })
+      .catch((error) => {
+          console.log(error)
+        });
+    break;
+  }
+
+  case ADD_NEW_USER: {
+    const state = store.getState();
+    api({
+      method: 'POST',
+      url: `auth/signup`,
+      data: {
+        firstName: state.field.newClientFirstName,
+        lastName: state.field.newClientLastName,
+        email: state.field.newClientEmail,
+        password: state.field.newClientPassword,
+      }
+    })
+      .then((response) => {
+          console.log(response);
+          store.dispatch(addNewClient(response.data.user.id))
+      })
+      .catch((error) => {
+          console.log(error)
+        });
+    break;
+  }
 
 
 
