@@ -6,7 +6,8 @@ import Field from '../../containers/Field';
 
 export const Admin = ({
   changeField,
-  clients
+  clients,
+  addNewShooting
 }) => {
 
   let clientId = clients[0].id;
@@ -16,10 +17,9 @@ export const Admin = ({
     return clientId;
   }
 
-  const handleNewGallery = (evt) => {
+  const handleNewShooting = (evt) => {
     evt.preventDefault();
-    // addNewGallery();
-    console.log('coucou');
+    addNewShooting(clientId);
   }
 
   console.log(clientId);
@@ -30,7 +30,7 @@ export const Admin = ({
 
       <a href='/newclient' className='myButton mx-auto'> Créer un compte pour un client</a>
 
-      <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewGallery}>
+      <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewShooting}>
 
       <label htmlFor="client-select">Choisir un client:</label>
 

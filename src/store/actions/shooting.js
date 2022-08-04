@@ -3,6 +3,7 @@ export const SAVE_SHOOTINGS = 'SAVE_SHOOTINGS';
 export const SET_WANTED_SHOOTING = 'SET_WANTED_SHOOTING';
 export const SET_ID_IN_FAVORITE = 'SET_ID_IN_FAVORITE';
 export const VALIDATE_FAVORITES_MESSAGE = 'VALIDATE_FAVORITES_MESSAGE';
+export const ADD_NEW_SHOOTING = 'ADD_NEW_SHOOTING';
 
 export const fetchShootingsOfUser = (clientId) => ({
   type: 'FETCH_SHOOTINGS_OF_USER',
@@ -30,3 +31,8 @@ export const getValidateFavoritesMessage = (response, shootingId) => ({
   response,
   shootingId,
 });
+
+export const addNewShooting = (clientId) => ({
+  clientId,
+  type: 'ADD_NEW_SHOOTING'
+})

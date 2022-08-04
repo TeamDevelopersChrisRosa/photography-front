@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 
 import { Admin } from '../../components/Admin';
 
+import { addNewShooting } from '../../store/actions/shooting'
+
 
 const mapStateToProps = (state) => ({
 
@@ -11,7 +13,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-
+  addNewShooting : (clientId) => {
+    dispatch(addNewShooting(clientId))
+  }
 
 });
 
