@@ -14,7 +14,6 @@ export const Dashboard = ({
 }) => {
 
   const handleChangeShooting = (evt) => {
-    console.log(evt.target.id);
     const shooting = shootings.find(shooting => shooting.id === Number(evt.target.id));
     setWantedShooting(shooting.id);
   }

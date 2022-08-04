@@ -17,12 +17,8 @@ export const Login = ({
   showForgotPasswordForm,
   client,
   photographer,
-  test,
+
 }) => {
-
-  console.log("TEST", test);
-
-  console.log('je suis dans le composant')
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -34,19 +30,11 @@ export const Login = ({
     handleForgotPasswordForm();
   }
 
-  console.log('client', client);
-  console.log('photo', photographer);
-  console.log('isLogged login component', isLogged);
-
   return (
     <div className='login'>
 
-      <p>{ isLogged ? 'true' : 'false' }</p>
-
-          {/* { isLogged
-            && (
-              <Navigate to={`/dashboard`} />
-          )} */}
+          { isLogged && client && <Navigate to='/dashboard' /> }
+          { isLogged && photographer && <Navigate to='/admin' /> }
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
 

@@ -37,8 +37,6 @@ export function App({
     FetchItsMePage();
   }
 
-  console.log('isLogged composant app', isLogged);
-
   return (
     <div className="app">
 
@@ -47,7 +45,7 @@ export function App({
 
         <Routes>
           <Route path="/" element={ <Home pathName={location.pathname} />} />
-          <Route path='login' element={<Login />} test={isLogged} />
+          <Route path='login' element={<Login />}  />
           <Route path='contact' element={<Contact />} />
           {shootingPages.map((page, index) => (
             <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} isItsMe={false} />} />
@@ -58,7 +56,7 @@ export function App({
           {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
 
-          <Route path='dashboard' element={<Dashboard />} />
+          {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
           {isLogged && <Route path='favorites' element={<Favorites />} />}
           {isLogged && (<Route path='account/:id' element={<Account />} /> )}

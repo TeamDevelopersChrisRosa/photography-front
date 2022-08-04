@@ -27,7 +27,6 @@ import {
     switch (action.type) {
 
       case SAVE_USER: {
-        console.log('user dans le reducer', action.payload.user);
         const { email, firstName, lastName, client, photographer, id } = action.payload.user;
         return {
             ...state,
