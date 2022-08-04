@@ -10,16 +10,18 @@ import {
   import {
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_ERROR,
+    SAVE_RANDOM_PASSWORD
   } from '../actions/user';
-  
+
   export const initialState = {
     email: '',
     password: '',
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
+    newClientPassword: '',
   };
-  
+
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
 
@@ -28,22 +30,29 @@ import {
           ...state,
           [action.key]: action.value,
         };
-  
-      
+
+
       case SAVE_USER: {
         return {
             ...state,
-            password:'', 
+            password:'',
         };
       }
 
-      case CHANGE_PASSWORD_ERROR: 
+      case CHANGE_PASSWORD_ERROR:
       case CHANGE_PASSWORD_SUCCESS: {
         return {
           ...state,
           oldPassword: '',
           newPassword: '',
           confirmPassword: '',
+        }
+      }
+
+      case SAVE_RANDOM_PASSWORD:{
+        return {
+        ...state,
+        newClientPassword: action.randomPassword,
         }
       }
 
@@ -58,5 +67,5 @@ import {
         return state;
     }
   };
-  
+
   export default reducer;

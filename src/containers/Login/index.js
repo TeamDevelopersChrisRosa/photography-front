@@ -7,7 +7,9 @@ const mapStateToProps = (state) => ({
   errorMessage: state.auth.errorMessage,
   isLogged: state.auth.isLogged,
   showForgotPasswordForm: state.auth.showForgotPasswordForm,
-  firstConnect: state.auth.client.firstConnect,
+  firstConnect: true,
+  client: state.auth.client,
+  photographer: state.auth.photographer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,8 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleForgotPasswordForm: () => {
     dispatch(showForgotPasswordForm());
   }
-  
-
 
 });
 

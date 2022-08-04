@@ -1,5 +1,5 @@
-import { 
-  LOGIN, 
+import {
+  LOGIN,
   saveUser,
   showErrorLoginMessage,
   FORGOT,
@@ -67,8 +67,8 @@ const authmiddleware = (store) => (next) => (action) => {
 
     default:
       next(action);
-    
-    
+
+
   }
 };
 

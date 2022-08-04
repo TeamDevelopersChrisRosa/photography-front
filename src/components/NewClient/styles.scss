@@ -1,0 +1,31 @@
+@use 'src/styles/vars' as v;
+
+.newClient {
+    &__form {
+        width: 80%;
+        margin: 0 auto;
+
+        &__inputGroup{
+            display: flex;
+            justify-content: space-around;
+        }
+        &__input {
+            width: 100%;
+            padding: .7em;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: .3em;
+            height: 3.5em;
+            margin-top: 1em;
+
+            &:focus {
+              border-color: v.$primaryColor;
+
+              & + .field__label {
+                color: v.$primaryColor;
+              }
+            }
+        
+        }
+    }
+}

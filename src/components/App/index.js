@@ -13,6 +13,11 @@ import Account from '../../containers/Account';
 import ChangeTemporaryPassword from '../../containers/ChangeTemporaryPassword';
 import NavBar from '../../containers/NavBar';
 import Header from '../../containers/Header';
+
+import NewClient from '../../containers/NewClient';
+import Admin from '../../containers/Admin';
+
+
 import { Footer } from '../Footer';
 
 
@@ -21,25 +26,26 @@ export function App({
   shootingPages,
   portfolioPages,
   itsMePage,
-  FetchItsMePage
+  FetchItsMePage,
+  photographer
 }) {
-  
+
   let location = useLocation();
 
   const handleFetchItsMePage = (evt) => {
     evt.preventDefault();
-    FetchItsMePage();    
+    FetchItsMePage();
   }
 
   return (
     <div className="app">
-        
+
         <Header pathName={location.pathname} />
         <NavBar pathName={location.pathname} />
-        
+
         <Routes>
           <Route path="/" element={ <Home pathName={location.pathname} />} />
-          <Route path='login' element={<Login />} />
+          <Route path='login' element={<Login />}  />
           <Route path='contact' element={<Contact />} />
           {shootingPages.map((page, index) => (
             <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} isItsMe={false} />} />
@@ -48,7 +54,6 @@ export function App({
             <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} isItsMe={false} />} />
           ))}
           {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
-            
 
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
@@ -56,13 +61,18 @@ export function App({
           {isLogged && (<Route path='account/:id' element={<Account />} /> )}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />
-          
-          
+
+
+          <Route path='newclient' element={<NewClient />} />
+
+          { isLogged && photographer && <Route path='admin' element={<Admin />} />}
+
+
 
           <Route path='*' element={<Navigate to="/" replace />} />
 
         </Routes>
-        
+
         <Footer />
 
     </div>
