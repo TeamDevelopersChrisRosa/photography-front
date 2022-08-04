@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaQuery from 'react-responsive'
+import MediaQuery from 'react-responsive';
 
 import "yet-another-react-lightbox/styles.css";
 

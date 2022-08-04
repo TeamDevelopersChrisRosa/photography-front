@@ -55,7 +55,6 @@ export function App({
           ))}
           {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
-
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
           {isLogged && <Route path='favorites' element={<Favorites />} />}
