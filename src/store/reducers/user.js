@@ -45,14 +45,14 @@
             changePasswordErrorMessage: ''
           };
         }
-
+        break;
+        
         case SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER:
           return {
             ...state,
             clients: action.clients,
           };
 
-        break;
 
 
       default:
