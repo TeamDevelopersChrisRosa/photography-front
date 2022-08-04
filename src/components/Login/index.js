@@ -17,7 +17,12 @@ export const Login = ({
   showForgotPasswordForm,
   client,
   photographer,
+  test,
 }) => {
+
+  console.log("TEST", test);
+
+  console.log('je suis dans le composant')
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -31,14 +36,17 @@ export const Login = ({
 
   console.log('client', client);
   console.log('photo', photographer);
+  console.log('isLogged login component', isLogged);
 
   return (
     <div className='login'>
 
-          { isLogged && client
+      <p>{ isLogged ? 'true' : 'false' }</p>
+
+          {/* { isLogged
             && (
               <Navigate to={`/dashboard`} />
-          )}
+          )} */}
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
 

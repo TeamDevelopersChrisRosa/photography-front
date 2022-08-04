@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import { Login } from '../../components/Login';
 import { login, showForgotPasswordForm } from '../../store/actions/authentification';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => (
+
+  console.log('STATE', state),
+  {
   showErrorMessage: state.auth.showErrorMessage,
   errorMessage: state.auth.errorMessage,
   isLogged: state.auth.isLogged,
@@ -15,14 +18,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
   handleLogin: () => {
+    console.log('loginhandle')
     dispatch(login());
   },
 
   handleForgotPasswordForm: () => {
     dispatch(showForgotPasswordForm());
   }
-
-
 
 });
 
