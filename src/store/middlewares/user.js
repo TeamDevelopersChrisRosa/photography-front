@@ -9,6 +9,8 @@ import {
   ADD_NEW_USER,
   addNewClient,
   ADD_NEW_CLIENT,
+  FETCH_CLIENTS_OF_PHOTOGRAPHER,
+  saveAllClientsOfPhotographer
 
 } from '../actions/user';
 
@@ -24,7 +26,7 @@ const usermiddleware = (store) => (next) => (action) => {
             oldPassword,
             newPassword
         }
-      })
+        })
         .then((response) => {
             console.log(response);
             store.dispatch(changePasswordSuccess());
@@ -93,6 +95,23 @@ const usermiddleware = (store) => (next) => (action) => {
       .then((response) => {
           console.log(response);
           store.dispatch(addNewClient(response.data.user.id))
+      })
+      .catch((error) => {
+          console.log(error)
+        });
+    break;
+  }
+
+  case FETCH_CLIENTS_OF_PHOTOGRAPHER: {
+    //const id = action.photographerId;
+    api({
+      method: 'GET',
+      url: `client`,
+
+    })
+      .then((response) => {
+        console.log('tous les clients', response.data);
+        store.dispatch(saveAllClientsOfPhotographer(response.data));
       })
       .catch((error) => {
           console.log(error)

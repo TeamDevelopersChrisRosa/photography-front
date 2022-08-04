@@ -78,7 +78,7 @@ export function App({
 
           <Route path='newclient' element={<NewClient />} />
 
-          { isLogged && photographer && <Route path='admin' element={<Admin />} />}
+          <Route path='admin' element={<Admin />} />
 
 
 

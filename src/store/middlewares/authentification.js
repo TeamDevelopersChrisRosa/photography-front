@@ -7,6 +7,7 @@ import {
   createForgotAction,
 } from './../actions/authentification';
 import { fetchShootingsOfUser } from './../actions/shooting';
+import { fetchClientsOfPhotographer } from './../actions/user';
 
 import api from './utils/api';
 
@@ -31,6 +32,10 @@ const authmiddleware = (store) => (next) => (action) => {
           if(response.data.user.client !== null) {
             const clientId = response.data.user.client.id;
             store.dispatch(fetchShootingsOfUser(clientId));
+          }
+          if(response.data.user.photographer !== null) {
+            const photographerId = response.data.user.photographer.id;
+            store.dispatch(fetchClientsOfPhotographer(photographerId));
           }
         })
         .catch((error) => {

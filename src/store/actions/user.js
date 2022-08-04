@@ -5,7 +5,9 @@ export const REMOVE_PASSWORD_MESSAGE = 'REMOVE_PASSWORD_MESSAGE';
 export const CHANGE_FIRST_CONNECT = 'CHANGE_FIRST_CONNECT';
 export const ADD_NEW_CLIENT = 'ADD_NEW_CLIENT';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
-export const SAVE_RANDOM_PASSWORD = 'SAVE_RANDOM_PASSWORD'
+export const SAVE_RANDOM_PASSWORD = 'SAVE_RANDOM_PASSWORD';
+export const FETCH_CLIENTS_OF_PHOTOGRAPHER = 'FETCH_CLIENTS_OF_PHOTOGRAPHER';
+export const SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER = 'SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER';
 
 export const updateUser = (userId, oldPassword, newPassword) => ({
     type: 'UPDATE_USER',
@@ -45,3 +47,13 @@ export const saveRandomPassword = (randomPassword) =>({
   randomPassword,
   type: 'SAVE_RANDOM_PASSWORD'
 });
+
+export const fetchClientsOfPhotographer = (photographerId) =>({
+  photographerId,
+  type: 'FETCH_CLIENTS_OF_PHOTOGRAPHER'
+});
+
+export const saveAllClientsOfPhotographer = (clients) => ({
+  clients,
+  type: 'SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER'
+})

@@ -6,105 +6,107 @@ import Field from '../../containers/Field';
 
 export const Admin = ({
   changeField,
+  clients
 }) => {
+
+  let clientId = clients[0].id;
+  const changeSelectedClient = (evt) => {
+    console.log(evt.target.value);
+    clientId = evt.target.value;
+    return clientId;
   }
+
+  const handleNewGallery = (evt) => {
+    evt.preventDefault();
+    // addNewGallery();
+    console.log('coucou');
+  }
+
+  console.log(clientId);
 
 
   return (
-      <div className='admin'>
+    <div className='admin'>
 
-        <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewClient}>
+      <a href='/newclient' className='myButton mx-auto'> Créer un compte pour un client</a>
 
-        <button onClick={routeChange} className="mySmallButton"> Créer un compte pour un client </button>
+      <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewGallery}>
 
-        <div className='newClient__form__inputGroup'>
-          <Field
-            name="newClientEmail"
-            placeholder="Email"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
+      <label htmlFor="client-select">Choisir un client:</label>
 
-          <Field
-            name="newClientPassword"
-            placeholder="Password"
-            //onChange={changeField}
-            className="newClient__form__input"
-            value={newClientPassword}
-          />
-          <button onClick={handleGenerateRandomPassword} className="mySmallButton"> Générer mot de passe </button>
+      <select onChange={changeSelectedClient} name="clients" id="client-select">
 
-
-        </div>
-
-        <div className='newClient__form__inputGroup'>
-          <Field
-            name="newClientFirstName"
-            placeholder="Prenom"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
-
-          <Field
-            name="newClientLastName"
-            placeholder="Nom"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
-        </div>
+          { clients.map((client) =>
+            <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
+            ) }
+      </select>
 
         <Field
-          name="newClientAddress"
-          placeholder="Adresse"
+          name="nameOfGallery"
+          placeholder="Nom de la galerie"
           onChange={changeField}
           className="newClient__form__input"
         />
-
-        <div className='newClient__form__inputGroup'>
-          <Field
-            name="newClientPostalCode"
-            placeholder="Code postal"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
-
-          <Field
-            name="newClientCity"
-            placeholder="Ville"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
-
-          <Field
-            name="newClientCountry"
-            placeholder="Pays"
-            onChange={changeField}
-            className="newClient__form__input"
-          />
-        </div>
-
-        <Field
-          name="newClientPhoneNumber"
-          placeholder="Numéro de téléphone"
-          onChange={changeField}
-          className="newClient__form__input"
-        />
-
-
-
 
         <button
           type="submit"
           className="myButton mx-auto mt-2"
 
         >
-          Valider
+          Créer une galerie photos
         </button>
-        </form>
 
-      </div>
+    </form>
 
-  );
+      <table>
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Galerie photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+      </table>
+
+
+
+
+
+    </div>
+
+);
+
+  }
+
+
+
 
 Admin.propTypes = {
 };
