@@ -7,7 +7,8 @@ import Field from '../../containers/Field';
 export const Admin = ({
   changeField,
   clients,
-  addNewShooting
+  addNewShooting,
+  shootings
 }) => {
 
   let clientId = clients[0].id;
@@ -22,7 +23,7 @@ export const Admin = ({
     addNewShooting(clientId);
   }
 
-  console.log(clientId);
+  console.log(shootings);
 
 
   return (
@@ -58,40 +59,23 @@ export const Admin = ({
 
     </form>
 
-      <table>
+      <table className="table">
         <thead>
             <tr>
-                <th>Client</th>
-                <th>Galerie photo</th>
-                <th>Actions</th>
+                <th scope="col">Client</th>
+                <th scope="col">Galerie photo</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
+          { shootings.map((shooting) =>
+          <tr key={shooting.id}>
+            <td> {shooting.client.user.firstName} {shooting.client.user.lastName}</td>
+            <td> {shooting.nameOfGallery} </td>
+            <td> oeil stylo poubelle </td>
+          </tr>
+          )}
+
         </tbody>
       </table>
 

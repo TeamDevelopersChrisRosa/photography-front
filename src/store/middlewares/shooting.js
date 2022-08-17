@@ -1,7 +1,9 @@
 import {
   FETCH_SHOOTINGS_OF_USER,
+  FETCH_SHOOTINGS_OF_PHOTOGRAPHER,
   saveShootings,
-  ADD_NEW_SHOOTING
+  ADD_NEW_SHOOTING,
+  fetchShootingsOfPhotographer
 } from '../actions/shooting';
 
 import api from './utils/api';
@@ -13,6 +15,23 @@ const shootingmiddleware = (store) => (next) => (action) => {
       api({
         method: 'GET',
         url: `shooting/client/${id}`,
+
+      })
+        .then((response) => {
+          store.dispatch(saveShootings(response.data));
+        })
+        .catch((error) => {
+            console.log(error)
+          });
+      break;
+    }
+
+    case FETCH_SHOOTINGS_OF_PHOTOGRAPHER: {
+      // const id = action.photographerId;
+      // We don't use the photographerId because we have just 1 photographer
+      api({
+        method: 'GET',
+        url: `shooting`,
 
       })
         .then((response) => {
@@ -41,7 +60,9 @@ const shootingmiddleware = (store) => (next) => (action) => {
 
       })
         .then((response) => {
-          //store.dispatch(saveShootings(response.data));
+          const photographerId = 1;
+          store.dispatch(fetchShootingsOfPhotographer(photographerId));
+
           console.log(response.data)
         })
         .catch((error) => {
@@ -49,6 +70,8 @@ const shootingmiddleware = (store) => (next) => (action) => {
           });
       break;
     }
+
+
 
 
     default:

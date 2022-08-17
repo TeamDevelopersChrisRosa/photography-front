@@ -1,4 +1,5 @@
 export const FETCH_SHOOTINGS_OF_USER = 'FETCH_SHOOTINGS_OF_USER';
+export const FETCH_SHOOTINGS_OF_PHOTOGRAPHER = 'FETCH_SHOOTINGS_OF_PHOTOGRAPHER';
 export const SAVE_SHOOTINGS = 'SAVE_SHOOTINGS';
 export const SET_WANTED_SHOOTING = 'SET_WANTED_SHOOTING';
 export const SET_ID_IN_FAVORITE = 'SET_ID_IN_FAVORITE';
@@ -8,6 +9,11 @@ export const ADD_NEW_SHOOTING = 'ADD_NEW_SHOOTING';
 export const fetchShootingsOfUser = (clientId) => ({
   type: 'FETCH_SHOOTINGS_OF_USER',
   clientId,
+});
+
+export const fetchShootingsOfPhotographer = (photographerId) => ({
+  type: 'FETCH_SHOOTINGS_OF_PHOTOGRAPHER',
+  photographerId,
 });
 
 export const saveShootings = (shootings) => ({

@@ -2,12 +2,15 @@ import { connect } from 'react-redux';
 
 import { Admin } from '../../components/Admin';
 
-import { addNewShooting } from '../../store/actions/shooting'
+import { addNewShooting } from '../../store/actions/shooting';
+
+
 
 
 const mapStateToProps = (state) => ({
 
-  clients: state.user.clients
+  clients: state.user.clients,
+  shootings: state.shooting.shootings
 
 });
 
