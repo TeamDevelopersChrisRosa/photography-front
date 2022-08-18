@@ -2,16 +2,23 @@ import { connect } from 'react-redux';
 
 import { Admin } from '../../components/Admin';
 
-import { addNewUser, saveRandomPassword } from '../../store/actions/user';
+import { addNewShooting } from '../../store/actions/shooting';
+
+
+
 
 const mapStateToProps = (state) => ({
 
+  clients: state.user.clients,
+  shootings: state.shooting.shootings
 
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
-
+  addNewShooting : (clientId) => {
+    dispatch(addNewShooting(clientId))
+  }
 
 });
 

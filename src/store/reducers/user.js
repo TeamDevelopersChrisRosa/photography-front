@@ -1,14 +1,16 @@
   import {
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_ERROR,
-    REMOVE_PASSWORD_MESSAGE
+    REMOVE_PASSWORD_MESSAGE,
+    SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER
   } from '../actions/user';
 
   export const initialState = {
     changePasswordSuccess : false,
     changePasswordSuccessMessage : '',
     changePasswordError : false,
-    changePasswordErrorMessage : ''
+    changePasswordErrorMessage : '',
+    clients: [],
 
   };
 
@@ -43,8 +45,14 @@
             changePasswordErrorMessage: ''
           };
         }
-
         break;
+        
+        case SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER:
+          return {
+            ...state,
+            clients: action.clients,
+          };
+
 
 
       default:

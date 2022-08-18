@@ -1,13 +1,16 @@
 @use 'src/styles/vars' as v;
 
 .newClient {
+    &__title {
+      text-align: center;
+      }
     &__form {
         width: 80%;
         margin: 0 auto;
 
         &__inputGroup{
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
         }
         &__input {
             width: 100%;
@@ -27,5 +30,14 @@
             }
         
         }
+        &__buttons {
+            display: flex;
+            justify-content: center;
+            &__button {
+                margin: 1em;
+            }
+        }
     }
 }
+
+
