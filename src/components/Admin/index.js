@@ -9,23 +9,27 @@ export const Admin = ({
   changeField,
   clients,
   addNewShooting,
-  shootings
+  shootings,
+  themes,
 }) => {
 
   let clientId = clients[0].id;
   const changeSelectedClient = (evt) => {
-    console.log(evt.target.value);
     clientId = evt.target.value;
     return clientId;
   }
 
-  const handleNewShooting = (evt) => {
-    evt.preventDefault();
-    addNewShooting(clientId);
+  let themeId = themes[0].id;
+  const changeSelectedTheme = (evt) => {
+    themeId = evt.target.value;
+    return themeId;
   }
 
-
-  console.log(shootings);
+ 
+  const handleNewShooting = (evt) => {
+    evt.preventDefault();
+    addNewShooting(clientId, themeId);
+  }
 
 
   return (
@@ -36,14 +40,14 @@ export const Admin = ({
 
       <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewShooting}>
 
-      <label htmlFor="client-select">Choisir un client:</label>
+        <label htmlFor="client-select">Choisir un client:</label>
 
-      <select onChange={changeSelectedClient} name="clients" id="client-select">
+        <select onChange={changeSelectedClient} name="clients" id="client-select">
 
-          { clients.map((client) =>
-            <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
-            ) }
-      </select>
+            { clients.map((client) =>
+              <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
+              ) }
+        </select>
 
         <Field
           name="nameOfGallery"
@@ -51,6 +55,13 @@ export const Admin = ({
           onChange={changeField}
           className="newClient__form__input"
         />
+
+        <select onChange={changeSelectedTheme} name="themes" id="theme-select">
+
+        { themes.map((theme) =>
+          <option key={theme.id} value={theme.id}> {theme.name} </option>
+          ) }
+        </select>
 
         <button
           type="submit"

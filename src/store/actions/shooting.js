@@ -38,7 +38,8 @@ export const getValidateFavoritesMessage = (response, shootingId) => ({
   shootingId,
 });
 
-export const addNewShooting = (clientId) => ({
+export const addNewShooting = (clientId, themeId) => ({
   clientId,
+  themeId,
   type: 'ADD_NEW_SHOOTING'
 })

@@ -51,8 +51,8 @@ const shootingmiddleware = (store) => (next) => (action) => {
         data:{
           clientId: action.clientId,
           nameOfGallery: state.field.nameOfGallery,
-          themeId: 2,
-          photographerId: 1,
+          themeId: action.themeId,
+          photographerId: state.auth.photographer.id,
           rateId: 1,
           time: "test",
           date:"2020-01-01 00:00:00+01",
@@ -60,10 +60,8 @@ const shootingmiddleware = (store) => (next) => (action) => {
 
       })
         .then((response) => {
-          const photographerId = 1;
+          const photographerId = 1; // TO DO: get the photographerId from the state
           store.dispatch(fetchShootingsOfPhotographer(photographerId));
-
-          console.log(response.data)
         })
         .catch((error) => {
             console.log(error)

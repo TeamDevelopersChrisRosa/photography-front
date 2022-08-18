@@ -28,7 +28,6 @@ const usermiddleware = (store) => (next) => (action) => {
         }
         })
         .then((response) => {
-            console.log(response);
             store.dispatch(changePasswordSuccess());
             store.dispatch(changeFirstConnect(userId));
         })
@@ -93,7 +92,6 @@ const usermiddleware = (store) => (next) => (action) => {
       }
     })
       .then((response) => {
-          console.log(response);
           store.dispatch(addNewClient(response.data.user.id))
       })
       .catch((error) => {
@@ -110,7 +108,6 @@ const usermiddleware = (store) => (next) => (action) => {
 
     })
       .then((response) => {
-        console.log('tous les clients', response.data);
         store.dispatch(saveAllClientsOfPhotographer(response.data));
       })
       .catch((error) => {

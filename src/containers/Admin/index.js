@@ -10,14 +10,15 @@ import { addNewShooting } from '../../store/actions/shooting';
 const mapStateToProps = (state) => ({
 
   clients: state.user.clients,
-  shootings: state.shooting.shootings
+  shootings: state.shooting.shootings,
+  themes: state.theme.themes,
 
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
-  addNewShooting : (clientId) => {
-    dispatch(addNewShooting(clientId))
+  addNewShooting : (clientId, themeId) => {
+    dispatch(addNewShooting(clientId, themeId))
   }
 
 });
