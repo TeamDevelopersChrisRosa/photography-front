@@ -27,7 +27,6 @@ import {
     switch (action.type) {
 
       case SAVE_USER: {
-      console.log('user', action.payload.user);
         const { email, firstName, lastName, client, photographer, id } = action.payload.user;
         return {
             ...state,
@@ -40,6 +39,7 @@ import {
             id,
             isLogged: true,
             showErrorMessage: false,
+            test: true,
         };
       }
 

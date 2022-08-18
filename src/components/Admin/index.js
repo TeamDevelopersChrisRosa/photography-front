@@ -4,6 +4,7 @@ import './styles.scss';
 
 import Field from '../../containers/Field';
 
+
 export const Admin = ({
   changeField,
   clients,
@@ -23,10 +24,12 @@ export const Admin = ({
     addNewShooting(clientId);
   }
 
+
   console.log(shootings);
 
 
   return (
+
     <div className='admin'>
 
       <a href='/newclient' className='myButton mx-auto'> Créer un compte pour un client</a>
@@ -56,6 +59,7 @@ export const Admin = ({
         >
           Créer une galerie photos
         </button>
+
 
     </form>
 
@@ -88,7 +92,6 @@ export const Admin = ({
 );
 
   }
-
 
 
 

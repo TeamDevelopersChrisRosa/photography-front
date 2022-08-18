@@ -17,6 +17,7 @@ export const Login = ({
   showForgotPasswordForm,
   client,
   photographer,
+
 }) => {
 
   const handleSubmit = (evt) => {
@@ -29,16 +30,11 @@ export const Login = ({
     handleForgotPasswordForm();
   }
 
-  console.log('client', client);
-  console.log('photo', photographer);
-
   return (
     <div className='login'>
 
-          { isLogged && client
-            && (
-              <Navigate to={`/dashboard`} />
-          )}
+          { isLogged && client && <Navigate to='/dashboard' /> }
+          { isLogged && photographer && <Navigate to='/admin' /> }
 
             { showForgotPasswordForm ? <ForgotPassword /> : (
 

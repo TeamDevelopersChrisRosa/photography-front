@@ -45,7 +45,7 @@ export function App({
 
         <Routes>
           <Route path="/" element={ <Home pathName={location.pathname} />} />
-          <Route path='login' element={<Login />} />
+          <Route path='login' element={<Login />}  />
           <Route path='contact' element={<Contact />} />
           {shootingPages.map((page, index) => (
             <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} isItsMe={false} />} />
@@ -55,18 +55,6 @@ export function App({
           ))}
           {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
-            {/* {isLogged ?
-            <>
-              <Route path='dashboard' element={<Dashboard />} />
-              <Route path='shooting' element={<Shooting />} />
-              <Route path='favorites' element={<Favorites />} />
-              <Route path='account/:id' element={<Account />} />
-            </>
-              : // navigate to home
-              null
-              } */}
-
-
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
           {isLogged && <Route path='favorites' element={<Favorites />} />}
@@ -75,14 +63,9 @@ export function App({
           <Route path='temp' element={<ChangeTemporaryPassword />} />
 
 
-
           <Route path='newclient' element={<NewClient />} />
 
           <Route path='admin' element={<Admin />} />
-
-
-
-
 
 
 
