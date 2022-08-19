@@ -8,6 +8,7 @@ import {
 } from './../actions/authentification';
 import { fetchShootingsOfUser, fetchShootingsOfPhotographer } from './../actions/shooting';
 import { fetchClientsOfPhotographer } from './../actions/user';
+import { fetchAllThemes } from './../actions/theme';
 
 
 
@@ -38,6 +39,7 @@ const authmiddleware = (store) => (next) => (action) => {
             const photographerId = response.data.user.photographer.id;
             store.dispatch(fetchClientsOfPhotographer(photographerId));
             store.dispatch(fetchShootingsOfPhotographer(photographerId));
+            store.dispatch(fetchAllThemes());
           }
         })
         .catch((error) => {

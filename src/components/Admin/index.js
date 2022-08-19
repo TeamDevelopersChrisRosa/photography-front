@@ -1,32 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DatePicker from "react-datepicker";
+
 
 import './styles.scss';
+import "react-datepicker/dist/react-datepicker.css";
 
 import Field from '../../containers/Field';
+
+import { formatDate } from '../../selectors/formatDate';
 
 
 export const Admin = ({
   changeField,
   clients,
   addNewShooting,
-  shootings
+  shootings,
+  themes,
+  rates,
+  setTheme,
+  theme,
+  setClient,
+  client
 }) => {
 
-  let clientId = clients[0].id;
+
   const changeSelectedClient = (evt) => {
-    console.log(evt.target.value);
-    clientId = evt.target.value;
-    return clientId;
+    evt.preventDefault();
+    setClient(evt.target.value);
   }
+
+  const changeSelectedTheme = (evt) => {
+    evt.preventDefault();
+    setTheme(evt.target.value);
+  }
+
+
+  let rateId = rates[0].id;
+  const changeSelectedRate = (evt) => {
+    rateId = evt.target.value;
+    return rateId;
+  } 
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  console.log(startDate.toLocaleDateString());
 
   const handleNewShooting = (evt) => {
     evt.preventDefault();
-    addNewShooting(clientId);
+    addNewShooting(client.id, theme.id, rateId, startDate);
   }
-
-
-  console.log(shootings);
-
 
   return (
 
@@ -36,18 +58,45 @@ export const Admin = ({
 
       <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewShooting}>
 
-      <label htmlFor="client-select">Choisir un client:</label>
+        <label htmlFor="client-select">Choisir un client:</label>
 
-      <select onChange={changeSelectedClient} name="clients" id="client-select">
+        <select onChange={changeSelectedClient} name="clients" id="client-select">
 
-          { clients.map((client) =>
-            <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
-            ) }
-      </select>
+            { clients.map((client) =>
+              <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
+              ) }
+        </select>
 
         <Field
           name="nameOfGallery"
           placeholder="Nom de la galerie"
+          onChange={changeField}
+          className="newClient__form__input"
+        />
+
+        <select onChange={changeSelectedTheme} name="themes" id="theme-select">
+
+        { themes.map((theme) =>
+          <option key={theme.id} value={theme.id}> {theme.name} </option>
+          ) }
+        </select>
+
+        <select onChange={changeSelectedRate} name="rates" id="rate-select">
+
+        { theme.rates.map((rate) =>
+          <option key={rate.id} value={rate.id}> {rate.nbPhotos} photos, {rate.price} euros </option>
+          ) }
+        </select>
+
+        <DatePicker 
+          selected={startDate} 
+          onChange={(date:Date) => setStartDate(date)} 
+          dateFormat="dd/MM/yyyy"
+          />
+
+        <Field
+          name="timeOfShooting"
+          placeholder="Heure"
           onChange={changeField}
           className="newClient__form__input"
         />
@@ -68,14 +117,26 @@ export const Admin = ({
             <tr>
                 <th scope="col">Client</th>
                 <th scope="col">Galerie photo</th>
+                <th scope="col">Thème</th>
+                <th scope="col">Date & heure</th>
+                <th scope="col">Nombre de photos et prix</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-          { shootings.map((shooting) =>
+          { shootings.sort((a, b) => {
+            if (a.createdAt < b.createdAt) 
+              return 1;
+            if (a.createdAt > b.createdAt)
+              return -1;
+            return 0;
+          }).map((shooting) =>
           <tr key={shooting.id}>
             <td> {shooting.client.user.firstName} {shooting.client.user.lastName}</td>
             <td> {shooting.nameOfGallery} </td>
+            <td> {shooting.theme.name} </td>
+            <td> Le {formatDate(shooting.date)} à {shooting.time} </td>
+            <td> {shooting.rate.nbPhotos} photos - {shooting.rate.price} euros </td>
             <td> oeil stylo poubelle </td>
           </tr>
           )}

@@ -2,7 +2,8 @@
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_ERROR,
     REMOVE_PASSWORD_MESSAGE,
-    SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER
+    SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER,
+    SET_CLIENT
   } from '../actions/user';
 
   export const initialState = {
@@ -11,6 +12,7 @@
     changePasswordError : false,
     changePasswordErrorMessage : '',
     clients: [],
+    client: {},
 
   };
 
@@ -51,6 +53,12 @@
           return {
             ...state,
             clients: action.clients,
+          };
+
+        case SET_CLIENT:
+          return {
+            ...state,
+            client: state.clients.find((client) => client.id === Number(action.clientId)),
           };
 
 

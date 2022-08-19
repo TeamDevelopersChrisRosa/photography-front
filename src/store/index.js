@@ -8,11 +8,12 @@ import authmiddleware from './middlewares/authentification';
 import shootingmiddleware from './middlewares/shooting';
 import visitormiddleware from './middlewares/visitor';
 import usermiddleware from './middlewares/user';
+import thememiddleware from './middlewares/theme';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancers = composeEnhancers(applyMiddleware(authmiddleware, shootingmiddleware, visitormiddleware, usermiddleware)// all middlewares of folder middlewares
+const enhancers = composeEnhancers(applyMiddleware(authmiddleware, shootingmiddleware, visitormiddleware, usermiddleware, thememiddleware)// all middlewares of folder middlewares
 );
 
 const persistConfig = {

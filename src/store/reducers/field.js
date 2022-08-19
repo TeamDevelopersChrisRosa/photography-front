@@ -1,5 +1,6 @@
 import {
     CHANGE_VALUE,
+    INITIALIZE_FIELDS,
   } from '../actions/field';
 
   import {
@@ -55,6 +56,13 @@ import {
         newClientPassword: action.randomPassword,
         }
       }
+
+      case INITIALIZE_FIELDS:
+        return {
+          ...state,
+          nameOfGallery: '',
+          timeOfShooting: '',
+        };
 
 
       case LOGOUT: {
