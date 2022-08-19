@@ -4,6 +4,9 @@ import {
   saveShootings,
   ADD_NEW_SHOOTING,
   fetchShootingsOfPhotographer,
+  addShootingInState,
+  DELETE_SHOOTING,
+  refreshTheStateWithoutThisShooting
 } from '../actions/shooting';
 
 import { initializeFields } from '../actions/field';
@@ -63,8 +66,26 @@ const shootingmiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           const photographerId = state.auth.photographer.id;
-          store.dispatch(fetchShootingsOfPhotographer(photographerId));
+          store.dispatch(addShootingInState(response.data));
           store.dispatch(initializeFields())
+        })
+        .catch((error) => {
+            console.log(error)
+          });
+      break;
+    }
+
+    case DELETE_SHOOTING: {
+      const state = store.getState();
+      api({
+        method: 'DELETE',
+        url: `shooting/${action.shootingId}`,
+
+      })
+        .then((response) => {
+          const photographerId = state.auth.photographer.id;
+          //store.dispatch(fetchShootingsOfPhotographer(photographerId));
+          store.dispatch(refreshTheStateWithoutThisShooting(action.shootingId));
         })
         .catch((error) => {
             console.log(error)

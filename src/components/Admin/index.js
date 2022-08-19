@@ -20,7 +20,9 @@ export const Admin = ({
   setTheme,
   theme,
   setClient,
-  client
+  client,
+  deleteShooting
+
 }) => {
 
 
@@ -39,15 +41,18 @@ export const Admin = ({
   const changeSelectedRate = (evt) => {
     rateId = evt.target.value;
     return rateId;
-  } 
+  }
 
   const [startDate, setStartDate] = useState(new Date());
-
-  console.log(startDate.toLocaleDateString());
 
   const handleNewShooting = (evt) => {
     evt.preventDefault();
     addNewShooting(client.id, theme.id, rateId, startDate);
+  }
+
+  const handleDeleteShooting = (evt) => {
+    evt.preventDefault();
+    deleteShooting(evt.target.id);
   }
 
   return (
@@ -88,9 +93,9 @@ export const Admin = ({
           ) }
         </select>
 
-        <DatePicker 
-          selected={startDate} 
-          onChange={(date:Date) => setStartDate(date)} 
+        <DatePicker
+          selected={startDate}
+          onChange={(date:Date) => setStartDate(date)}
           dateFormat="dd/MM/yyyy"
           />
 
@@ -125,7 +130,7 @@ export const Admin = ({
         </thead>
         <tbody>
           { shootings.sort((a, b) => {
-            if (a.createdAt < b.createdAt) 
+            if (a.createdAt < b.createdAt)
               return 1;
             if (a.createdAt > b.createdAt)
               return -1;
@@ -137,7 +142,11 @@ export const Admin = ({
             <td> {shooting.theme.name} </td>
             <td> Le {formatDate(shooting.date)} à {shooting.time} </td>
             <td> {shooting.rate.nbPhotos} photos - {shooting.rate.price} euros </td>
-            <td> oeil stylo poubelle </td>
+            <td>
+              <i className="bi bi-eye"></i>
+              <i className="bi bi-pencil mx-2"></i>
+              <i id={shooting.id} onClick={handleDeleteShooting} className="bi bi-trash3"></i>
+            </td>
           </tr>
           )}
 
