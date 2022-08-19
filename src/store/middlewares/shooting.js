@@ -3,8 +3,10 @@ import {
   FETCH_SHOOTINGS_OF_PHOTOGRAPHER,
   saveShootings,
   ADD_NEW_SHOOTING,
-  fetchShootingsOfPhotographer
+  fetchShootingsOfPhotographer,
 } from '../actions/shooting';
+
+import { initializeFields } from '../actions/field';
 
 import api from './utils/api';
 
@@ -53,15 +55,16 @@ const shootingmiddleware = (store) => (next) => (action) => {
           nameOfGallery: state.field.nameOfGallery,
           themeId: action.themeId,
           photographerId: state.auth.photographer.id,
-          rateId: 1,
-          time: "test",
-          date:"2020-01-01 00:00:00+01",
+          rateId: action.rateId,
+          time: state.field.timeOfShooting,
+          date: action.startDate,
         }
 
       })
         .then((response) => {
-          const photographerId = 1; // TO DO: get the photographerId from the state
+          const photographerId = state.auth.photographer.id;
           store.dispatch(fetchShootingsOfPhotographer(photographerId));
+          store.dispatch(initializeFields())
         })
         .catch((error) => {
             console.log(error)

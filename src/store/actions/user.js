@@ -8,6 +8,7 @@ export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const SAVE_RANDOM_PASSWORD = 'SAVE_RANDOM_PASSWORD';
 export const FETCH_CLIENTS_OF_PHOTOGRAPHER = 'FETCH_CLIENTS_OF_PHOTOGRAPHER';
 export const SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER = 'SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER';
+export const SET_CLIENT = 'SET_CLIENT';
 
 export const updateUser = (userId, oldPassword, newPassword) => ({
     type: 'UPDATE_USER',
@@ -56,4 +57,9 @@ export const fetchClientsOfPhotographer = (photographerId) =>({
 export const saveAllClientsOfPhotographer = (clients) => ({
   clients,
   type: 'SAVE_ALL_CLIENTS_OF_PHOTOGRAPHER'
+})
+
+export const setClient = (clientId) => ({
+  clientId,
+  type: 'SET_CLIENT'
 })
