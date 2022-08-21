@@ -6,6 +6,10 @@
     SET_CLIENT
   } from '../actions/user';
 
+  import {
+    LOGOUT,
+  } from '../actions/authentification';
+
   export const initialState = {
     changePasswordSuccess : false,
     changePasswordSuccessMessage : '',
@@ -61,6 +65,8 @@
             client: state.clients.find((client) => client.id === Number(action.clientId)),
           };
 
+      case LOGOUT:
+        return initialState;
 
 
       default:

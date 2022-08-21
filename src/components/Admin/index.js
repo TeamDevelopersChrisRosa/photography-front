@@ -16,7 +16,6 @@ export const Admin = ({
   addNewShooting,
   shootings,
   themes,
-  rates,
   setTheme,
   theme,
   setClient,
@@ -25,19 +24,19 @@ export const Admin = ({
 
 }) => {
 
-
   const changeSelectedClient = (evt) => {
     evt.preventDefault();
     setClient(evt.target.value);
   }
 
   const changeSelectedTheme = (evt) => {
-    evt.preventDefault();
     setTheme(evt.target.value);
   }
 
-
-  let rateId = rates[0].id;
+  let rateId = 0;
+  if (theme.rates !== undefined) {
+    rateId = theme.rates[0].id; 
+  }
   const changeSelectedRate = (evt) => {
     rateId = evt.target.value;
     return rateId;
@@ -67,6 +66,8 @@ export const Admin = ({
 
         <select onChange={changeSelectedClient} name="clients" id="client-select">
 
+          <option> Sélectionner...</option>
+
             { clients.map((client) =>
               <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
               ) }
@@ -81,17 +82,22 @@ export const Admin = ({
 
         <select onChange={changeSelectedTheme} name="themes" id="theme-select">
 
+        <option> Sélectionner...</option>
+
         { themes.map((theme) =>
           <option key={theme.id} value={theme.id}> {theme.name} </option>
           ) }
         </select>
 
-        <select onChange={changeSelectedRate} name="rates" id="rate-select">
+        { theme.rates !== undefined ? (
+          <select onChange={changeSelectedRate} name="rates" id="rate-select">
+          <option> Sélectionner...</option>
 
-        { theme.rates.map((rate) =>
-          <option key={rate.id} value={rate.id}> {rate.nbPhotos} photos, {rate.price} euros </option>
-          ) }
-        </select>
+          { theme.rates.map((rate) =>
+            <option key={rate.id} value={rate.id}> {rate.nbPhotos} photos, {rate.price} euros </option>
+            ) }
+          </select>
+        ) : null }
 
         <DatePicker
           selected={startDate}

@@ -3,7 +3,6 @@ import {
   FETCH_SHOOTINGS_OF_PHOTOGRAPHER,
   saveShootings,
   ADD_NEW_SHOOTING,
-  fetchShootingsOfPhotographer,
   addShootingInState,
   DELETE_SHOOTING,
   refreshTheStateWithoutThisShooting
@@ -65,7 +64,7 @@ const shootingmiddleware = (store) => (next) => (action) => {
 
       })
         .then((response) => {
-          const photographerId = state.auth.photographer.id;
+          //const photographerId = state.auth.photographer.id;
           store.dispatch(addShootingInState(response.data));
           store.dispatch(initializeFields())
         })
@@ -76,15 +75,13 @@ const shootingmiddleware = (store) => (next) => (action) => {
     }
 
     case DELETE_SHOOTING: {
-      const state = store.getState();
+      //const state = store.getState();
       api({
         method: 'DELETE',
         url: `shooting/${action.shootingId}`,
 
       })
         .then((response) => {
-          const photographerId = state.auth.photographer.id;
-          //store.dispatch(fetchShootingsOfPhotographer(photographerId));
           store.dispatch(refreshTheStateWithoutThisShooting(action.shootingId));
         })
         .catch((error) => {
