@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 
-
 import './styles.scss';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -20,7 +19,7 @@ export const Admin = ({
   theme,
   setClient,
   client,
-  deleteShooting
+  deleteShooting,
 
 }) => {
 
@@ -101,7 +100,7 @@ export const Admin = ({
 
         <DatePicker
           selected={startDate}
-          onChange={(date:Date) => setStartDate(date)}
+          onChange={(date) => setStartDate(date)}
           dateFormat="dd/MM/yyyy"
           />
 
@@ -158,16 +157,11 @@ export const Admin = ({
 
         </tbody>
       </table>
-
-
-
-
-
     </div>
 
-);
+  );
 
-  }
+}
 
 
 
