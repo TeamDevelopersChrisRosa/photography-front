@@ -15,7 +15,7 @@ export const Page = ({
   sharedPictures,
   isItsMe,
 }) => {
-
+  
   let sharedPicturesByThemeId = [];
   if(isPortfolio) {
     sharedPictures.map((picture) => {
@@ -41,7 +41,7 @@ export const Page = ({
               <div className='page__content__prices'> 
                   <h3> Tarifs : </h3>
                   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales purus in dolor dignissim </p>
-                  {page.rates.sort((a, b) => a.nbPhotos - b.nbPhotos).map((rate, index) => (
+                  {page.theme.rates.sort((a, b) => a.nbPhotos - b.nbPhotos).map((rate, index) => (
                     <div key={index}>
                       <div className='page__content__prices__price'><b>{rate.nbPhotos}</b> photos : <b>{rate.price} €</b></div>
                     </div>

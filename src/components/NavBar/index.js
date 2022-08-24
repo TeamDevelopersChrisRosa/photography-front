@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import MediaQuery from 'react-responsive'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ export const NavBar = ({
   getSharedPictures,
   isLogged,
   pathName,
+  FetchItsMePage
 }) => {
 
     const handleFetchShootingPages = () => {
@@ -23,6 +25,19 @@ export const NavBar = ({
       FetchPortfolioPages();
       getSharedPictures();
     }
+
+    let navigate = useNavigate();
+
+    const handleFetchItsMePage = (evt) => {
+      evt.preventDefault();
+      FetchItsMePage();
+      // wait for the page to be fetched
+      setTimeout(() => {
+        navigate('/its_me');
+      }, 300);
+    }
+    
+  
 
 
   return (
@@ -44,7 +59,7 @@ export const NavBar = ({
                     <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} href="/its_me">C'est moi !</Nav.Link>
+                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} onClick={handleFetchItsMePage} href="/its_me">C'est moi !</Nav.Link>
                 <Nav.Link className={pathName === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
                 {isLogged &&
                    <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link>  }

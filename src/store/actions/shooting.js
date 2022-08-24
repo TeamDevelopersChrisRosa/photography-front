@@ -5,6 +5,9 @@ export const SET_WANTED_SHOOTING = 'SET_WANTED_SHOOTING';
 export const SET_ID_IN_FAVORITE = 'SET_ID_IN_FAVORITE';
 export const VALIDATE_FAVORITES_MESSAGE = 'VALIDATE_FAVORITES_MESSAGE';
 export const ADD_NEW_SHOOTING = 'ADD_NEW_SHOOTING';
+export const ADD_SHOOTING_IN_STATE = 'ADD_SHOOTING_IN_STATE';
+export const DELETE_SHOOTING = 'DELETE_SHOOTING';
+export const REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING = 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING';
 
 export const fetchShootingsOfUser = (clientId) => ({
   type: 'FETCH_SHOOTINGS_OF_USER',
@@ -44,4 +47,19 @@ export const addNewShooting = (clientId, themeId, rateId, startDate) => ({
   rateId,
   startDate,
   type: 'ADD_NEW_SHOOTING'
+})
+
+export const addShootingInState = (shooting) =>({
+  shooting,
+  type: 'ADD_SHOOTING_IN_STATE'
+})
+
+export const deleteShooting = (shootingId) => ({
+  shootingId,
+  type: 'DELETE_SHOOTING'
+})
+
+export const refreshTheStateWithoutThisShooting = (shootingId) => ({
+  shootingId,
+  type: 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING'
 })

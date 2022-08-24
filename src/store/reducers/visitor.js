@@ -5,7 +5,10 @@ import {
   SAVE_ITS_ME_PAGE,
   } from '../actions/visitor';
 
-  
+  import {
+    LOGOUT,
+  } from '../actions/authentification';
+
   export const initialState = {
     shootingPages: [],
     portfolioPages: [],
@@ -39,6 +42,9 @@ import {
                 ...state,
                 itsMePage: action.itsMePage,
             };
+
+        case LOGOUT:
+            return initialState;
             
 
       default:
