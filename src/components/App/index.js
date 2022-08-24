@@ -26,16 +26,9 @@ export function App({
   shootingPages,
   portfolioPages,
   itsMePage,
-  FetchItsMePage,
-  photographer
 }) {
 
   let location = useLocation();
-
-  const handleFetchItsMePage = (evt) => {
-    evt.preventDefault();
-    FetchItsMePage();
-  }
 
   return (
     <div className="app">
@@ -53,7 +46,7 @@ export function App({
           {portfolioPages.map((page, index) => (
             <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} isItsMe={false} />} />
           ))}
-          {itsMePage && <Route path='its_me' onClick={handleFetchItsMePage} element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
+          {itsMePage && <Route path='its_me' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
           {isLogged && <Route path='dashboard' element={<Dashboard />} />}
           {isLogged && <Route path='shooting' element={<Shooting />} />}
@@ -65,8 +58,7 @@ export function App({
 
           <Route path='newclient' element={<NewClient />} />
 
-          <Route path='admin' element={<Admin />} />
-
+          {isLogged && <Route path='admin' element={<Admin />} />}
 
 
           <Route path='*' element={<Navigate to="/" replace />} />

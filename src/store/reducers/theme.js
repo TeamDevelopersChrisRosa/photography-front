@@ -4,7 +4,9 @@ import {
     SET_THEME,
   } from '../actions/theme';
 
-
+  import {
+    LOGOUT,
+  } from '../actions/authentification';
 
   export const initialState = {
     themes: [],
@@ -33,6 +35,8 @@ import {
             theme: state.themes.find((theme) => theme.id === Number(action.themeId)),
         };
         
+      case LOGOUT:
+        return initialState;
         
 
       default:

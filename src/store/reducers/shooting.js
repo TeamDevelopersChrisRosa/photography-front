@@ -2,20 +2,22 @@ import {
     SAVE_SHOOTINGS,
     SET_WANTED_SHOOTING,
     SET_ID_IN_FAVORITE,
-    VALIDATE_FAVORITES_MESSAGE
+    VALIDATE_FAVORITES_MESSAGE,
+    ADD_SHOOTING_IN_STATE,
+    REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING
   } from '../actions/shooting';
 
   import {
     LOGOUT,
   } from '../actions/authentification';
-  
+
   export const initialState = {
     shootings: [],
     wantedShooting: {},
-    
-    
+
+
   };
-  
+
   const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
 
@@ -65,20 +67,25 @@ import {
           };
         }
 
+      case ADD_SHOOTING_IN_STATE:
+        return {
+            ...state,
+            shootings: [...state.shootings, action.shooting],
+        }
 
-        
-
-
-
-
+      case REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING:
+        return {
+          ...state,
+          shootings: state.shootings.filter(shooting => shooting.id !== Number(action.shootingId)),
+        }
 
 
       case LOGOUT:
         return initialState;
-      
+
       default:
         return state;
     }
   };
-  
+
   export default reducer;
