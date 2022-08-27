@@ -9,6 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
     isLogged: state.auth.isLogged,
     wantedShooting: state.shooting.wantedShooting,
     favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [],
+    isPhotographer: state.auth.isPhotographer,
+    isClient: state.auth.isClient,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

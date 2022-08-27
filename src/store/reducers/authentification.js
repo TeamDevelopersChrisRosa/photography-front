@@ -20,7 +20,9 @@ import {
     showForgotPasswordForm: false,
     messageForgot: false,
     successMessage: false,
-    id: null
+    id: null,
+    isPhotographer: false,
+    isClient: false,
   };
 
   const reducer = (state = initialState, action = {}) => {
@@ -40,6 +42,8 @@ import {
             isLogged: true,
             showErrorMessage: false,
             test: true,
+            isPhotographer: photographer !== undefined && photographer !== null ? true : false,
+            isClient: client !== undefined && client !== null ? true : false,
         };
       }
 

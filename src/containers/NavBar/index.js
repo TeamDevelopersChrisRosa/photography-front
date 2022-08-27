@@ -8,6 +8,8 @@ const mapStateToProps = (state, ownProps) => ({
     shootingPages: state.visitor.shootingPages,
     portfolioPages: state.visitor.portfolioPages,
     isLogged: state.auth.isLogged,
+    isPhotographer: state.auth.isPhotographer,
+    isClient: state.auth.isClient,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -78,10 +78,10 @@ export const Favorites = ({
       ) : null }
 
         <MediaQuery minWidth={769}>
-          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false}/>
+          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false} withDelete={false}/>
         </MediaQuery>
         <MediaQuery maxWidth={768}>
-          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false}/>
+          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false} withDelete={false}/>
 
           </MediaQuery>
 

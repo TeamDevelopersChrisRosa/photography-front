@@ -13,6 +13,7 @@ import Account from '../../containers/Account';
 import ChangeTemporaryPassword from '../../containers/ChangeTemporaryPassword';
 import NavBar from '../../containers/NavBar';
 import Header from '../../containers/Header';
+import AddPicture from '../../containers/AddPicture';
 
 import NewClient from '../../containers/NewClient';
 import Admin from '../../containers/Admin';
@@ -26,6 +27,8 @@ export function App({
   shootingPages,
   portfolioPages,
   itsMePage,
+  isPhotographer,
+  isClient,
 }) {
 
   let location = useLocation();
@@ -48,17 +51,19 @@ export function App({
           ))}
           {itsMePage && <Route path='its_me' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
-          {isLogged && <Route path='dashboard' element={<Dashboard />} />}
-          {isLogged && <Route path='shooting' element={<Shooting />} />}
+          {isLogged && isClient && <Route path='dashboard' element={<Dashboard />} />}
+          {isLogged &&  <Route path='shooting' element={<Shooting />} />}
           {isLogged && <Route path='favorites' element={<Favorites />} />}
-          {isLogged && (<Route path='account/:id' element={<Account />} /> )}
+          {isLogged &&  (<Route path='account/:id' element={<Account />} /> )}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />
 
 
           <Route path='newclient' element={<NewClient />} />
 
-          {isLogged && <Route path='admin' element={<Admin />} />}
+          {isLogged && isPhotographer && <Route path='admin' element={<Admin />} />}
+          {isLogged && <Route path='shooting/:id' element={<Shooting />} />}
+          {isLogged && <Route path='addpicture' element={<AddPicture />} />}
 
 
           <Route path='*' element={<Navigate to="/" replace />} />
