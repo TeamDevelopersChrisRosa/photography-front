@@ -8,6 +8,7 @@ export const ADD_NEW_SHOOTING = 'ADD_NEW_SHOOTING';
 export const ADD_SHOOTING_IN_STATE = 'ADD_SHOOTING_IN_STATE';
 export const DELETE_SHOOTING = 'DELETE_SHOOTING';
 export const REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING = 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING';
+export const REFRESH_WANTED_SHOOTING = 'REFRESH_WANTED_SHOOTING';
 
 export const fetchShootingsOfUser = (clientId) => ({
   type: 'FETCH_SHOOTINGS_OF_USER',
@@ -63,3 +64,10 @@ export const refreshTheStateWithoutThisShooting = (shootingId) => ({
   shootingId,
   type: 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING'
 })
+
+export const refreshWantedShooting = (pictureId) => ({
+  pictureId,
+  type: 'REFRESH_WANTED_SHOOTING'
+})
+
+

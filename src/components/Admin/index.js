@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
+import { useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 import "react-datepicker/dist/react-datepicker.css";
 
 import Field from '../../containers/Field';
 
-import { formatDate } from '../../selectors/formatDate';
+import { formatDate } from '../../utils/formatDate';
+//import { fetchShootingsOfPhotographer } from '../../store/actions/shooting';
 
 
 export const Admin = ({
@@ -20,6 +22,7 @@ export const Admin = ({
   setClient,
   client,
   deleteShooting,
+  setWantedShooting
 
 }) => {
 
@@ -50,7 +53,14 @@ export const Admin = ({
 
   const handleDeleteShooting = (evt) => {
     evt.preventDefault();
-    deleteShooting(evt.target.id);
+    window.confirm('Es tu sûre de vouloir supprimer cette galerie ?') && deleteShooting(evt.target.id);
+  }
+
+  let navigate = useNavigate();
+
+  const handleShowShooting = (evt) => {
+    setWantedShooting(evt.target.id);
+    navigate(`/shooting/${evt.target.id}`);
   }
 
   return (
@@ -148,7 +158,7 @@ export const Admin = ({
             <td> Le {formatDate(shooting.date)} à {shooting.time} </td>
             <td> {shooting.rate.nbPhotos} photos - {shooting.rate.price} euros </td>
             <td>
-              <i className="bi bi-eye"></i>
+              <i id={shooting.id} onClick={handleShowShooting} className="bi bi-eye"></i>
               <i className="bi bi-pencil mx-2"></i>
               <i id={shooting.id} onClick={handleDeleteShooting} className="bi bi-trash3"></i>
             </td>

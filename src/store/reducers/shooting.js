@@ -4,7 +4,8 @@ import {
     SET_ID_IN_FAVORITE,
     VALIDATE_FAVORITES_MESSAGE,
     ADD_SHOOTING_IN_STATE,
-    REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING
+    REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
+    REFRESH_WANTED_SHOOTING
   } from '../actions/shooting';
 
   import {
@@ -78,6 +79,24 @@ import {
           ...state,
           shootings: state.shootings.filter(shooting => shooting.id !== Number(action.shootingId)),
         }
+
+      case REFRESH_WANTED_SHOOTING:
+        return {
+          ...state,
+          wantedShooting: {
+            ...state.wantedShooting,
+            pictures: state.wantedShooting.pictures.filter(picture => picture.id !== Number(action.pictureId)),
+          },
+          shootings: state.shootings.map(shooting => {
+            if (shooting.id === state.wantedShooting.id) {
+              return {
+                ...shooting,
+                pictures: shooting.pictures.filter(picture => picture.id !== Number(action.pictureId)),
+              };
+            }
+            return shooting;
+          }
+        )};
 
 
       case LOGOUT:

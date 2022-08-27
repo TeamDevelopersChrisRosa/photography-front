@@ -14,7 +14,9 @@ export const NavBar = ({
   getSharedPictures,
   isLogged,
   pathName,
-  FetchItsMePage
+  FetchItsMePage,
+  isPhotographer,
+  isClient,
 }) => {
 
     const handleFetchShootingPages = () => {
@@ -61,8 +63,11 @@ export const NavBar = ({
                 </NavDropdown>
                 <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} onClick={handleFetchItsMePage} href="/its_me">C'est moi !</Nav.Link>
                 <Nav.Link className={pathName === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
-                {isLogged &&
+                {isLogged && isClient &&
                    <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link>  }
+                {isLogged && isPhotographer &&
+                    <Nav.Link className={pathName === "/admin" ? "navbar__link active" : "navbar__link"} href="/admin">Admin</Nav.Link>  }
+
                 
               </Nav>
             </Navbar.Collapse>

@@ -6,8 +6,6 @@ import "yet-another-react-lightbox/styles.css";
 
 import './styles.scss';
 
-
-
 export const Gallery = ({
   gallery,
   layout,
@@ -15,7 +13,11 @@ export const Gallery = ({
   withFavorites,
   favoriteIds,
   setFavorite,
-  wantedShooting
+  wantedShooting,
+  isPhotographer,
+  isClient,
+  withDelete,
+  deletePicture
 
 }) => {
 
@@ -62,14 +64,23 @@ export const Gallery = ({
     }) => (
       <div style={{ width: style?.width}}>
           <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
-          {withFavorites && (
+          {withFavorites && isClient && (
             <i className={favoriteIds.includes(Number(photo.id)) ? "bi bi-heart-fill gallery__heart text-danger" : "bi bi-heart gallery__heart"} id={photo.id} onClick={handleSetFavorite}></i>
+          )}
+
+          {withDelete && isPhotographer && (
+            <i className="bi bi-trash gallery__heart" id={photo.id} onClick={handleDeletePicture}></i>
           )}
       </div>
     );
 
     const handleSetFavorite = (evt) => {
       setFavorite(evt.target.id, wantedShooting.id);
+    }
+
+    const handleDeletePicture = (evt) => {
+      console.log(evt.target.id);
+      deletePicture(evt.target.id);
     }
 
   return (

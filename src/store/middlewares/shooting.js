@@ -5,7 +5,7 @@ import {
   ADD_NEW_SHOOTING,
   addShootingInState,
   DELETE_SHOOTING,
-  refreshTheStateWithoutThisShooting
+  refreshTheStateWithoutThisShooting,
 } from '../actions/shooting';
 
 import { initializeFields } from '../actions/field';
@@ -89,6 +89,9 @@ const shootingmiddleware = (store) => (next) => (action) => {
           });
       break;
     }
+
+    
+
 
 
 
