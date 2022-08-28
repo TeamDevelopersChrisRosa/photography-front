@@ -8,7 +8,7 @@ import {
     REFRESH_WANTED_SHOOTING,
   } from '../actions/shooting';
 
-  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, ADD_NEW_PICTURE, ADD_SUCCES_MESSAGE, SET_ADDED_PICTURE_TO_FALSE } from '../actions/picture';
+  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, ADD_SUCCES_MESSAGE, SET_ADDED_PICTURE_TO_FALSE } from '../actions/picture';
 
   import {
     LOGOUT,
