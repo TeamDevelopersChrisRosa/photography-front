@@ -1,6 +1,8 @@
 import {
   DELETE_PICTURE,
   ADD_NEW_PICTURE,
+  addPictureInShootingOnState,
+  addSuccesMessage,
 } from '../actions/picture';
 
 import { refreshWantedShooting } from './../actions/shooting';
@@ -27,25 +29,22 @@ const picturemiddleware = (store) => (next) => (action) => {
 
     case ADD_NEW_PICTURE: {
       const state = store.getState();
-      console.log(action.file);
-      console.log(action.sizes);
-      console.log(action.sizes.height);
-
       api({
         method: 'POST',
         url: 'picture',
         data: {
           name: action.file.name,
           path: action.file.name,
-          share: false,
+          share: action.share,
           width: action.sizes.width,
           height: action.sizes.height,
           shootingId: state.shooting.wantedShooting.id,
-
         }
       })
         .then((response) => {
           console.log(response);
+          store.dispatch(addPictureInShootingOnState(response.data));
+          store.dispatch(addSuccesMessage('Photo ajoutée avec succès'));
         })
         .catch((error) => {
             console.log(error)

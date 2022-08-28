@@ -5,8 +5,10 @@ import {
     VALIDATE_FAVORITES_MESSAGE,
     ADD_SHOOTING_IN_STATE,
     REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
-    REFRESH_WANTED_SHOOTING
+    REFRESH_WANTED_SHOOTING,
   } from '../actions/shooting';
+
+  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, ADD_NEW_PICTURE, ADD_SUCCES_MESSAGE, SET_ADDED_PICTURE_TO_FALSE } from '../actions/picture';
 
   import {
     LOGOUT,
@@ -15,8 +17,8 @@ import {
   export const initialState = {
     shootings: [],
     wantedShooting: {},
-
-
+    addedPictureMessage: '',
+    addedPicture: false,
   };
 
   const reducer = (state = initialState, action = {}) => {
@@ -97,6 +99,37 @@ import {
             return shooting;
           }
         )};
+      
+      case ADD_PICTURE_IN_SHOOTING_ON_STATE:
+        return {
+          ...state,
+          wantedShooting: {
+            ...state.wantedShooting,
+            pictures: [...state.wantedShooting.pictures, action.picture],
+          },
+          shootings: state.shootings.map(shooting => {
+            if (shooting.id === state.wantedShooting.id) {
+              return {
+                ...shooting,
+                pictures: [...shooting.pictures, action.picture],
+              };
+            }
+            return shooting;
+          }
+        )};
+
+        case ADD_SUCCES_MESSAGE:
+          return {
+            ...state,
+            addedPictureMessage: action.message,
+            addedPicture: true,
+          };
+
+        case SET_ADDED_PICTURE_TO_FALSE:
+          return {
+            ...state,
+            addedPicture: false,
+          };
 
 
       case LOGOUT:

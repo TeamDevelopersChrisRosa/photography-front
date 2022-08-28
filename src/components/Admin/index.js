@@ -67,70 +67,92 @@ export const Admin = ({
 
     <div className='admin'>
 
-      <a href='/newclient' className='myButton mx-auto'> Créer un compte pour un client</a>
+      <div className='admin__newClient'>
+        <a href='/newclient' className='myButton'> Créer un compte pour un client</a>
+      </div>
 
-      <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewShooting}>
+      <div className='admin__newShooting'>
 
-        <label htmlFor="client-select">Choisir un client:</label>
+        <h3 className='text-center'> Nouvelle galerie </h3>
 
-        <select onChange={changeSelectedClient} name="clients" id="client-select">
+          <form autoComplete="off" method="POST" className='admin__newShooting__form' onSubmit={handleNewShooting}>
 
-          <option> Sélectionner...</option>
+            <Field
+              name="nameOfGallery"
+              placeholder="Nom de la galerie"
+              onChange={changeField}
+              className="admin__newShooting__form__input"
+            />
 
-            { clients.map((client) =>
-              <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
-              ) }
-        </select>
+            <div className='admin__newShooting__form__section'>
+              <label htmlFor="client-select" className='admin__newShooting__form__section__choice'>Choisir un client :</label>
 
-        <Field
-          name="nameOfGallery"
-          placeholder="Nom de la galerie"
-          onChange={changeField}
-          className="newClient__form__input"
-        />
+              <select onChange={changeSelectedClient} name="clients" id="client-select" className='admin__newShooting__form__section__select'>
 
-        <select onChange={changeSelectedTheme} name="themes" id="theme-select">
+                <option> Sélectionner...</option>
 
-        <option> Sélectionner...</option>
+                  { clients.map((client) =>
+                    <option key={client.id} value={client.id}>{client.user.firstName} {client.user.lastName}</option>
+                    ) }
+              </select>
+            </div>
 
-        { themes.map((theme) =>
-          <option key={theme.id} value={theme.id}> {theme.name} </option>
-          ) }
-        </select>
+            <div className='admin__newShooting__form__section'>
 
-        { theme.rates !== undefined ? (
-          <select onChange={changeSelectedRate} name="rates" id="rate-select">
-          <option> Sélectionner...</option>
+            <label htmlFor="client-select" className='admin__newShooting__form__section__choice'>Choisir un thème :</label>
 
-          { theme.rates.map((rate) =>
-            <option key={rate.id} value={rate.id}> {rate.nbPhotos} photos, {rate.price} euros </option>
-            ) }
-          </select>
-        ) : null }
+              <select onChange={changeSelectedTheme} name="themes" id="theme-select">
 
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          dateFormat="dd/MM/yyyy"
-          />
+              <option> Sélectionner...</option>
 
-        <Field
-          name="timeOfShooting"
-          placeholder="Heure"
-          onChange={changeField}
-          className="newClient__form__input"
-        />
+              { themes.map((theme) =>
+                <option key={theme.id} value={theme.id}> {theme.name} </option>
+                ) }
+              </select>
 
-        <button
-          type="submit"
-          className="myButton mx-auto mt-2"
+              { theme.rates !== undefined ? (
+                <>
+                <label htmlFor="client-select" className='admin__newShooting__form__section__choice'>photos & tarif :</label>
+                <select onChange={changeSelectedRate} name="rates" id="rate-select">
+                <option> Sélectionner...</option>
 
-        >
-          Créer une galerie photos
-        </button>
+                { theme.rates.map((rate) =>
+                  <option key={rate.id} value={rate.id}> {rate.nbPhotos} photos, {rate.price} euros </option>
+                  ) }
+                </select>
+                </>
+              ) : null }
+            </div>
+
+              <p> Date :</p>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
+                />
+
+              <p> Heure :</p>
+
+              <Field
+                name="timeOfShooting"
+                placeholder="Heure"
+                onChange={changeField}
+                className="admin__newShooting__form__input"
+              />
+            
+
+            <button
+              type="submit"
+              className="myButton mx-auto mt-2"
+
+            >
+              Créer une galerie photos
+            </button>
 
 
-    </form>
+        </form>
+
+    </div>
 
       <table className="table">
         <thead>
@@ -158,8 +180,7 @@ export const Admin = ({
             <td> Le {formatDate(shooting.date)} à {shooting.time} </td>
             <td> {shooting.rate.nbPhotos} photos - {shooting.rate.price} euros </td>
             <td>
-              <i id={shooting.id} onClick={handleShowShooting} className="bi bi-eye"></i>
-              <i className="bi bi-pencil mx-2"></i>
+              <i id={shooting.id} onClick={handleShowShooting} className="bi bi-pencil me-2"></i>
               <i id={shooting.id} onClick={handleDeleteShooting} className="bi bi-trash3"></i>
             </td>
           </tr>
