@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { NavBar } from '../../components/NavBar';
 
-import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchSharedPicturesOfPhotographer, fetchItsMePageOfPhotographer, openSubmenuShootingPages } from '../../store/actions/visitor';
+import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchSharedPicturesOfPhotographer, fetchItsMePageOfPhotographer } from '../../store/actions/visitor';
 
 
 const mapStateToProps = (state, ownProps) => ({
