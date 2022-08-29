@@ -1,11 +1,11 @@
 import {
     SAVE_SHOOTINGS,
-    SET_WANTED_SHOOTING,
-    SET_ID_IN_FAVORITE,
+    SET_SHOOTING_ID,
+    SET_FAVORITE,
     VALIDATE_FAVORITES_MESSAGE,
     ADD_SHOOTING_IN_STATE,
     REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
-    REFRESH_WANTED_SHOOTING,
+    REFRESH_SHOOTING,
   } from '../actions/shooting';
 
   import { ADD_PICTURE_IN_SHOOTING_ON_STATE, ADD_SUCCES_MESSAGE, SET_ADDED_PICTURE_TO_FALSE } from '../actions/picture';
@@ -16,7 +16,6 @@ import {
 
   export const initialState = {
     shootings: [],
-    wantedShooting: {},
     addedPictureMessage: '',
     addedPicture: false,
   };
@@ -30,30 +29,31 @@ import {
             shootings: action.shootings,
         };
 
-      case SET_WANTED_SHOOTING:
+      case SET_SHOOTING_ID:
         return {
           ...state,
-            wantedShooting: state.shootings.find(shooting => shooting.id === Number(action.shootingId)),
+            shootingId: state.shootings.find(shooting => shooting.id === Number(action.shootingId).id),
         };
 
-      case SET_ID_IN_FAVORITE:
-        if ( 'favoriteIds' + action.shootingId in state ) {
-          if (state['favoriteIds' + action.shootingId].includes(Number(action.id))) {
-            return {
-              ...state,
-              ['favoriteIds' + action.shootingId]: state['favoriteIds' + action.shootingId].filter(id => id !== Number(action.id)),
-            };
-            } else {
-            return {
-              ...state,
-              ['favoriteIds' + action.shootingId]: [...state['favoriteIds' + action.shootingId], Number(action.id)],
-            };
-          }
+      case SET_FAVORITE:
+        let shooting = state.shootings.find(shooting => shooting.id === action.shootingId);
+        let picture = shooting.pictures.find(picture => picture.id === Number(action.pictureId));
+        
+        if (!shooting.favorites) {
+          shooting.favorites = [];
+        }
+
+        if (shooting.favorites.includes(picture)) {
+          shooting.favorites = shooting.favorites.filter(favorite => favorite.id !== picture.id);
+        } else {
+          shooting.favorites.push(picture);
         }
         return {
           ...state,
-          ['favoriteIds' + action.shootingId]: [Number(action.id)],
+          shootings: state.shootings.map(shootings => shootings.id === shooting.id ? shooting : shootings),
         };
+
+       
 
       case VALIDATE_FAVORITES_MESSAGE:
         if (action.response === 200 ) {
@@ -82,15 +82,11 @@ import {
           shootings: state.shootings.filter(shooting => shooting.id !== Number(action.shootingId)),
         }
 
-      case REFRESH_WANTED_SHOOTING:
+      case REFRESH_SHOOTING:
         return {
           ...state,
-          wantedShooting: {
-            ...state.wantedShooting,
-            pictures: state.wantedShooting.pictures.filter(picture => picture.id !== Number(action.pictureId)),
-          },
           shootings: state.shootings.map(shooting => {
-            if (shooting.id === state.wantedShooting.id) {
+            if (shooting.id === action.shootingId) {
               return {
                 ...shooting,
                 pictures: shooting.pictures.filter(picture => picture.id !== Number(action.pictureId)),
@@ -103,12 +99,8 @@ import {
       case ADD_PICTURE_IN_SHOOTING_ON_STATE:
         return {
           ...state,
-          wantedShooting: {
-            ...state.wantedShooting,
-            pictures: [...state.wantedShooting.pictures, action.picture],
-          },
           shootings: state.shootings.map(shooting => {
-            if (shooting.id === state.wantedShooting.id) {
+            if (shooting.id === action.shootingId) {
               return {
                 ...shooting,
                 pictures: [...shooting.pictures, action.picture],

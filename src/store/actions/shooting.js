@@ -1,14 +1,14 @@
 export const FETCH_SHOOTINGS_OF_USER = 'FETCH_SHOOTINGS_OF_USER';
 export const FETCH_SHOOTINGS_OF_PHOTOGRAPHER = 'FETCH_SHOOTINGS_OF_PHOTOGRAPHER';
 export const SAVE_SHOOTINGS = 'SAVE_SHOOTINGS';
-export const SET_WANTED_SHOOTING = 'SET_WANTED_SHOOTING';
-export const SET_ID_IN_FAVORITE = 'SET_ID_IN_FAVORITE';
+export const SET_SHOOTING_ID = 'SET_SHOOTING_ID';
+export const SET_FAVORITE = 'SET_FAVORITE';
 export const VALIDATE_FAVORITES_MESSAGE = 'VALIDATE_FAVORITES_MESSAGE';
 export const ADD_NEW_SHOOTING = 'ADD_NEW_SHOOTING';
 export const ADD_SHOOTING_IN_STATE = 'ADD_SHOOTING_IN_STATE';
 export const DELETE_SHOOTING = 'DELETE_SHOOTING';
 export const REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING = 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING';
-export const REFRESH_WANTED_SHOOTING = 'REFRESH_WANTED_SHOOTING';
+export const REFRESH_SHOOTING = 'REFRESH_SHOOTING';
 
 export const fetchShootingsOfUser = (clientId) => ({
   type: 'FETCH_SHOOTINGS_OF_USER',
@@ -25,14 +25,14 @@ export const saveShootings = (shootings) => ({
   shootings,
 });
 
-export const setWantedShooting = (shootingId) => ({
-  type: 'SET_WANTED_SHOOTING',
+export const setShootingId = (shootingId) => ({
+  type: 'SET_SHOOTING_ID',
   shootingId,
 });
 
-export const setIdInFavorite = (id, shootingId) => ({
-  type: 'SET_ID_IN_FAVORITE',
-  id,
+export const setFavorite = (pictureId, shootingId) => ({
+  type: 'SET_FAVORITE',
+  pictureId,
   shootingId,
 });
 
@@ -65,9 +65,10 @@ export const refreshTheStateWithoutThisShooting = (shootingId) => ({
   type: 'REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING'
 })
 
-export const refreshWantedShooting = (pictureId) => ({
+export const refreshShooting = (pictureId, shootingId) => ({
   pictureId,
-  type: 'REFRESH_WANTED_SHOOTING'
+  shootingId,
+  type: 'REFRESH_SHOOTING'
 })
 
 

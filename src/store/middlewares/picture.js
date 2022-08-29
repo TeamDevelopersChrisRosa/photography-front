@@ -5,7 +5,7 @@ import {
   addSuccesMessage,
 } from '../actions/picture';
 
-import { refreshWantedShooting } from './../actions/shooting';
+import { refreshShooting } from './../actions/shooting';
 
 import api from './utils/api';
 
@@ -19,7 +19,7 @@ const picturemiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          store.dispatch(refreshWantedShooting(action.pictureId));
+          store.dispatch(refreshShooting(action.pictureId, action.shootingId));
         })
         .catch((error) => {
             console.log(error)
@@ -28,7 +28,6 @@ const picturemiddleware = (store) => (next) => (action) => {
     }
 
     case ADD_NEW_PICTURE: {
-      const state = store.getState();
       api({
         method: 'POST',
         url: 'picture',
@@ -38,12 +37,12 @@ const picturemiddleware = (store) => (next) => (action) => {
           share: action.share,
           width: action.sizes.width,
           height: action.sizes.height,
-          shootingId: state.shooting.wantedShooting.id,
+          shootingId: action.shootingId,
         }
       })
         .then((response) => {
           console.log(response);
-          store.dispatch(addPictureInShootingOnState(response.data));
+          store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
           store.dispatch(addSuccesMessage('Photo ajoutée avec succès'));
         })
         .catch((error) => {

@@ -1,23 +1,20 @@
 import { connect } from 'react-redux';
 import { Shooting } from '../../components/Shooting';
 
-import { setIdInFavorite } from '../../store/actions/shooting';
+import { findShooting } from '../../utils/shooting';
 
 
 const mapStateToProps = (state, ownProps) => ({
-  
     isLogged: state.auth.isLogged,
-    wantedShooting: state.shooting.wantedShooting,
-    favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [],
     isPhotographer: state.auth.isPhotographer,
     isClient: state.auth.isClient,
+    shooting: findShooting(state.shooting.shootings, state.shooting.shootingId),
+    shootings: state.shooting.shootings,
+
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-  setFavorite: (id, shootingId) => {
-    dispatch(setIdInFavorite(id, shootingId));
-  }
   
 });
 

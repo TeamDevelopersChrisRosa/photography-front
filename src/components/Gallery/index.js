@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PhotoAlbum from 'react-photo-album';
 import Lightbox from 'yet-another-react-lightbox';
+import { useParams } from 'react-router-dom';
+
+import { findShooting } from '../../utils/shooting';
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -11,16 +14,14 @@ export const Gallery = ({
   layout,
   columns,
   withFavorites,
-  favoriteIds,
   setFavorite,
-  wantedShooting,
   isPhotographer,
   isClient,
   withDelete,
-  deletePicture
+  deletePicture,
+  shootings
 
 }) => {
-
   const [index, setIndex] = useState(-1);
 
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
@@ -56,7 +57,10 @@ export const Gallery = ({
         width: image.width
       }))
     }));
-  
+
+    let {id} = useParams();
+    let shooting = findShooting(shootings, Number(id));
+
 
     const renderPhoto = ({ 
       imageProps: { alt, style, ...restImageProps },
@@ -65,7 +69,7 @@ export const Gallery = ({
       <div style={{ width: style?.width}}>
           <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
           {withFavorites && isClient && (
-            <i className={favoriteIds.includes(Number(photo.id)) ? "bi bi-heart-fill gallery__heart text-danger" : "bi bi-heart gallery__heart"} id={photo.id} onClick={handleSetFavorite}></i>
+            <i className={shooting.favorites ? (shooting.favorites.find((favorite) => favorite.id === Number(photo.id)) ? "bi bi-heart-fill gallery__heart text-danger" : "bi bi-heart gallery__heart") : "bi bi-heart gallery__heart"} id={photo.id} onClick={handleSetFavorite}></i>
           )}
 
           {withDelete && isPhotographer && (
@@ -75,12 +79,11 @@ export const Gallery = ({
     );
 
     const handleSetFavorite = (evt) => {
-      setFavorite(evt.target.id, wantedShooting.id);
+      setFavorite(evt.target.id, shooting.id);
     }
 
     const handleDeletePicture = (evt) => {
-      console.log(evt.target.id);
-      deletePicture(evt.target.id);
+      deletePicture(evt.target.id, shooting.id);
     }
 
   return (

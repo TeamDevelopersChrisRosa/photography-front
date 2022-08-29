@@ -4,21 +4,24 @@ export const ADD_PICTURE_IN_SHOOTING_ON_STATE = 'ADD_PICTURE_IN_SHOOTING_ON_STAT
 export const ADD_SUCCES_MESSAGE = 'ADD_SUCCES_MESSAGE';
 export const SET_ADDED_PICTURE_TO_FALSE = 'SET_ADDED_PICTURE_TO_FALSE';
 
-export const deletePicture = (pictureId) => ({
+export const deletePicture = (pictureId, shootingId) => ({
   type: 'DELETE_PICTURE',
   pictureId,
+  shootingId,
 });
 
-export const addNewPicture = (file, sizes, share) => ({
+export const addNewPicture = (file, sizes, share, shootingId) => ({
   type: 'ADD_NEW_PICTURE',
   file,
   sizes,
   share,
+  shootingId,
 });
 
-export const addPictureInShootingOnState = (picture) => ({
+export const addPictureInShootingOnState = (picture, shootingId) => ({
   type: 'ADD_PICTURE_IN_SHOOTING_ON_STATE',
   picture,
+  shootingId,
 });
 
 export const addSuccesMessage = (message) => ({

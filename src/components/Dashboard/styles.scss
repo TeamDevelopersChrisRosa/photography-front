@@ -19,93 +19,42 @@
 
         @media (max-width: v.$breakpoint) {
             display: block;
+        } 
+    }
+
+    &__gallery {
+
+        &__picture {
+            height: 320px;
+            margin: 0 1rem;
+
+            @media (max-width: v.$breakpoint) {
+                height: 150px;
+            }
         }
 
-        &__selected {
+        &__name {
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.647);
+            padding: .5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            width: 80%;
+            border-radius: 5px;
+            color: v.$fifthColor;
             position: relative;
+            top: -100px;
 
             @media (max-width: v.$breakpoint) {
                 position: static;
                 text-align: center;
-            }
-
-            &__picture {
-                height: 320px;
-                margin: 0 1rem;
-                border: 4px solid v.$fifthColor;
-
-                @media (max-width: v.$breakpoint) {
-                    height: 180px;
-                }
-            }
-            &__name {
-                position: absolute;
-                top: 70%;
-                left: 10%;
-                background-color: rgba(255, 255, 255, 0.848);
-                padding: .5rem;
-                font-size: 1.2rem;
-                font-weight: bold;
-                text-align: center;
-                width: 80%;
-                border-radius: 5px;
-                color: v.$fifthColor;
-                transition: all .3s ease-in-out;
-
-                @media (max-width: v.$breakpoint) {
-                    position: static;
-                    top: 0;
-                    left: 0;
-                    transition: none;
-                    text-align: center;
-                    width: 100%;
-                }
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin: 0 auto;
             }
         }
-
-        &__notSelected {
-            position: relative;
-
-            @media (max-width: v.$breakpoint) {
-                position: static;
-                text-align: center;
-            }
-
-            &__picture {
-                height: 320px;
-                margin: 0 1rem;
-
-                @media (max-width: v.$breakpoint) {
-                    height: 150px;
-                }
-            }
-    
-            &__name {
-                position: absolute;
-                top: 70%;
-                left: 10%;
-                background-color: rgba(255, 255, 255, 0.509);
-                padding: .5rem;
-                font-size: 1.2rem;
-                font-weight: bold;
-                text-align: center;
-                width: 80%;
-                border-radius: 5px;
-                color: v.$fifthColor;
-
-                @media (max-width: v.$breakpoint) {
-                    position: static;
-                    text-align: center;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    margin: 0 auto;
-                }
-            }
-        }
-
-       
-
         
     }
 
