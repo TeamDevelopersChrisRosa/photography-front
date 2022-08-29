@@ -8,12 +8,13 @@ import { addNewPicture, setAddedPictureToFalse } from '../../store/actions/pictu
 const mapStateToProps = (state, ownProps) => ({
     addedPicture: state.shooting.addedPicture,
     addedPictureMessage: state.shooting.addedPictureMessage,
+    shootings: state.shooting.shootings
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    AddPicture: (file, sizes, share) => {
-        dispatch(addNewPicture(file, sizes, share));
+    AddPicture: (file, sizes, share, shootingId) => {
+        dispatch(addNewPicture(file, sizes, share, shootingId));
     },
 
     setAddedPictureToFalse: () => {

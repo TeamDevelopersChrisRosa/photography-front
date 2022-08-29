@@ -1,14 +1,19 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import './styles.scss';
-//import { imageHeight } from '../../utils/imageSize';
+import { findShooting } from '../../utils/shooting';
 
 export const AddPicture = ({
   AddPicture,
   addedPicture,
   addedPictureMessage,
-  setAddedPictureToFalse
+  setAddedPictureToFalse,
+  shootings,
 }) => {
+
+  let {id} = useParams();
+  let shooting = findShooting(shootings, Number(id));
 
   let file = {};
   const handleImageChange = (evt) => {
@@ -21,7 +26,6 @@ export const AddPicture = ({
   const handleSetShare = (evt) => {
     evt.preventDefault();
     share = evt.target.value;
-    console.log(share);
   }
 
   const handleNewPicture = (evt) => {
@@ -36,7 +40,7 @@ export const AddPicture = ({
           width: e.target.width,
           height: e.target.height
         }
-        AddPicture(file, sizes, share);
+        AddPicture(file, sizes, share, shooting.id);
       };
     };
     

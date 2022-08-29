@@ -1,25 +1,24 @@
 import { connect } from 'react-redux';
 import { Gallery } from '../../components/Gallery';
 
-import { setIdInFavorite } from '../../store/actions/shooting';
+import { setFavorite } from '../../store/actions/shooting';
 import { deletePicture } from '../../store/actions/picture';
 
 
 const mapStateToProps = (state, ownProps) => ({
-    wantedShooting: state.shooting.wantedShooting,
-    favoriteIds: state.shooting['favoriteIds'+state.shooting.wantedShooting.id] || [],
     isPhotographer: state.auth.isPhotographer,
     isClient: state.auth.isClient,
+    shootings: state.shooting.shootings,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    setFavorite: (id, shootingId) => {
-        dispatch(setIdInFavorite(id, shootingId));
+    setFavorite: (pictureId, shootingId) => {
+        dispatch(setFavorite(pictureId, shootingId));
     },
 
-    deletePicture: (pictureId) => {
-        dispatch(deletePicture(pictureId));
+    deletePicture: (pictureId, shootingId) => {
+        dispatch(deletePicture(pictureId, shootingId));
     },
   
 });

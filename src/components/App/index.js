@@ -18,7 +18,6 @@ import AddPicture from '../../containers/AddPicture';
 import NewClient from '../../containers/NewClient';
 import Admin from '../../containers/Admin';
 
-
 import { Footer } from '../Footer';
 
 
@@ -52,9 +51,9 @@ export function App({
           {itsMePage && <Route path='its_me' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
           {isLogged && isClient && <Route path='dashboard' element={<Dashboard />} />}
-          {isLogged &&  <Route path='shooting' element={<Shooting />} />}
-          {isLogged && <Route path='favorites' element={<Favorites />} />}
-          {isLogged &&  (<Route path='account/:id' element={<Account />} /> )}
+          {isLogged && <Route path='shooting/:id' element={<Shooting />} />}
+          {isLogged && <Route path='shooting/:id/favorites' element={<Favorites />} />}
+          {isLogged && <Route path='account/:id' element={<Account />} />}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />
 
@@ -62,8 +61,7 @@ export function App({
           <Route path='newclient' element={<NewClient />} />
 
           {isLogged && isPhotographer && <Route path='admin' element={<Admin />} />}
-          {isLogged && <Route path='shooting/:id' element={<Shooting />} />}
-          {isLogged && <Route path='addpicture' element={<AddPicture />} />}
+          {isLogged && isPhotographer && <Route path='shooting/:id/addpicture' element={<AddPicture />} />}
 
 
           <Route path='*' element={<Navigate to="/" replace />} />

@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import Field from '../../containers/Field';
 
 import { formatDate } from '../../utils/formatDate';
-//import { fetchShootingsOfPhotographer } from '../../store/actions/shooting';
 
 
 export const Admin = ({
@@ -22,7 +21,6 @@ export const Admin = ({
   setClient,
   client,
   deleteShooting,
-  setWantedShooting
 
 }) => {
 
@@ -59,9 +57,9 @@ export const Admin = ({
   let navigate = useNavigate();
 
   const handleShowShooting = (evt) => {
-    setWantedShooting(evt.target.id);
     navigate(`/shooting/${evt.target.id}`);
   }
+
 
   return (
 

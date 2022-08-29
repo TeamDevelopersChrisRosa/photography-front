@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Admin } from '../../components/Admin';
-import { addNewShooting, deleteShooting, setWantedShooting } from '../../store/actions/shooting';
+import { addNewShooting, deleteShooting, setShootingId } from '../../store/actions/shooting';
 import { showRates, setTheme } from '../../store/actions/theme';
 import { setClient } from '../../store/actions/user';
 
@@ -38,8 +38,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(deleteShooting(shootingId))
   },
   
-  setWantedShooting: (shootingId) => {
-    dispatch(setWantedShooting(shootingId))
+  setShootingId: (shootingId) => {
+    dispatch(setShootingId(shootingId))
   }
 
 });
