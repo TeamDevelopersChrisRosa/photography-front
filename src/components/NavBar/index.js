@@ -19,6 +19,7 @@ export const NavBar = ({
   isClient,
 }) => {
 
+
     const handleFetchShootingPages = () => {
       FetchShootingPages();
     }
@@ -26,6 +27,11 @@ export const NavBar = ({
     const handleFetchPortfolioPages = () => {
       FetchPortfolioPages();
       getSharedPictures();
+    }
+
+    const handleFetchShootingPagesAndPortfolioPages = () => {
+      handleFetchShootingPages();
+      handleFetchPortfolioPages();
     }
 
     let navigate = useNavigate();
@@ -39,7 +45,7 @@ export const NavBar = ({
       }, 300);
     }
     
-  
+   
 
 
   return (
@@ -77,24 +83,27 @@ export const NavBar = ({
       
       <MediaQuery maxWidth={768}>
         <div className="dropdown">
-          <a className="btn dropdown dropdown__icon" href="/" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          {<a className="btn dropdown dropdown__icon" href="/" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false"  onClick={handleFetchShootingPagesAndPortfolioPages} >
           <i className="bi bi-list"></i>
-          </a>
+          </a>}
 
           <ul className="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
             <li><a className="dropdown-item" href="/">Home</a></li>
-            <ul> Portfolio
-              {portfolioPages && portfolioPages.map((page, index) => (
+
+            <ul className="dropdown-item" > Portfolio
+            {portfolioPages && portfolioPages.map((page, index) => (
                 <li key={index}><a className="dropdown-item" href={`/portfolio/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
             </ul>
-            <ul>
-              Les séances
-              {shootingPages && shootingPages.map((page, index) => (
+            
+              <ul className="dropdown-item"> Les séances 
+              { shootingPages && shootingPages.map((page, index) => (
                 <li key={index}><a className="dropdown-item" href={`/shooting/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
-            </ul>
-            <li><a className="dropdown-item" href="/its_me">C'est moi</a></li>
+              </ul>
+            
+            <li><a className="dropdown-item" href="/its_me" onClick={handleFetchItsMePage}>C'est moi</a></li>
             <li><a className="dropdown-item" href="/contact">Contact</a></li>
             {isLogged &&
                   <li><a className="dropdown-item" href="/dasboard">Tableau de bord</a></li> }
