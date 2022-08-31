@@ -49,10 +49,10 @@ export const Header = ({
         </div>
       </MediaQuery>
         <MediaQuery maxWidth={768}>
-          {/* <div className="header__mobile">
+          <div className="header__mobile">
             <a href='/'><img src={Logo} className="header__logo" alt="logo" /> </a>
-            { location.pathname === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
-          </div> */}
+            { pathName === '/login' ? null : ( <a href='/login' className='myButton my-auto'> Se connecter </a> ) }
+          </div>
         </MediaQuery>
       </>
       ) : 

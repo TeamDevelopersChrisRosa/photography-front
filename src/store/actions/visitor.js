@@ -7,7 +7,6 @@ export const SAVE_SHARED_PICTURES = 'SAVE_SHARED_PICTURES';
 export const FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER = 'FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER';
 export const SAVE_ITS_ME_PAGE = 'SAVE_ITS_ME_PAGE';
 
-
 export const fetchAllShootingPagesOfPhotographer = () => ({
     type: 'FETCH_ALL_SHOOTING_PAGES_OF_PHOTOGRAPHER'
 });
@@ -43,3 +42,4 @@ export const saveItsMePage = (itsMePage) => ({
     type: 'SAVE_ITS_ME_PAGE',
     itsMePage,
 });
+

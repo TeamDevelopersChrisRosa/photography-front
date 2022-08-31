@@ -28,7 +28,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     FetchItsMePage: () => {
         dispatch(fetchItsMePageOfPhotographer());
-      }
+    },
+
+   
 
 
 });

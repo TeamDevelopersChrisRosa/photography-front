@@ -14,6 +14,7 @@ import {
     portfolioPages: [],
     sharedPictures: [],
     itsMePage: [],
+    submenuShootingPagesIsOpen: false,
   };
   
   const reducer = (state = initialState, action = {}) => {
@@ -42,6 +43,8 @@ import {
                 ...state,
                 itsMePage: action.itsMePage,
             };
+
+        
 
         case LOGOUT:
             return initialState;
