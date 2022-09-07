@@ -33,7 +33,6 @@ export const AddPicture = ({
       `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
       formData,
     ).then((response) => {
-      console.log(response);
       AddPicture(response.data, share, shooting.id);
     }).catch((error) => {
       console.log(error);

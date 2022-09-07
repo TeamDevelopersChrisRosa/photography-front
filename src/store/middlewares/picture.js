@@ -18,7 +18,6 @@ const picturemiddleware = (store) => (next) => (action) => {
 
       })
         .then((response) => {
-          console.log(response);
           store.dispatch(refreshShooting(action.pictureId, action.shootingId));
         })
         .catch((error) => {
@@ -42,7 +41,6 @@ const picturemiddleware = (store) => (next) => (action) => {
 
       })
         .then((response) => {
-          console.log(response);
           store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
           store.dispatch(addSuccesMessage('Photo ajoutée avec succès'));
         })

@@ -44,8 +44,6 @@ const authmiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
             console.log(error)
-            console.log('ah marche po')
-            // show error message
             const message = 'Erreur d\'identifiants';
             store.dispatch(showErrorLoginMessage(message));
           });
