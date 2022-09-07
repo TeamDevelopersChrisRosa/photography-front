@@ -10,10 +10,9 @@ export const deletePicture = (pictureId, shootingId) => ({
   shootingId,
 });
 
-export const addNewPicture = (file, sizes, share, shootingId) => ({
+export const addNewPicture = (picture, share, shootingId) => ({
   type: 'ADD_NEW_PICTURE',
-  file,
-  sizes,
+  picture,
   share,
   shootingId,
 });

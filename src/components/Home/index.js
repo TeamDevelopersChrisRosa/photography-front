@@ -1,13 +1,27 @@
 import React from 'react';
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 import './styles.scss';
 
 export const Home = () => {
 
+   // Create a Cloudinary instance and set your cloud name.
+   const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.REACT_APP_CLN_CLOUD_NAME,
+    }
+  });
+
+  // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
+  const myImage = cld.image('zq9kbxy8fv8qs90s7zlm'); 
+
+   
+
   return (
     <>
     <div className='home'>
-      <img src='/images/IMG_2736T.jpg' alt='home' className='home__picture' />
+      <AdvancedImage cldImg={myImage} className='home__picture' />
     </div>
 
 

@@ -26,9 +26,9 @@ export const NewClient = ({
 
         <form autoComplete="off" method="POST" className='newClient__form' onSubmit={handleNewClient}>
 
-        <div class="container">
-          <div class="row">
-            <div class="col">
+        <div className="container">
+          <div className="row">
+            <div className="col">
             <Field
                 name="newClientFirstName"
                 placeholder="Prenom"
@@ -36,7 +36,7 @@ export const NewClient = ({
                 className="newClient__form__input col"
               />
             </div>
-            <div class="col">
+            <div className="col">
             <Field
                 name="newClientLastName"
                 placeholder="Nom"
@@ -45,8 +45,8 @@ export const NewClient = ({
               />
             </div>
           </div>
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <Field
                   name="newClientEmail"
                   placeholder="Email"
@@ -54,7 +54,7 @@ export const NewClient = ({
                   className="newClient__form__input"
                 />
             </div>
-            <div class="col d-flex">
+            <div className="col d-flex">
               <Field
                   name="newClientPassword"
                   placeholder="Password"
@@ -65,7 +65,7 @@ export const NewClient = ({
                 <button onClick={handleGenerateRandomPassword} className="mySmallButton ms-2 my-auto"> Générer un mot de passe aléatoire </button>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             <Field
                 name="newClientAddress"
                 placeholder="Adresse"
@@ -73,8 +73,8 @@ export const NewClient = ({
                 className="newClient__form__input"
               />
           </div>
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <Field
                   name="newClientPostalCode"
                   placeholder="Code postal"
@@ -82,7 +82,7 @@ export const NewClient = ({
                   className="newClient__form__input"
                 />
             </div>
-            <div class="col">
+            <div className="col">
               <Field
                   name="newClientCity"
                   placeholder="Ville"
@@ -90,7 +90,7 @@ export const NewClient = ({
                   className="newClient__form__input"
                 />
             </div>
-            <div class="col">
+            <div className="col">
               <Field
                   name="newClientCountry"
                   placeholder="Pays"
@@ -99,7 +99,7 @@ export const NewClient = ({
                 />
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             <Field
               name="newClientPhoneNumber"
               placeholder="Numéro de téléphone"

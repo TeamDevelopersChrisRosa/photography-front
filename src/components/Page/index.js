@@ -34,7 +34,9 @@ export const Page = ({
       <div className='page__title'>{page.title}</div>
         {isShooting || isItsMe ? (
           <div className='page__content'>
-            <img src={'/images/'+page.picture.name} alt={page.title} className='page__content__image'/>
+            {page.picture && (
+              <img src={'/images/'+page.picture.name} alt={page.title} className='page__content__image'/>
+            )}
             <div>
               <p className='page__content__description'>{nl2br(page.description)}</p>
               {isShooting ? (

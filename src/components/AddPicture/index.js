@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import Axios from 'axios';
 import './styles.scss';
 import { findShooting } from '../../utils/shooting';
 
@@ -15,36 +15,30 @@ export const AddPicture = ({
   let {id} = useParams();
   let shooting = findShooting(shootings, Number(id));
 
-  let file = {};
-  const handleImageChange = (evt) => {
-    evt.preventDefault();
-    file = evt.target.files[0];
-    setAddedPictureToFalse();
-  }
-
+  const [imageSelected, setImageSelected] = useState();
+ 
   let share = false;
   const handleSetShare = (evt) => {
     evt.preventDefault();
     share = evt.target.value;
   }
 
-  const handleNewPicture = (evt) => {
+  const uploadImage = (evt) => {
     evt.preventDefault();
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (e) => {
-      let image = new Image();
-      image.src = e.target.result;
-      image.onload = (e) => {
-        let sizes = {
-          width: e.target.width,
-          height: e.target.height
-        }
-        AddPicture(file, sizes, share, shooting.id);
-      };
-    };
-    
-  }
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", process.env.REACT_APP_CLN_UPLOAD_PRESET);
+
+    Axios.post(
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
+      formData,
+    ).then((response) => {
+      console.log(response);
+      AddPicture(response.data, share, shooting.id);
+    }).catch((error) => {
+      console.log(error);
+    })
+  };
 
   return (
     <>
@@ -55,9 +49,10 @@ export const AddPicture = ({
             <p> {addedPictureMessage} </p>
         )}
 
-        <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={handleNewPicture}>
+        <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={uploadImage}>
           <div>
-            <input type="file" accept='image/*' onChange={handleImageChange} />
+            <input type="file" accept='image/*' onChange={(evt) => {
+            setImageSelected(evt.target.files[0]) }} />
           </div>
           <label htmlFor="share-select">Rendre publique : </label>
           <select onChange={handleSetShare} name="share" id="share-select">

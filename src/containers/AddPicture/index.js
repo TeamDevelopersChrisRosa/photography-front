@@ -13,8 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    AddPicture: (file, sizes, share, shootingId) => {
-        dispatch(addNewPicture(file, sizes, share, shootingId));
+    AddPicture: (picture, share, shootingId) => {
+        dispatch(addNewPicture(picture, share, shootingId));
     },
 
     setAddedPictureToFalse: () => {

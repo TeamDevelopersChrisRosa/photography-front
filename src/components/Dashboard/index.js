@@ -33,10 +33,17 @@ export const Dashboard = ({
         <div className='dashboard__galleries'>
           {shootings.map((shooting) => (
               <div key={shooting.id} className='dashboard__gallery' >
-                <img src={`/images/${shooting.pictures[0].name}`} alt={shooting.pictures[0].name} className='dashboard__gallery__picture' onClick={handleChangeShooting} id={shooting.id}/>
-                <p onClick={handleChangeShooting} id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
+                {shooting.pictures.length > 0 ? (
+                  <>
+                    <img src={`/images/${shooting.pictures[0].name}`} alt={shooting.pictures[0].name} className='dashboard__gallery__picture' onClick={handleChangeShooting} id={shooting.id}/>
+                    <p onClick={handleChangeShooting} id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
+                  </>
+                ) : (
+                  <p> {shooting.nameOfGallery} - pas d'images </p>
+                )}
               </div>
-          ))}
+          ))
+          }
         </div>
         </>
       ) : (

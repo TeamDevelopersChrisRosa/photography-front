@@ -25,13 +25,12 @@ export const Gallery = ({
   const [index, setIndex] = useState(-1);
 
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
-
   
     const photos = gallery.map((photo, index) => {
       const width = photo.width;
       const height = photo.height;
       return {
-        src: `/images/${photo.name}`,
+        src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.path}?_a=AJE+xWI0`,
         key: `${index}`,
         width,
         height,
@@ -39,7 +38,7 @@ export const Gallery = ({
         images: breakpoints.map((breakpoint) => {
           const breakpointHeight = Math.round((height / width) * breakpoint);
           return {
-            src: `/images/${photo.name}`,
+            src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.path}?_a=AJE+xWI0`,
             width: breakpoint,
             height: breakpointHeight,
           };
@@ -88,7 +87,6 @@ export const Gallery = ({
 
   return (
     <>
-        
       <div className='gallery'>
 
         <PhotoAlbum

@@ -28,18 +28,18 @@ const picturemiddleware = (store) => (next) => (action) => {
     }
 
     case ADD_NEW_PICTURE: {
-      console.log(action.shootingId);
       api({
         method: 'POST',
         url: 'picture',
         data: {
-          name: action.file.name,
-          path: action.file.name,
+          name: action.picture.original_filename,
+          path: action.picture.public_id,
           share: action.share,
-          width: action.sizes.width,
-          height: action.sizes.height,
+          width: action.picture.width,
+          height: action.picture.height,
           shootingId: action.shootingId,
-        }
+        } 
+
       })
         .then((response) => {
           console.log(response);
