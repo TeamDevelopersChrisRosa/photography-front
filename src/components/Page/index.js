@@ -28,16 +28,17 @@ export const Page = ({
     })
   }
 
-  // Create a Cloudinary instance and set your cloud name.
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: process.env.REACT_APP_CLN_CLOUD_NAME,
-    }
-  });
-
-  // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
-  const myImage = cld.image(page.picture.path); 
-
+  const myImage = null;
+  if (!isPortfolio) {
+    // Create a Cloudinary instance and set your cloud name.
+    const cld = new Cloudinary({
+      cloud: {
+        cloudName: process.env.REACT_APP_CLN_CLOUD_NAME,
+      }
+    });
+    // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
+    myImage = cld.image(page.picture.path); 
+  }
 
   return (
     <>
