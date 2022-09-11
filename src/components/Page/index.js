@@ -2,6 +2,8 @@ import React from 'react';
 import nl2br from 'react-nl2br';
 import Gallery from '../../containers/Gallery';
 import MediaQuery from 'react-responsive'
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 // import PropTypes from 'prop-types';
 
@@ -26,6 +28,16 @@ export const Page = ({
     })
   }
 
+  // Create a Cloudinary instance and set your cloud name.
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.REACT_APP_CLN_CLOUD_NAME,
+    }
+  });
+
+  // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
+  const myImage = cld.image(page.picture.path); 
+
 
   return (
     <>
@@ -35,7 +47,7 @@ export const Page = ({
         {isShooting || isItsMe ? (
           <div className='page__content'>
             {page.picture && (
-              <img src={'/images/'+page.picture.name} alt={page.title} className='page__content__image'/>
+                <AdvancedImage cldImg={myImage} className='page__content__image' alt={page.picture.name}/>
             )}
             <div>
               <p className='page__content__description'>{nl2br(page.description)}</p>
