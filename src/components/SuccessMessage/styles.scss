@@ -1,0 +1,7 @@
+@use '../../styles/vars' as v;
+
+
+.loading {  
+  color: v.$primaryColor;
+  font-size: 1.5em;
+}

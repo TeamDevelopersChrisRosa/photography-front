@@ -2,7 +2,6 @@ import {
   DELETE_PICTURE,
   ADD_NEW_PICTURE,
   addPictureInShootingOnState,
-  addSuccesMessage,
 } from '../actions/picture';
 
 import { refreshShooting } from './../actions/shooting';
@@ -42,7 +41,6 @@ const picturemiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
-          store.dispatch(addSuccesMessage('Photo ajoutée avec succès'));
         })
         .catch((error) => {
             console.log(error)

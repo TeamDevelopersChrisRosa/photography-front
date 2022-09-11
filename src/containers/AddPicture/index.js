@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import { AddPicture } from '../../components/AddPicture';
 
-import { addNewPicture, setAddedPictureToFalse } from '../../store/actions/picture';
+import { addNewPicture, setAddedPictureToFalse, setIsLoading } from '../../store/actions/picture';
 
 
 
 const mapStateToProps = (state, ownProps) => ({
     addedPicture: state.shooting.addedPicture,
-    addedPictureMessage: state.shooting.addedPictureMessage,
-    shootings: state.shooting.shootings
+    shootings: state.shooting.shootings,
+    isLoading: state.shooting.isLoading,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -19,7 +19,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     setAddedPictureToFalse: () => {
         dispatch(setAddedPictureToFalse());
-    }
+    },
+
+    setIsLoading: () => {
+        dispatch(setIsLoading());
+    },
 
 
    
