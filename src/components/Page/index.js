@@ -28,7 +28,7 @@ export const Page = ({
     })
   }
 
-  const myImage = null;
+  let myImage = null;
   if (!isPortfolio) {
     // Create a Cloudinary instance and set your cloud name.
     const cld = new Cloudinary({
