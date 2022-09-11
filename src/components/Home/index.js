@@ -14,7 +14,7 @@ export const Home = () => {
   });
 
   // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
-  const myImage = cld.image('zq9kbxy8fv8qs90s7zlm'); 
+  const myImage = cld.image('ojsqqwdtnyzhpl2uscuf'); 
 
    
 
