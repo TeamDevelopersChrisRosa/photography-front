@@ -1,19 +1,19 @@
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const DELETE_PICTURE = 'DELETE_PICTURE';
-export const ADD_NEW_PICTURE = 'ADD_NEW_PICTURE';
 export const ADD_PICTURE_IN_SHOOTING_ON_STATE = 'ADD_PICTURE_IN_SHOOTING_ON_STATE';
 export const SET_ADDED_PICTURE_TO_FALSE = 'SET_ADDED_PICTURE_TO_FALSE';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
 
-export const deletePicture = (pictureId, shootingId) => ({
-  type: 'DELETE_PICTURE',
-  pictureId,
+export const uploadImage = (imageSelected, share, shootingId) => ({
+  type: 'UPLOAD_IMAGE',
+  imageSelected,
+  share,
   shootingId,
 });
 
-export const addNewPicture = (picture, share, shootingId) => ({
-  type: 'ADD_NEW_PICTURE',
-  picture,
-  share,
+export const deletePicture = (pictureId, shootingId) => ({
+  type: 'DELETE_PICTURE',
+  pictureId,
   shootingId,
 });
 
@@ -30,3 +30,4 @@ export const setAddedPictureToFalse = () => ({
 export const setIsLoading = () => ({
   type: 'SET_IS_LOADING',
 });
+

@@ -1,7 +1,9 @@
+import Axios from 'axios';
+
 import {
   DELETE_PICTURE,
-  ADD_NEW_PICTURE,
   addPictureInShootingOnState,
+  UPLOAD_IMAGE
 } from '../actions/picture';
 
 import { refreshShooting } from './../actions/shooting';
@@ -25,31 +27,41 @@ const picturemiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    case ADD_NEW_PICTURE: {
-      api({
-        method: 'POST',
-        url: 'picture',
-        data: {
-          name: action.picture.original_filename,
-          path: action.picture.public_id,
-          share: action.share,
-          width: action.picture.width,
-          height: action.picture.height,
-          shootingId: action.shootingId,
-        } 
+    case UPLOAD_IMAGE: {
+      const formData = new FormData();
+      formData.append("file", action.imageSelected);
+      formData.append("upload_preset", process.env.REACT_APP_CLN_UPLOAD_PRESET);
 
-      })
-        .then((response) => {
-          store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
+      Axios.post(
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
+        formData,
+      ).then((response) => {
+        console.log(response.data);
+        api({
+          method: 'POST',
+          url: 'picture',
+          data: {
+            name: response.data.original_filename,
+            path: response.data.public_id,
+            share: action.share,
+            width: response.data.width,
+            height: response.data.height,
+            shootingId: action.shootingId,
+          } 
         })
-        .catch((error) => {
-            console.log(error)
-          });
+          .then((response) => {
+            store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
+          })
+          .catch((error) => {
+              console.log(error)
+              //TODO: handle error
+            });
+      }).catch((error) => {
+        console.log(error);
+        // TODO: dispatch error
+      })
       break;
     }
-
-
-
 
 
     default:

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Axios from 'axios';
+//import Axios from 'axios';
 import './styles.scss';
 import { findShooting } from '../../utils/shooting';
 import Loading from './../Loading';
 import SuccessMessage from './../SuccessMessage';
 
 export const AddPicture = ({
-  AddPicture,
   addedPicture,
   setAddedPictureToFalse,
   shootings,
   setIsLoading,
   isLoading,
+  uploadImage,
 }) => {
 
   // set addedPicture to false after 5 seconds, to hide the message
@@ -33,22 +33,11 @@ export const AddPicture = ({
     share = evt.target.value;
   }
 
-  const uploadImage = (evt) => {
+  const handleUploadImage = (evt) => {
     evt.preventDefault();
-    const formData = new FormData();
     setIsLoading();
-    formData.append("file", imageSelected);
-    formData.append("upload_preset", process.env.REACT_APP_CLN_UPLOAD_PRESET);
-
-    Axios.post(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
-      formData,
-    ).then((response) => {
-      AddPicture(response.data, share, shooting.id);
-    }).catch((error) => {
-      console.log(error);
-    })
-  };
+    uploadImage(imageSelected, share, shooting.id);
+  }
 
   return (
     <>
@@ -67,7 +56,7 @@ export const AddPicture = ({
             </div>
         )}
 
-        <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={uploadImage}>
+        <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={handleUploadImage}>
           <div>
             <input type="file" accept='image/*' onChange={(evt) => {
             setImageSelected(evt.target.files[0]) }} />
