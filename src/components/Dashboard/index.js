@@ -1,6 +1,8 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 import './styles.scss';
 
@@ -18,6 +20,12 @@ export const Dashboard = ({
     navigate(`/shooting/${evt.target.id}`);
   }
 
+   // Create a Cloudinary instance and set your cloud name.
+   const cld = new Cloudinary({
+    cloud: {
+      cloudName: process.env.REACT_APP_CLN_CLOUD_NAME,
+    }
+  });
   return (
     <>
     <div className='dashboard'>
@@ -35,7 +43,7 @@ export const Dashboard = ({
               <div key={shooting.id} className='dashboard__gallery' >
                 {shooting.pictures.length > 0 ? (
                   <>
-                    <img src={`/images/${shooting.pictures[0].name}`} alt={shooting.pictures[0].name} className='dashboard__gallery__picture' onClick={handleChangeShooting} id={shooting.id}/>
+                    <AdvancedImage cldImg={cld.image(shooting.pictures[0].path)} className='dashboard__gallery__picture' alt={shooting.pictures[0].name} onClick={handleChangeShooting} id={shooting.id} /> 
                     <p onClick={handleChangeShooting} id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
                   </>
                 ) : (
