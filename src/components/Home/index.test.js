@@ -11,3 +11,9 @@ describe('Home', () => {
         render(<Home />);
     });
 });
+
+// test Home have an image
+test('Home have a image', () => {
+    const { container } = render(<Home />);
+    expect(container.querySelector('img')).toBeInTheDocument();
+});
