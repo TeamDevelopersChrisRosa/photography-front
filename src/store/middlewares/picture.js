@@ -31,18 +31,19 @@ const picturemiddleware = (store) => (next) => (action) => {
       const formData = new FormData();
       formData.append("file", action.imageSelected);
       formData.append("upload_preset", process.env.REACT_APP_CLN_UPLOAD_PRESET);
-
+      // post image on cloudinary
       Axios.post(
         `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
         formData,
+        // if ok, create new picture in database
       ).then((response) => {
-        console.log(response.data);
         api({
           method: 'POST',
           url: 'picture',
           data: {
             name: response.data.original_filename,
             path: response.data.public_id,
+            secureUrl: response.data.secure_url,
             share: action.share,
             width: response.data.width,
             height: response.data.height,
@@ -58,7 +59,7 @@ const picturemiddleware = (store) => (next) => (action) => {
             });
       }).catch((error) => {
         console.log(error);
-        // TODO: dispatch error
+        // TODO: handle error
       })
       break;
     }
