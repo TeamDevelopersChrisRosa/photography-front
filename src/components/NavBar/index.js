@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.scss';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import MediaQuery from 'react-responsive'
@@ -19,20 +19,14 @@ export const NavBar = ({
   isClient,
 }) => {
 
-
-    const handleFetchShootingPages = () => {
-      FetchShootingPages();
-    }
-
-    const handleFetchPortfolioPages = () => {
-      FetchPortfolioPages();
-      getSharedPictures();
-    }
-
-    const handleFetchShootingPagesAndPortfolioPages = () => {
-      handleFetchShootingPages();
-      handleFetchPortfolioPages();
-    }
+  // fetch all shooting pages and portfolio pages on firts render
+  useEffect(() => {
+    FetchShootingPages();
+    FetchPortfolioPages();
+  }, [
+    FetchShootingPages,
+    FetchPortfolioPages,
+  ]);
 
     let navigate = useNavigate();
 
@@ -44,8 +38,6 @@ export const NavBar = ({
         navigate('/its_me');
       }, 300);
     }
-    
-   
 
 
   return (
@@ -57,12 +49,12 @@ export const NavBar = ({
             <Navbar.Collapse>
               <Nav className="navbar mx-auto">
                 <Nav.Link className={pathName === "/" ? "navbar__link active" : "navbar__link"} href="/">Home</Nav.Link>
-                <NavDropdown title={"Portfolio"} id="nav-dropdown" onClick={handleFetchPortfolioPages}>
+                <NavDropdown title={"Portfolio"} id="nav-dropdown">
                   {portfolioPages && portfolioPages.map((page, index) => (
                     <NavDropdown.Item key={index} href={`/portfolio/${page.slug}`}  id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <NavDropdown title="Les séances" id="nav-dropdown" onClick={handleFetchShootingPages}>
+                <NavDropdown title="Les séances" id="nav-dropdown">
                   {shootingPages && shootingPages.map((page, index) => (
                     <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
@@ -83,7 +75,7 @@ export const NavBar = ({
       
       <MediaQuery maxWidth={768}>
         <div className="dropdown">
-          {<a className="btn dropdown dropdown__icon" href="/" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false"  onClick={handleFetchShootingPagesAndPortfolioPages} >
+          {<a className="btn dropdown dropdown__icon" href="/" role="button" id="burgerMenu" data-bs-toggle="dropdown" aria-expanded="false" >
           <i className="bi bi-list"></i>
           </a>}
 

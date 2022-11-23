@@ -31,11 +31,11 @@ const authmiddleware = (store) => (next) => (action) => {
           api.defaults.headers.common.authorization = `Bearer ${response.data.token}`;
           const actionSaveUser = saveUser(response.data);
           store.dispatch(actionSaveUser);
-          if(response.data.user.client !== null) {
+          if(response.data.user.client) {
             const clientId = response.data.user.client.id;
             store.dispatch(fetchShootingsOfUser(clientId));
           }
-          if(response.data.user.photographer !== null) {
+          if(response.data.user.photographer) {
             const photographerId = response.data.user.photographer.id;
             store.dispatch(fetchClientsOfPhotographer(photographerId));
             store.dispatch(fetchShootingsOfPhotographer(photographerId));

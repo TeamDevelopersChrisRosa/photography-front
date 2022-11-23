@@ -37,8 +37,11 @@ export const Page = ({
       }
     });
     // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
-    myImage = cld.image(page.picture.path); 
+    if (page.picture) {
+      myImage = cld.image(page.picture.path); 
+    }
   }
+
 
   return (
     <>
@@ -47,8 +50,10 @@ export const Page = ({
       <div className='page__title'>{page.title}</div>
         {isShooting || isItsMe ? (
           <div className='page__content'>
-            {page.picture && (
+            {page.picture ? (
                 <AdvancedImage cldImg={myImage} className='page__content__image' alt={page.picture.name}/>
+            ) : (
+              <div className='page__content__image__absent'>Image à définir</div>
             )}
             <div>
               <p className='page__content__description'>{nl2br(page.description)}</p>
