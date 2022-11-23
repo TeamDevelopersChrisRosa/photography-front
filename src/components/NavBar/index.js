@@ -23,9 +23,11 @@ export const NavBar = ({
   useEffect(() => {
     FetchShootingPages();
     FetchPortfolioPages();
+    getSharedPictures();
   }, [
     FetchShootingPages,
     FetchPortfolioPages,
+    getSharedPictures,
   ]);
 
     let navigate = useNavigate();
