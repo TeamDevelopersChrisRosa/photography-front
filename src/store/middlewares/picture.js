@@ -1,4 +1,4 @@
-import Axios from 'axios';
+//import Axios from 'axios';
 
 import {
   DELETE_PICTURE,
@@ -28,39 +28,25 @@ const picturemiddleware = (store) => (next) => (action) => {
     }
 
     case UPLOAD_IMAGE: {
+      // envoyer un fichier image au serveur
+      // on utilise FormData pour envoyer un fichier
       const formData = new FormData();
-      formData.append("file", action.imageSelected);
-      formData.append("upload_preset", process.env.REACT_APP_CLN_UPLOAD_PRESET);
-      // post image on cloudinary
-      Axios.post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/`,
-        formData,
-        // if ok, create new picture in database
-      ).then((response) => {
-        api({
-          method: 'POST',
-          url: 'picture',
-          data: {
-            name: response.data.original_filename,
-            path: response.data.public_id,
-            secureUrl: response.data.secure_url,
-            share: action.share,
-            width: response.data.width,
-            height: response.data.height,
-            shootingId: action.shootingId,
-          } 
-        })
-          .then((response) => {
-            store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
-          })
-          .catch((error) => {
-              console.log(error)
-              //TODO: handle error
-            });
-      }).catch((error) => {
-        console.log(error);
-        // TODO: handle error
+      formData.append('image', action.imageSelected);
+      formData.append('share', action.share);
+      formData.append('shootingId', action.shootingId);
+      console.log('formData', formData);
+
+      api({
+        method: 'POST',
+        url: 'picture',
+        data: formData,
       })
+        .then((response) => {
+          store.dispatch(addPictureInShootingOnState(response.data, action.shootingId));
+        })
+        .catch((error) => {
+            console.log(error)
+          });
       break;
     }
 

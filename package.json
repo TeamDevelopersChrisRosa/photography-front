@@ -19,6 +19,7 @@
     "react-bootstrap": "^2.3.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.1.0",
+    "react-dropzone": "^14.2.3",
     "react-nl2br": "^1.0.4",
     "react-photo-album": "^1.14.0",
     "react-redux": "^8.0.2",
