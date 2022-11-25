@@ -1,61 +1,20 @@
 @use '../../styles/vars' as v;
 
 .admin {
-    &__newClient {
-        margin: 2rem auto;
-        max-width: 300px;
+    display: flex;
+
+    &__menu {
+        width: 25%;
+        min-width: 200px;
+        background-color: v.$thirdColor;
+        height: 100vh;
     }
 
-    &__newShooting {
-        margin: 2rem;
-        border: 2px dotted v.$fifthColor;
-        padding: 2rem;
-
-        &__form {
-            width: 80%;
-            margin: 0 auto;
-
-            &__input {
-                width: 100%;
-                padding: .7em;
-                font-size: 1.2em;
-                border: 1px solid #ddd;
-                border-radius: .3em;
-                height: 3.5em;
-                margin-top: 1em;
-                margin-bottom: 1em;
-    
-                &:focus {
-                  border-color: v.$primaryColor;
-    
-                  & + .field__label {
-                    color: v.$primaryColor;
-                  }
-                }
-            
-            }
-
-            &__section {
-                display: flex;
-                justify-content: space-around;
-                margin-bottom: 1em;
-
-                &__choice {
-                    font-size: 1.2em;                   
-                }
-                
-                &__select {
-                    border: 2px solid v.$thirdColor;
-                    font-size: 1.1em;
-                }
-            }
-            
-        }
+    &__right {
+        width: 100%;
+        margin: 0 4em;
     }
 }
-
-
-
 
 table,
 td {
@@ -67,3 +26,5 @@ tfoot {
     background-color: v.$thirdColor;
     color: #fff;
 }
+
+
