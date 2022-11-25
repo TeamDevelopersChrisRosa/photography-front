@@ -21,7 +21,6 @@ export const Account = ({
           <p> Nom : {lastName}</p>
           <p> Prénom : {firstName}</p>
           <p> Email : {email}</p>
-          <p> Adresse : {client.address} {client.postalCode} {client.city} </p>
         </div>
        
        <ChangePassword />
