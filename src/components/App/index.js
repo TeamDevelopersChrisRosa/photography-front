@@ -19,6 +19,7 @@ import NewClient from '../../containers/NewClient';
 import Admin from '../../containers/Admin';
 
 import { Footer } from '../Footer';
+import NewGallery from '../../containers/NewGallery';
 
 
 export function App({
@@ -58,9 +59,9 @@ export function App({
           <Route path='temp' element={<ChangeTemporaryPassword />} />
 
 
-          <Route path='newclient' element={<NewClient />} />
-
           {isLogged && isPhotographer && <Route path='admin' element={<Admin />} />}
+          {isLogged && isPhotographer && <Route path='admin/newgallery' element={<NewGallery />} />}
+          {isLogged && isPhotographer && <Route path='admin/newclient' element={<NewClient />} />}
           {isLogged && isPhotographer && <Route path='shooting/:id/addpicture' element={<AddPicture />} />}
 
 

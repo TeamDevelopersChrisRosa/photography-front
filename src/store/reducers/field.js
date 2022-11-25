@@ -10,7 +10,6 @@ import {
 
   import {
     CHANGE_PASSWORD_SUCCESS,
-    CHANGE_PASSWORD_ERROR,
     SAVE_RANDOM_PASSWORD
   } from '../actions/user';
 
@@ -40,7 +39,6 @@ import {
         };
       }
 
-      case CHANGE_PASSWORD_ERROR:
       case CHANGE_PASSWORD_SUCCESS: {
         return {
           ...state,

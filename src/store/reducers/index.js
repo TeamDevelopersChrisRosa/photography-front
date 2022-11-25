@@ -6,6 +6,7 @@ import shootingReducer from './shooting';
 import visitorReducer from './visitor';
 import userReducer from './user';
 import themeReducer from './theme';
+import errorReducer from './error';
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
   visitor: visitorReducer,
   user: userReducer,
   theme: themeReducer,
-
+  error: errorReducer,
 
 });
 

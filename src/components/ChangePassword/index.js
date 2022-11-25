@@ -12,10 +12,10 @@ export const ChangePassword = ({
   newPassword,
   confirmPassword,
   ChangePasswordSuccess,
-  ChangePasswordError,
   ChangePasswordSuccessMessage,
-  ChangePasswordErrorMessage,
-  removePasswordMessage
+  error,
+  clearError,
+  errorMessages,
 }) => {
 
   const handleSubmit = (evt) => {
@@ -27,9 +27,11 @@ export const ChangePassword = ({
     }
   }
 
-  const handlePasswordMessage = (evt) => {
-    evt.preventDefault();
-    removePasswordMessage(evt.target.id);
+  // clear error after 5 seconds
+  if(error) {
+    setTimeout(() => {
+      clearError();
+    }, 5000);
   }
  
 
@@ -38,22 +40,20 @@ export const ChangePassword = ({
     <div className='changePassword'> 
       <h4> Modifier mon mot de passe </h4>
 
+
       { ChangePasswordSuccess === true ? (
         <div className="alert alert-success changePassword__alert">
           <div  role="alert">
             { ChangePasswordSuccessMessage }
-            
           </div>
-          <div onClick={handlePasswordMessage} id="success"> x </div>
         </div>
       ) : null }
        
-       { ChangePasswordError === true ? (
+       { error && error.response.status !== 200 ? (
         <div className="alert alert-danger changePassword__alert">
           <div role="alert">
-            { ChangePasswordErrorMessage }
+            { errorMessages[error.response.status] }
           </div>
-          <div onClick={handlePasswordMessage} id="error"> x </div>
       </div>
       ) : null }
 

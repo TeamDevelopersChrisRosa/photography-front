@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import { ChangePassword } from '../../components/ChangePassword';
 
-import { updateUser, removePasswordMessage } from '../../store/actions/user';
+import { updateUser } from '../../store/actions/user';
+
+import { clearError } from '../../store/actions/error';
 
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
@@ -9,9 +11,9 @@ const mapStateToProps = (state) => ({
   newPassword: state.field.newPassword,
   confirmPassword: state.field.confirmPassword,
   ChangePasswordSuccess: state.user.changePasswordSuccess,
-  ChangePasswordError: state.user.changePasswordError,
   ChangePasswordSuccessMessage: state.user.changePasswordSuccessMessage,
-  ChangePasswordErrorMessage: state.user.changePasswordErrorMessage
+  error: state.error.error,
+  errorMessages: state.error.errorMessages,
   
 });
 
@@ -20,10 +22,10 @@ const mapDispatchToProps = (dispatch) => ({
   updateUser: (userId, oldPassword, newPassword) => {
     dispatch(updateUser(userId, oldPassword, newPassword));
   },
- 
-  removePasswordMessage: (name) => {
-    dispatch(removePasswordMessage(name));
-  },
+
+  clearError: () => {
+    dispatch(clearError());
+  }
 
   
 });

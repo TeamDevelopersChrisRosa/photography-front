@@ -3,7 +3,6 @@ import api from './utils/api';
 import {
   UPDATE_USER,
   changePasswordSuccess,
-  changePasswordError,
   changeFirstConnect,
   CHANGE_FIRST_CONNECT,
   ADD_NEW_USER,
@@ -13,6 +12,9 @@ import {
   saveAllClientsOfPhotographer
 
 } from '../actions/user';
+
+import { loadErrors } from '../actions/error';
+
 
 
 const usermiddleware = (store) => (next) => (action) => {
@@ -28,13 +30,13 @@ const usermiddleware = (store) => (next) => (action) => {
         }
         })
         .then((response) => {
-            store.dispatch(changePasswordSuccess());
-            store.dispatch(changeFirstConnect(userId));
+          store.dispatch(changePasswordSuccess());
+          store.dispatch(changeFirstConnect(userId));
         })
         .catch((error) => {
-            console.log(error)
-            store.dispatch(changePasswordError());
-          });
+          store.dispatch(loadErrors(error));
+          return Promise.reject(error);  
+        });
       break;
     }
 
