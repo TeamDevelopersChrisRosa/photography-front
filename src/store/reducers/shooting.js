@@ -8,7 +8,7 @@ import {
     REFRESH_SHOOTING,
   } from '../actions/shooting';
 
-  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, SET_ADDED_PICTURE_TO_FALSE, SET_IS_LOADING } from '../actions/picture';
+  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, SET_IS_LOADING } from '../actions/picture';
 
   import {
     LOGOUT,
@@ -16,7 +16,6 @@ import {
 
   export const initialState = {
     shootings: [],
-    addedPicture: false,
     isLoading: false,
   };
 
@@ -99,7 +98,6 @@ import {
       case ADD_PICTURE_IN_SHOOTING_ON_STATE:
         return {
           ...state,
-          addedPicture: true,
           isLoading: false,
           shootings: state.shootings.map(shooting => {
             if (shooting.id === action.shootingId) {
@@ -111,12 +109,6 @@ import {
             return shooting;
           }
         )};
-
-        case SET_ADDED_PICTURE_TO_FALSE:
-          return {
-            ...state,
-            addedPicture: false,
-          };
 
         case SET_IS_LOADING:
           return {

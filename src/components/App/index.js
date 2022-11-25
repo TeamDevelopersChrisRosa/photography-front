@@ -13,7 +13,6 @@ import Account from '../../containers/Account';
 import ChangeTemporaryPassword from '../../containers/ChangeTemporaryPassword';
 import NavBar from '../../containers/NavBar';
 import Header from '../../containers/Header';
-import AddPicture from '../../containers/AddPicture';
 
 import NewClient from '../../containers/NewClient';
 import Admin from '../../containers/Admin';
@@ -62,7 +61,6 @@ export function App({
           {isLogged && isPhotographer && <Route path='admin' element={<Admin />} />}
           {isLogged && isPhotographer && <Route path='admin/newgallery' element={<NewGallery />} />}
           {isLogged && isPhotographer && <Route path='admin/newclient' element={<NewClient />} />}
-          {isLogged && isPhotographer && <Route path='shooting/:id/addpicture' element={<AddPicture />} />}
 
 
           <Route path='*' element={<Navigate to="/" replace />} />

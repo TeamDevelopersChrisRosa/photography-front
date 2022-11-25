@@ -1,26 +1,15 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-//import Axios from 'axios';
 import './styles.scss';
 import { findShooting } from '../../utils/shooting';
 import Loading from './../Loading';
-import SuccessMessage from './../SuccessMessage';
 
 export const AddPicture = ({
-  addedPicture,
-  setAddedPictureToFalse,
   shootings,
   setIsLoading,
   isLoading,
   uploadImage,
 }) => {
-
-  // set addedPicture to false after 5 seconds, to hide the message
-  if (addedPicture) {
-    setTimeout(() => {
-      setAddedPictureToFalse();
-    }, 5000);
-  }
 
   let {id} = useParams();
   let shooting = findShooting(shootings, Number(id));
@@ -46,14 +35,6 @@ export const AddPicture = ({
 
         {isLoading && (
           <Loading />
-        )}
-
-        {addedPicture && (
-            <div> 
-              <SuccessMessage
-                message="Photo ajoutée avec succès"
-              /> 
-            </div>
         )}
 
         <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={handleUploadImage}>

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { NewGallery } from '../../components/NewGallery';
 import { addNewShooting, setShootingId } from '../../store/actions/shooting';
 import { showRates, setTheme } from '../../store/actions/theme';
-import { setClient } from '../../store/actions/user';
+import { setClient, fetchClientsOfPhotographer } from '../../store/actions/user';
 
 
 const mapStateToProps = (state) => ({
@@ -33,6 +33,11 @@ const mapDispatchToProps = (dispatch) => ({
   
   setShootingId: (shootingId) => {
     dispatch(setShootingId(shootingId))
+  },
+
+  fetchClients: () => {
+    const photographerId = localStorage.getItem('photographerId');
+    dispatch(fetchClientsOfPhotographer(photographerId))
   }
 
 });

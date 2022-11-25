@@ -7,12 +7,8 @@ import ChangePassword from '../../containers/ChangePassword';
 export const Account = ({
   firstName,
   lastName,
-  email,
-  client,
-
- 
+  email 
 }) => {
-  
 
   return (
     <>

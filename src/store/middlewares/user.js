@@ -9,7 +9,7 @@ import {
   addNewClient,
   ADD_NEW_CLIENT,
   FETCH_CLIENTS_OF_PHOTOGRAPHER,
-  saveAllClientsOfPhotographer
+  saveAllClientsOfPhotographer,
 
 } from '../actions/user';
 
@@ -103,11 +103,9 @@ const usermiddleware = (store) => (next) => (action) => {
   }
 
   case FETCH_CLIENTS_OF_PHOTOGRAPHER: {
-    //const id = action.photographerId;
     api({
       method: 'GET',
       url: `client`,
-
     })
       .then((response) => {
         store.dispatch(saveAllClientsOfPhotographer(response.data));

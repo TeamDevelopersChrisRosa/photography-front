@@ -6,8 +6,6 @@ import { addNewUser, saveRandomPassword } from '../../store/actions/user';
 
 const mapStateToProps = (state) => ({
   newClientPassword: state.field.newClientPassword,
-
-
 });
 
 const mapDispatchToProps = (dispatch) => ({

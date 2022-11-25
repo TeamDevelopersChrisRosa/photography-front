@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 
 import './styles.scss';
@@ -15,9 +15,16 @@ export const NewGallery = ({
   theme,
   setClient,
   client,
-  deleteShooting,
+  fetchClients,
 
 }) => {
+  
+  // fetch all clients of photographer
+  useEffect(() => {
+    fetchClients();
+  }, [
+    fetchClients
+  ]);
 
   const changeSelectedClient = (evt) => {
     evt.preventDefault();

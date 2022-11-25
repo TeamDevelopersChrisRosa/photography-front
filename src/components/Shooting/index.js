@@ -1,14 +1,10 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 import { useParams } from 'react-router-dom';
-
-
 import "yet-another-react-lightbox/styles.css";
-
 import './styles.scss';
-
 import Gallery from '../../containers/Gallery';
-
+import AddPicture from '../../containers/AddPicture';
 import { findShooting } from '../../utils/shooting';
 
 
@@ -42,9 +38,8 @@ export const Shooting = ({
             )
             )}
             
-            { isPhotographer && <a href={'/shooting/' + id + '/addpicture'} className='myButton'> Ajouter des photos </a> }
+            {isPhotographer && <AddPicture />}
         </div>
-
         
           <MediaQuery minWidth={769}>
             <Gallery gallery={shooting.pictures} layout={"columns"} columns={3} withFavorites={true} withDelete={true}/>
