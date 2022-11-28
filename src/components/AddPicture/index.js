@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
-import { findShooting } from '../../utils/shooting';
 import Loading from './../Loading';
 
 export const AddPicture = ({
-  shootings,
   setIsLoading,
   isLoading,
   uploadImage,
 }) => {
 
   let {id} = useParams();
-  let shooting = findShooting(shootings, Number(id));
-
-  const [imageSelected, setImageSelected] = useState();
  
   let share = false;
   const handleSetShare = (evt) => {
@@ -22,14 +17,35 @@ export const AddPicture = ({
     share = evt.target.value;
   }
 
-  const handleUploadImage = (evt) => {
-    evt.preventDefault();
-    setIsLoading();
-    uploadImage(imageSelected, share, shooting.id);
-  }
+  const [file, setFile] = useState();
+
+    const onChange = (file: ChangeEvent) => {
+        const { files } = file.target;
+        if (files && files.length !== 0) {
+          setFile(files[0]);
+        }
+    }
+
+    const handleUpload = async () => {
+      setIsLoading();
+      const formData = new FormData();
+      formData.append('file', file);
+      uploadImage(formData, id, share);
+    }
 
   return (
     <>
+        <div>
+            <form onSubmit={e => e.preventDefault()}>
+                <input type="file" onChange={onChange} />
+                <button onClick={handleUpload}>Ajouter</button>
+                <label htmlFor="share-select">Rendre publique : </label>
+                <select onChange={handleSetShare} name="share" id="share-select">
+                  <option value={false}> Non </option>
+                  <option value={true}> Oui </option>
+                </select>
+            </form>
+        </div>
         
       <div className='addPicture'>
 
@@ -37,24 +53,6 @@ export const AddPicture = ({
           <Loading />
         )}
 
-        <form autoComplete="off" method="POST" className='addPicture__form' onSubmit={handleUploadImage}>
-          <div>
-            <input type="file" accept='image/*' onChange={(evt) => {
-            setImageSelected(evt.target.files[0]) }} />
-          </div>
-          <label htmlFor="share-select">Rendre publique : </label>
-          <select onChange={handleSetShare} name="share" id="share-select">
-            <option value={false}> Non </option>
-            <option value={true}> Oui </option>
-          </select>
-
-          <button
-            type="submit"
-            className="myButton mx-auto mt-2"
-          >
-            Ajouter
-          </button>
-        </form>
       </div>
     </>
   );

@@ -100,7 +100,7 @@ import {
           ...state,
           isLoading: false,
           shootings: state.shootings.map(shooting => {
-            if (shooting.id === action.shootingId) {
+            if (Number(shooting.id) === Number(action.shootingId)) {
               return {
                 ...shooting,
                 pictures: [...shooting.pictures, action.picture],

@@ -6,14 +6,13 @@ import { uploadImage, setIsLoading } from '../../store/actions/picture';
 
 
 const mapStateToProps = (state, ownProps) => ({
-    shootings: state.shooting.shootings,
     isLoading: state.shooting.isLoading,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    uploadImage: (imageSelected, share, shootingId) => {
-        dispatch(uploadImage(imageSelected, share, shootingId));
+    uploadImage: (formData, shootingId, share) => {
+        dispatch(uploadImage(formData, shootingId, share));
     },
 
     setIsLoading: () => {

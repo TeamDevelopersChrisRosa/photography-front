@@ -67,7 +67,7 @@ const authmiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log('REPONSE DE FORGOT MIDDLEWARE', error);
+          console.log(error);
         });
       break;
     }

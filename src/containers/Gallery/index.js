@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(setFavorite(pictureId, shootingId));
     },
 
-    deletePicture: (pictureId, shootingId) => {
-        dispatch(deletePicture(pictureId, shootingId));
+    deletePicture: (pictureId, shootingId, publicId) => {
+        dispatch(deletePicture(pictureId, shootingId, publicId));
     },
   
 });

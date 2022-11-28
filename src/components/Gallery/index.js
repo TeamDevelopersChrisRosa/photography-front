@@ -82,7 +82,10 @@ export const Gallery = ({
     }
 
     const handleDeletePicture = (evt) => {
-      deletePicture(evt.target.id, shooting.id);
+      // find the picture with his id
+      let picture = shooting.pictures.find(picture => picture.id === Number(evt.target.id));
+      // we need picture.path to delete the picture on cloudinary (picture.path stores the public_id)
+      deletePicture(evt.target.id, shooting.id, picture.path);
     }
 
   return (
