@@ -28,9 +28,25 @@ export function App({
   itsMePage,
   isPhotographer,
   isClient,
+  shootings,
 }) {
+  
+  // verify if shooting in params of url is in the list of shootings
+  const verifyShooting = (shootingId) => {
+    const shooting = shootings.find((shooting) => shooting.id === shootingId);
+    if (shooting) {
+      return true;
+    }
+    return false;
+  };
 
   let location = useLocation();
+
+  // find id in location.pathname
+  const id = location.pathname.match(/\d+/g);
+  let isShootingOfUser = verifyShooting(Number(id));
+  
+  
 
   return (
     <div className="app">
@@ -51,8 +67,8 @@ export function App({
           {itsMePage && <Route path='its_me' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
           {isLogged && isClient && <Route path='dashboard' element={<Dashboard />} />}
-          {isLogged && <Route path='shooting/:id' element={<Shooting />} />}
-          {isLogged && <Route path='shooting/:id/favorites' element={<Favorites />} />}
+          {isLogged && isShootingOfUser && <Route path='shooting/:id' element={<Shooting />} />}
+          {isLogged && isShootingOfUser && <Route path='shooting/:id/favorites' element={<Favorites />} />}
           {isLogged && <Route path='account/:id' element={<Account />} />}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />

@@ -6,6 +6,7 @@ import {
     ADD_SHOOTING_IN_STATE,
     REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
     REFRESH_SHOOTING,
+    SAVE_SHOOTING,
   } from '../actions/shooting';
 
   import { ADD_PICTURE_IN_SHOOTING_ON_STATE, SET_IS_LOADING } from '../actions/picture';
@@ -17,6 +18,7 @@ import {
   export const initialState = {
     shootings: [],
     isLoading: false,
+    shooting: {},
   };
 
   const reducer = (state = initialState, action = {}) => {
@@ -114,6 +116,12 @@ import {
           return {
             ...state,
             isLoading: true,
+          };
+
+        case SAVE_SHOOTING:
+          return {
+            ...state,
+            shooting: action.shooting,
           };
 
 

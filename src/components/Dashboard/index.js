@@ -1,6 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 
@@ -10,14 +9,20 @@ import './styles.scss';
 export const Dashboard = ({
   isLogged,
   shootings,
-  firstConnect
+  firstConnect,
+  fetchShooting,
+  shooting,
 }) => {
 
-  let navigate = useNavigate();
-
-  const handleChangeShooting = (evt) => {
+  let navigate = useNavigate();  
+  
+  const handleFetchShooting = (evt) => {
     evt.preventDefault();
-    navigate(`/shooting/${evt.target.id}`);
+    fetchShooting(evt.target.id);
+    // when shooting is fetched, redirect to shooting page
+    if (shooting) {
+      navigate(`/shooting/${evt.target.id}`)
+    }
   }
 
    // Create a Cloudinary instance and set your cloud name.
@@ -40,11 +45,11 @@ export const Dashboard = ({
         <p className='dashboard__title'> Mes galeries photos : </p>
         <div className='dashboard__galleries'>
           {shootings.map((shooting) => (
-              <div key={shooting.id} className='dashboard__gallery' >
+              <div key={shooting.id} className='dashboard__gallery' onClick={handleFetchShooting} >
                 {shooting.pictures.length > 0 ? (
                   <>
-                    <AdvancedImage cldImg={cld.image(shooting.pictures[0].path)} className='dashboard__gallery__picture' alt={shooting.pictures[0].name} onClick={handleChangeShooting} id={shooting.id} /> 
-                    <p onClick={handleChangeShooting} id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
+                    <AdvancedImage cldImg={cld.image(shooting.pictures[0].path)} className='dashboard__gallery__picture' alt={shooting.pictures[0].name} id={shooting.id} /> 
+                    <p id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
                   </>
                 ) : (
                   <p> {shooting.nameOfGallery} - pas d'images </p>

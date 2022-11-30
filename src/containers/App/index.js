@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
   photographer: state.auth.photographer,
   isPhotographer: state.auth.isPhotographer,
   isClient: state.auth.isClient,
+  shootings: state.shooting.shootings,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

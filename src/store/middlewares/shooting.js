@@ -6,6 +6,8 @@ import {
   addShootingInState,
   DELETE_SHOOTING,
   refreshTheStateWithoutThisShooting,
+  FETCH_SHOOTING_BY_ID,
+  saveShooting,
 } from '../actions/shooting';
 
 import { initializeFields } from '../actions/field';
@@ -89,11 +91,21 @@ const shootingmiddleware = (store) => (next) => (action) => {
           });
       break;
     }
-
-    
-
-
-
+    case FETCH_SHOOTING_BY_ID: {
+      const id = action.id;
+      api({
+        method: 'GET',
+        url: `shooting/${id}`,
+      })
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(saveShooting(response.data));
+        })
+        .catch((error) => {
+            console.log(error)
+          });
+      break;
+    }
 
 
     default:
