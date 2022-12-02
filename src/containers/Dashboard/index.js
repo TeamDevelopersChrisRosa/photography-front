@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Dashboard } from '../../components/Dashboard';
 
-import { fetchShooting } from '../../store/actions/shooting';
 
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.auth.isLogged,
@@ -12,9 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchShooting: (id) => {
-    dispatch(fetchShooting(id));
-  }
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

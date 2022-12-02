@@ -17,7 +17,7 @@ import {
 
   export const initialState = {
     shootings: [],
-    isLoading: false,
+    isLoading: true,
     shooting: {},
   };
 
@@ -122,6 +122,7 @@ import {
           return {
             ...state,
             shooting: action.shooting,
+            isLoading: false,
           };
 
 

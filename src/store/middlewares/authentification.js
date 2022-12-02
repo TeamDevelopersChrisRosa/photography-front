@@ -27,6 +27,7 @@ const authmiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userId', response.data.user.id);
           api.defaults.headers.common.authorization = `Bearer ${response.data.token}`;
           const actionSaveUser = saveUser(response.data);
           store.dispatch(actionSaveUser);

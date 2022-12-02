@@ -10,19 +10,13 @@ export const Dashboard = ({
   isLogged,
   shootings,
   firstConnect,
-  fetchShooting,
-  shooting,
 }) => {
 
   let navigate = useNavigate();  
   
   const handleFetchShooting = (evt) => {
     evt.preventDefault();
-    fetchShooting(evt.target.id);
-    // when shooting is fetched, redirect to shooting page
-    if (shooting) {
-      navigate(`/shooting/${evt.target.id}`)
-    }
+      navigate(`/shooting/${evt.target.id}`);
   }
 
    // Create a Cloudinary instance and set your cloud name.
