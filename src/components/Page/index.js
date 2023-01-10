@@ -38,7 +38,7 @@ export const Page = ({
     });
     // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
     if (page.picture) {
-      myImage = cld.image(page.picture.path); 
+      myImage = cld.image(page.picture.publicId); 
     }
   }
 

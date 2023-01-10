@@ -42,7 +42,7 @@ export const Dashboard = ({
               <div key={shooting.id} className='dashboard__gallery' onClick={handleFetchShooting} >
                 {shooting.pictures.length > 0 ? (
                   <>
-                    <AdvancedImage cldImg={cld.image(shooting.pictures[0].path)} className='dashboard__gallery__picture' alt={shooting.pictures[0].name} id={shooting.id} /> 
+                    <AdvancedImage cldImg={cld.image(shooting.pictures[0].publicId)} className='dashboard__gallery__picture' alt={shooting.pictures[0].name} id={shooting.id} /> 
                     <p id={shooting.id} className='dashboard__gallery__name'> {shooting.nameOfGallery} </p>
                   </>
                 ) : (
