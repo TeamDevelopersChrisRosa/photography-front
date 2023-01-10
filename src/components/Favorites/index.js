@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import MediaQuery from 'react-responsive'
 import { useParams } from 'react-router-dom';
-import { findShooting } from '../../utils/shooting';
-
-
 
 import './styles.scss';
 
@@ -17,12 +14,23 @@ export const Favorites = ({
   getValidateFavoritesMessage,
   validateFavoritesMessage,
   sendEmailWithFavorites,
-  shootings,
+  shooting,
+  fetchShooting,
+  isPhotographer
   
 }) => {
 
+
   let {id} = useParams();
-  let shooting = findShooting(shootings, Number(id));
+
+  
+  // fetch shooting on first render
+  useEffect(() => {
+    fetchShooting(id);
+  }, [
+    fetchShooting,
+    id,
+  ]);
 
   const templateParams = {
     from_name: shooting.client.user.firstName + ' ' + shooting.client.user.lastName,
@@ -35,7 +43,6 @@ export const Favorites = ({
     ).join(', '),
   };
 
-
   const validateFavorites = () => {
 
     emailjs.send('service_2vfenrf', 'send_favorites_template', templateParams, 'tL2dfN4vvBegRFqw1')
@@ -46,6 +53,16 @@ export const Favorites = ({
       });
   }
 
+  // find in shooting.pictures wich pictures have isFavorite = true
+  let favorites = [];
+  shooting.pictures.map((picture) => {
+    if (picture.isFavorite === true) {
+      favorites.push(picture);
+    }
+    return favorites;
+  })
+
+
 
   return (
 
@@ -53,9 +70,16 @@ export const Favorites = ({
       <div className='favorites'>
 
       <div className='favorites__header'> 
-          <a href={'/shooting/' + id}  className='myButton'> Retour à ma galerie </a>
-          <h2 className='favorites__header__title'> - Mes favorites de {shooting.nameOfGallery} - </h2>
-          <a href='/dashboard' className='myButton'> Tableau de bord </a>
+          <a href={'/shooting/' + shooting.id}  className='myButton'> Retour à { isPhotographer ? 'la' : 'ma' } galerie </a>
+          <div className='favorites__header__part'>
+            <h2 className='shooting__header__title'> {shooting.nameOfGallery} - Favorites </h2>
+            <p className='shooting__header__name'> {isPhotographer ? <p>{shooting.client.user.firstName} {shooting.client.user.lastName}</p> : null} </p>
+          </div>
+          { isPhotographer ? 
+            <a href='/admin' className='myButton'> Retour admin </a> 
+            : 
+            <a href='/dashboard' className='myButton'> Tableau de bord </a>
+          }
       </div>
 
       { sendEmailWithFavorites === true && validateFavoritesMessage !== "" ? (
@@ -71,12 +95,12 @@ export const Favorites = ({
       ) : null }
 
         <MediaQuery minWidth={769}>
-          <Gallery gallery={shooting.favorites} layout={"columns"} columns={3} withFavorites={false} withDelete={false}/>
+          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false} withDelete={false} showFavorites={true} />
         </MediaQuery>
+        
         <MediaQuery maxWidth={768}>
-          <Gallery gallery={shooting.favorites} layout={"columns"} columns={1} withFavorites={false} withDelete={false}/>
-
-          </MediaQuery>
+          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false} withDelete={false} showFavorites={true}/>
+        </MediaQuery>
 
           <button className='myButton mx-auto my-3' onClick={() => { if (window.confirm('Cette action va envoyer un mail à la photographe afin de vous permettre de télécharger vos photos, vous ne pourrez donc plus les modifier, êtes-vous sûr(e) ?')) validateFavorites() } }> Valider mes favorites </button>
 

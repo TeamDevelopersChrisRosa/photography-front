@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 import { Favorites } from '../../components/Favorites';
 
-import { getValidateFavoritesMessage } from '../../store/actions/shooting';
+import { getValidateFavoritesMessage, fetchShooting } from '../../store/actions/shooting';
 
 const mapStateToProps = (state, ownProps) => ({
-  shootings: state.shooting.shootings,
+  shooting: state.shooting,
+  isPhotographer: state.auth.isPhotographer,  
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
   getValidateFavoritesMessage: (response, shootingId) => {
     dispatch(getValidateFavoritesMessage(response, shootingId));
+  },
+
+  fetchShooting: (id) => {
+    dispatch(fetchShooting(id));
   }
   
 });

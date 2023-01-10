@@ -1,7 +1,7 @@
 import {
     SAVE_SHOOTINGS,
     SET_SHOOTING_ID,
-    SET_FAVORITE,
+   //SET_FAVORITE,
     VALIDATE_FAVORITES_MESSAGE,
     ADD_SHOOTING_IN_STATE,
     REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
@@ -9,7 +9,7 @@ import {
     SAVE_SHOOTING,
   } from '../actions/shooting';
 
-  import { ADD_PICTURE_IN_SHOOTING_ON_STATE, SET_IS_LOADING } from '../actions/picture';
+  import { SET_IS_LOADING } from '../actions/picture';
 
   import {
     LOGOUT,
@@ -18,7 +18,15 @@ import {
   export const initialState = {
     shootings: [],
     isLoading: true,
-    shooting: {},
+    id: null,
+    date: null,
+    time: null,
+    pictures: [],
+    favorites: [],
+    photographer: null,
+    client: null,
+    theme: null,
+
   };
 
   const reducer = (state = initialState, action = {}) => {
@@ -36,23 +44,17 @@ import {
             shootingId: state.shootings.find(shooting => shooting.id === Number(action.shootingId).id),
         };
 
-      case SET_FAVORITE:
-        let shooting = state.shootings.find(shooting => shooting.id === action.shootingId);
-        let picture = shooting.pictures.find(picture => picture.id === Number(action.pictureId));
-        
-        if (!shooting.favorites) {
-          shooting.favorites = [];
-        }
+      /* case SET_FAVORITE:
+        let picture = state.pictures.find(picture => picture.id === Number(action.pictureId));
 
-        if (shooting.favorites.includes(picture)) {
-          shooting.favorites = shooting.favorites.filter(favorite => favorite.id !== picture.id);
+        if (state.favorites.includes(picture)) {
+          state.favorites = state.favorites.filter(favorite => favorite.id !== picture.id);
         } else {
-          shooting.favorites.push(picture);
+          state.favorites.push(picture);
         }
         return {
-          ...state,
-          shootings: state.shootings.map(shootings => shootings.id === shooting.id ? shooting : shootings),
-        };
+          ...state
+        }; */
 
        
 
@@ -86,26 +88,12 @@ import {
       case REFRESH_SHOOTING:
         return {
           ...state,
+          isLoading: false,
           shootings: state.shootings.map(shooting => {
             if (shooting.id === action.shootingId) {
               return {
                 ...shooting,
                 pictures: shooting.pictures.filter(picture => picture.id !== Number(action.pictureId)),
-              };
-            }
-            return shooting;
-          }
-        )};
-      
-      case ADD_PICTURE_IN_SHOOTING_ON_STATE:
-        return {
-          ...state,
-          isLoading: false,
-          shootings: state.shootings.map(shooting => {
-            if (Number(shooting.id) === Number(action.shootingId)) {
-              return {
-                ...shooting,
-                pictures: [...shooting.pictures, action.picture],
               };
             }
             return shooting;
@@ -121,7 +109,18 @@ import {
         case SAVE_SHOOTING:
           return {
             ...state,
-            shooting: action.shooting,
+            id: action.shooting.id,
+            date: action.shooting.date,
+            time: action.shooting.time,
+            pictures: action.shooting.pictures,
+            photographer: action.shooting.photographer,
+            client: action.shooting.client,
+            favorites: [],
+            theme: action.shooting.theme,
+            nameOfGallery: action.shooting.nameOfGallery,
+            rate: action.shooting.rate,
+            // il manque des choses ....????
+            
             isLoading: false,
           };
 

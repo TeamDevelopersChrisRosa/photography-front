@@ -93,13 +93,11 @@ const shootingmiddleware = (store) => (next) => (action) => {
     }
     case FETCH_SHOOTING_BY_ID: {
       const id = action.id;
-      console.log(id);
       api({
         method: 'GET',
         url: `shooting/${id}`,
       })
         .then((response) => {
-          console.log(response.data)
           store.dispatch(saveShooting(response.data));
         })
         .catch((error) => {
