@@ -31,13 +31,11 @@ export const setShootingId = (shootingId) => ({
   type: 'SET_SHOOTING_ID',
   shootingId,
 });
-
 export const setFavorite = (pictureId, shootingId) => ({
   type: 'SET_FAVORITE',
   pictureId,
   shootingId,
 });
-
 export const getValidateFavoritesMessage = (response, shootingId) => ({
   type: 'VALIDATE_FAVORITES_MESSAGE',
   response,

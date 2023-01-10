@@ -7,13 +7,13 @@ import { fetchShooting } from '../../store/actions/shooting';
 const mapStateToProps = (state, ownProps) => ({
     isPhotographer: state.auth.isPhotographer,
     isClient: state.auth.isClient,
-    shooting: state.shooting.shooting,
+    shooting: state.shooting,
     isLoading: state.shooting.isLoading,
+    shootings: state.shooting.shootings,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchShooting: (id) => {
-        console.log(id);
         dispatch(fetchShooting(id));
       }
 });

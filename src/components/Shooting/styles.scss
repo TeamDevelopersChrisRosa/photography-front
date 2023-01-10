@@ -20,6 +20,16 @@
                 font-size: 1em;
             }
         }
+
+        &__name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: v.$fourthColor;
+
+            @media (max-width: v.$breakpoint) {
+                font-size: .8em;
+            }
+        }
         
     }
 

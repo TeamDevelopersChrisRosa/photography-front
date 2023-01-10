@@ -13,11 +13,12 @@ export const Shooting = ({
   isPhotographer,
   fetchShooting,
   shooting,
-  isLoading 
+  isLoading,
 
 }) => {
 
   let {id} = useParams();
+
   
   // fetch shooting on first render
   useEffect(() => {
@@ -27,6 +28,26 @@ export const Shooting = ({
     id,
   ]);
   
+  // count many pictures in shooting.pictures have isFavorite = true
+  const countFavorites = () => {
+     let count = 0;
+     shooting.pictures.forEach((picture) => {
+       if (picture.isFavorite) {
+         count++;
+       }
+     });
+      return count;
+  };
+
+  let galleryWithoutFavorites = [];
+  shooting.pictures.map((photo) => {
+    // if photo.isFavorite is false, push it in galleryWithoutFavorites
+    if (!photo.isFavorite) {
+      galleryWithoutFavorites.push(photo);
+    }
+    return galleryWithoutFavorites;
+  })
+
   return (
     <>
       {isLoading ? (
@@ -39,25 +60,31 @@ export const Shooting = ({
                 {isClient &&  <a href='/dashboard' className='myButton'> Tableau de bord</a>}
                 {isPhotographer &&  <a href='/admin' className='myButton'> Retour admin</a>}
               
-                <h2 className='shooting__header__title'> - {shooting.nameOfGallery} - {isPhotographer ? <p>ajouter le nom du client</p> : null} </h2>
+                <div>
+                  <h2 className='shooting__header__title'> {shooting.nameOfGallery} - Galerie </h2>
+                  <div className='shooting__header__name'> {isPhotographer ? <p>{shooting.client.user.firstName} {shooting.client.user.lastName}</p> : null} </div>
+                </div>
                 
                 { shooting.favorites ? (
-                  <a href={'/shooting/' + id + '/favorites'} className='myButton'> Favorites { shooting.favorites.length } / {shooting.rate.nbPhotos} </a>
+                  <a href={'/shooting/' + id + '/favorites'} className='myButton'> Favorites { countFavorites() } / {shooting.rate.nbPhotos} </a>
                 ) : ( 
                   isClient && (
                   <div className='myButton'> Favorites 0 / {shooting.rate.nbPhotos} </div>
                 )
                 )}
-                
-                {isPhotographer && <AddPicture />}
+
             </div>
             
+              {isPhotographer && <AddPicture />}
+
               <MediaQuery minWidth={769}>
-                <Gallery gallery={shooting.pictures} layout={"columns"} columns={3} withFavorites={true} withDelete={true}/>
+                <Gallery gallery={galleryWithoutFavorites} layout={"columns"} columns={3} withFavorites={true} withDelete={true} showFavorites={false}/>
               </MediaQuery>
               <MediaQuery maxWidth={768}>
-                  <Gallery gallery={shooting.pictures} layout={"columns"} columns={1} withFavorites={true} withDelete={true}/>
+                  <Gallery gallery={galleryWithoutFavorites} layout={"columns"} columns={1} withFavorites={true} withDelete={true} showFavorites={false}/>
               </MediaQuery>
+
+              
 
           </div>
         )}

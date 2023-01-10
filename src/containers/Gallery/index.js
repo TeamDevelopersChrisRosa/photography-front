@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
     isPhotographer: state.auth.isPhotographer,
     isClient: state.auth.isClient,
     shootings: state.shooting.shootings,
+    shooting: state.shooting,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -17,8 +18,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(setFavorite(pictureId, shootingId));
     },
 
-    deletePicture: (pictureId, shootingId, publicId) => {
-        dispatch(deletePicture(pictureId, shootingId, publicId));
+    deletePicture: (pictureId) => {
+        dispatch(deletePicture(pictureId));
     },
   
 });
