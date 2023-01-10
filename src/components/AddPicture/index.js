@@ -11,11 +11,11 @@ export const AddPicture = ({
 
   let {id} = useParams();
  
-  let share = false;
+  /* let share = false;
   const handleSetShare = (evt) => {
     evt.preventDefault();
     share = evt.target.value;
-  }
+  } */
 
   const [file, setFile] = useState();
 
@@ -30,29 +30,22 @@ export const AddPicture = ({
       setIsLoading();
       const formData = new FormData();
       formData.append('file', file);
-      uploadImage(formData, id, share);
+      uploadImage(formData, id, /* share */);
     }
 
   return (
     <>
-        <div>
-            <form onSubmit={e => e.preventDefault()}>
-                <input type="file" onChange={onChange} />
-                <button onClick={handleUpload}>Ajouter</button>
-                <label htmlFor="share-select">Rendre publique : </label>
-                <select onChange={handleSetShare} name="share" id="share-select">
-                  <option value={false}> Non </option>
-                  <option value={true}> Oui </option>
-                </select>
-            </form>
-        </div>
+      <div className='addPicture'>
+        <form onSubmit={e => e.preventDefault()} className='addPicture__form'>
+            <input type="file" onChange={onChange} className='addPicture__form__input' />
+            <button onClick={handleUpload} className='addPicture__form__button'>Ajouter</button>
+        </form>
+      </div>
         
       <div className='addPicture'>
-
         {isLoading && (
           <Loading />
         )}
-
       </div>
     </>
   );
