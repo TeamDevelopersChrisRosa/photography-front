@@ -1,5 +1,6 @@
 @use '../../styles/vars' as v;
 
+
 .shooting {
     width: 80%;
     margin: 3em auto;
@@ -30,8 +31,15 @@
                 font-size: .8em;
             }
         }
+
+        &__on-hover {
+            background-color: red;
+            color: white;
+            
+        }
         
     }
+    
 
     &__heart {
         display: block;

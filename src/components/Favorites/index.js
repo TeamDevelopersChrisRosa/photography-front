@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import MediaQuery from 'react-responsive'
 import { useParams } from 'react-router-dom';
+import { findFavoritesOfShooting} from '../../utils/findFavoritesOfShooting';
 
 import './styles.scss';
 
@@ -53,16 +54,9 @@ export const Favorites = ({
       });
   }
 
-  // find in shooting.pictures wich pictures have isFavorite = true
-  let favorites = [];
-  shooting.pictures.map((picture) => {
-    if (picture.isFavorite === true) {
-      favorites.push(picture);
-    }
-    return favorites;
-  })
-
-
+  const favorites = findFavoritesOfShooting(shooting);
+  
+  
 
   return (
 

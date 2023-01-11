@@ -1,19 +1,85 @@
 @use '../../styles/vars' as v;
 
 .gallery {
-      
-    &__button {
+
+    // this is for the photographer 
+    &__buttons {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        cursor: pointer;
-        margin-left: 3rem;
-        margin-right: 3rem;
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
+        flex-direction: column;
+
+        &__button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: .3rem 1rem;
+            transform: translateY(-6rem);
+            
+            &__legend {
+                display: none;
+            }
+    
+            &__action {
+                background-color: white;
+                padding: .2rem .5rem 0 .5rem;
+                border-radius: 50px;
+                margin-right: .5rem;
+                
+                &__share {
+                    background-color: green;
+                }
+                &__not-share {
+                    background-color: red;
+                }
+            }
+    
+            &:hover {
+                border-radius: 50px;
+                background-color: white;
+                max-width: 210px;
+
+                .gallery__buttons__button__legend {
+                    display: inline;
+                    margin: 0 1rem 0 0;
+                }
+                
+            }
+        } 
+        
     }
     
-    
+    // this is for the clients
+    &__button {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 1rem;
+        font-size: 1.5rem;
+        transform: translateY(-5rem);
+        
+        &__caption {
+            display: none;
+        }
+
+        &__icon {
+            color: v.$fifthColor;
+            background-color: white;
+            padding: .2rem .5rem 0 .5rem;
+            border-radius: 50px;
+            font-size: 1.7rem;
+        }
+
+        &:hover {
+            border-radius: 50px;
+            background-color: white;
+            max-width: 250px;
+             
+            .gallery__button__caption {
+                display: inline;
+                font-size: .8em;
+            }
+            
+        }
+    }    
 }
+
 

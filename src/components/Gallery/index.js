@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PhotoAlbum from 'react-photo-album';
 import Lightbox from 'yet-another-react-lightbox';
+import { findFavoritesOfShooting} from '../../utils/findFavoritesOfShooting';
 
 
 import "yet-another-react-lightbox/styles.css";
@@ -18,35 +19,43 @@ export const Gallery = ({
   withDelete,
   deletePicture,
   shooting,
-  showFavorites
-
+  showFavorites,
+  sharePicture,
+  isPortfolio,
+  onAdmin,
 }) => {  
+
+  console.log(isPortfolio);
+  
+
   const [index, setIndex] = useState(-1);
 
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
-
   const photos = gallery.map((photo, index) => {
-  const width = photo.width;
-  const height = photo.height;
-  return {
-    src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
-    key: `${index}`,
-    width,
-    height,
-    id: `${photo.id}`,
-    isFavorite: photo.isFavorite,
-    images: breakpoints.map((breakpoint) => {
-      const breakpointHeight = Math.round((height / width) * breakpoint);
-      return {
-        src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
-        width: breakpoint,
-        height: breakpointHeight,
-        isFavorite: photo.isFavorite,
-      };
-    })
-  };
-});
+    console.log(photo.share);
+    const width = photo.width;
+    const height = photo.height;
+    const share = photo.share;
+    return {
+      src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
+      key: `${index}`,
+      width,
+      height,
+      share,
+      id: `${photo.id}`,
+      isFavorite: photo.isFavorite,
+      images: breakpoints.map((breakpoint) => {
+        const breakpointHeight = Math.round((height / width) * breakpoint);
+        return {
+          src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
+          width: breakpoint,
+          height: breakpointHeight,
+          isFavorite: photo.isFavorite,
+        };
+      })
+    };
+  });
 
     const slides = photos.map(({ src, key, width, height, images }) => ({
       src,
@@ -70,12 +79,12 @@ export const Gallery = ({
         <div style={{ width: style?.width}}>
         {photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
         {!withFavorites && isClient && (
-          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id} > Enlever de mes favorites </div>
-        )} 
+          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
+            <i className="bi bi-dash-lg gallery__button__icon" id={photo.id}></i> 
+            <span className='gallery__button__caption' id={photo.id}> Retirer des favorites </span>
+          </div>
 
-        {withDelete && isPhotographer && (
-          <i className="bi bi-trash gallery__heart" id={photo.id} onClick={handleDeletePicture}></i>
-        )}
+        )} 
       </div>
       )}
 
@@ -84,22 +93,60 @@ export const Gallery = ({
       <div style={{ width: style?.width}}>
         {!photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
         {withFavorites && isClient && (
-          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> <i className="bi bi-patch-plus" onClick={handleSetFavorite} id={photo.id}> </i> </div>
+          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
+            <i className="bi bi-plus-lg gallery__button__icon" id={photo.id}></i> 
+            <span className='gallery__button__caption' id={photo.id}> Ajouter aux favorites </span>
+          </div>
         )} 
 
         {withDelete && isPhotographer && (
-          <i className="bi bi-trash gallery__heart" id={photo.id} onClick={handleDeletePicture}></i>
+          <div className='gallery__buttons'>
+            {onAdmin && (
+            <div className='gallery__buttons__button' onClick={handleDeletePicture} id={photo.id}> 
+              <i className="bi bi-x-lg gallery__buttons__button__action" id={photo.id}></i> 
+              <span className='gallery__buttons__button__legend' id={photo.id}> Supprimer </span>
+            </div> 
+            )}
+              
+              {photo.share && isPortfolio ?
+              <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
+                <i className="bi bi-share gallery__buttons__button__action gallery__buttons__button__action__share" id={photo.id}></i>
+                <span className='gallery__buttons__button__legend' id={photo.id}> Retirer du portfolio </span> 
+              </div>
+              : 
+              <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
+                <i className="bi bi-person-dash gallery__buttons__button__action gallery__buttons__button__action__not-share" id={photo.id}></i>
+                <span className='gallery__buttons__button__legend' id={photo.id}> Ajouter au portfolio </span>
+              </div>  
+              }
+              
+          </div>
         )}
       </div>
       </>
     );
 
+    const favorites = findFavoritesOfShooting(shooting);
+
+
     const handleSetFavorite = (evt) => {
-      setFavorite(evt.target.id, shooting.id);
+      // find if picture is already in favorites
+      const isFavorite = favorites.find((favorite) => favorite.id === parseInt(evt.target.id));
+      if (favorites.length >= shooting.rate.nbPhotos && !isFavorite) {
+        alert(`Vous avez atteint le nombre maximum de photos favorites pour ce shooting. Vous pouvez en supprimer une pour en ajouter une nouvelle. Si vous souhaitez plus de photos, veuillez contacter le photographe.`);
+      } else {
+        setFavorite(evt.target.id, shooting.id);
+      }
     }
 
     const handleDeletePicture = (evt) => {
-      deletePicture(evt.target.id);
+      evt.preventDefault();
+      window.confirm('Es tu sûre de vouloir supprimer cette photo ?') && deletePicture(evt.target.id);
+    }
+
+    const handleSharePicture = (evt) => {
+      evt.preventDefault();
+      sharePicture(evt.target.id);
     }
 
   return (

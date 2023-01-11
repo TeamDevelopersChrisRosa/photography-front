@@ -5,7 +5,7 @@ import { getValidateFavoritesMessage, fetchShooting } from '../../store/actions/
 
 const mapStateToProps = (state, ownProps) => ({
   shooting: state.shooting,
-  isPhotographer: state.auth.isPhotographer,  
+  isPhotographer: state.auth.isPhotographer,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

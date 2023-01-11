@@ -17,7 +17,6 @@ export const Page = ({
   sharedPictures,
   isItsMe,
 }) => {
-  
   let sharedPicturesByThemeId = [];
   if(isPortfolio) {
     sharedPictures.map((picture) => {
@@ -79,10 +78,10 @@ export const Page = ({
         {isPortfolio ? (
           <div >
             <MediaQuery minWidth={769}>
-              <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={3} />
+              <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={3} withDelete={true} isPortfolio={true} onAdmin={false} />
             </MediaQuery>
               <MediaQuery maxWidth={768}>
-            <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={1} />
+            <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={1} withDelete={true} isPortfolio={true}  onAdmin={false}/>
             </MediaQuery>
           </div>
         ) : null}

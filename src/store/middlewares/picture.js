@@ -2,6 +2,7 @@ import {
   DELETE_PICTURE,
   UPLOAD_IMAGE,
   SET_FAVORITE,
+  SHARE_PICTURE,
 } from '../actions/picture';
 
 import api from './utils/api';
@@ -42,13 +43,30 @@ const picturemiddleware = (store) => (next) => (action) => {
     }
 
     case SET_FAVORITE: {
-      console.log(store.getState().shooting.pictures);
       api({
         method: 'PATCH',
         url: `picture/${action.pictureId}`,
         data: {
           // set isFavorite in the opposite of the current value
           isFavorite: !store.getState().shooting.pictures.find(picture => picture.id === Number(action.pictureId)).isFavorite,
+        },
+      })
+        .then((response) => {
+          window.location.reload(false);
+      })
+        .catch((error) => {
+            console.log(error)
+          });
+      break;
+    }
+
+    case SHARE_PICTURE: {
+      api({
+        method: 'PATCH',
+        url: `picture/${action.pictureId}`,
+        data: {
+          // set share in the opposite of the current value
+          share: !store.getState().shooting.pictures.find(picture => picture.id === Number(action.pictureId)).share,
         },
       })
         .then((response) => {
