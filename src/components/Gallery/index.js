@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PhotoAlbum from 'react-photo-album';
 import Lightbox from 'yet-another-react-lightbox';
-import { findFavoritesOfShooting} from '../../utils/findFavoritesOfShooting';
 
+import { findFavoritesOfShooting } from '../../utils/findFavoritesOfShooting';
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -23,39 +23,35 @@ export const Gallery = ({
   sharePicture,
   isPortfolio,
   onAdmin,
+  fetchShooting,
 }) => {  
-
-  console.log(isPortfolio);
-  
 
   const [index, setIndex] = useState(-1);
 
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
-
-  const photos = gallery.map((photo, index) => {
-    console.log(photo.share);
-    const width = photo.width;
-    const height = photo.height;
-    const share = photo.share;
-    return {
-      src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
-      key: `${index}`,
-      width,
-      height,
-      share,
-      id: `${photo.id}`,
-      isFavorite: photo.isFavorite,
-      images: breakpoints.map((breakpoint) => {
-        const breakpointHeight = Math.round((height / width) * breakpoint);
-        return {
-          src: `https://res.cloudinary.com/${process.env.REACT_APP_CLN_CLOUD_NAME}/image/upload/${photo.publicId}?_a=AJE+xWI0`,
-          width: breakpoint,
-          height: breakpointHeight,
-          isFavorite: photo.isFavorite,
-        };
-      })
-    };
-  });
+  
+    const photos = gallery.map((photo, index) => {
+      console.log('photo', photo);
+      console.log('share', photo.share);
+      const width = photo.width;
+      const height = photo.height;
+      return {
+        src: `${photo.secureUrl}`,
+        key: `${index}`,
+        width,
+        height,
+        id: `${photo.id}`,
+        images: breakpoints.map((breakpoint) => {
+          const breakpointHeight = Math.round((height / width) * breakpoint);
+          return {
+            src: `${photo.secureUrl}`,
+            width: breakpoint,
+            height: breakpointHeight,
+          };
+        })
+      };
+    });
+  
 
     const slides = photos.map(({ src, key, width, height, images }) => ({
       src,
@@ -107,15 +103,15 @@ export const Gallery = ({
               <span className='gallery__buttons__button__legend' id={photo.id}> Supprimer </span>
             </div> 
             )}
-              
-              {photo.share && isPortfolio ?
+  
+            {photo.share ?
               <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
-                <i className="bi bi-share gallery__buttons__button__action gallery__buttons__button__action__share" id={photo.id}></i>
+                <i className="bi bi-person-dash gallery__buttons__button__action gallery__buttons__button__action__share" id={photo.id}></i>
                 <span className='gallery__buttons__button__legend' id={photo.id}> Retirer du portfolio </span> 
               </div>
               : 
               <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
-                <i className="bi bi-person-dash gallery__buttons__button__action gallery__buttons__button__action__not-share" id={photo.id}></i>
+                <i className="bi bi-share gallery__buttons__button__action gallery__buttons__button__action__not-share" id={photo.id}></i>
                 <span className='gallery__buttons__button__legend' id={photo.id}> Ajouter au portfolio </span>
               </div>  
               }
@@ -140,8 +136,9 @@ export const Gallery = ({
     }
 
     const handleDeletePicture = (evt) => {
-      evt.preventDefault();
-      window.confirm('Es tu sûre de vouloir supprimer cette photo ?') && deletePicture(evt.target.id);
+      // TODO : ask for confirmation ?
+      deletePicture(evt.target.id);
+      fetchShooting(shooting.id);
     }
 
     const handleSharePicture = (evt) => {

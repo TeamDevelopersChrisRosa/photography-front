@@ -14,7 +14,7 @@ export const uploadImage = (formData, shootingId, /* share */) => ({
 
 export const deletePicture = (pictureId) => ({
   type: 'DELETE_PICTURE',
-  pictureId
+  pictureId,
 });
 
 export const setIsLoading = () => ({

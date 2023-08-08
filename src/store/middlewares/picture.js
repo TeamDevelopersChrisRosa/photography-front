@@ -5,6 +5,10 @@ import {
   SHARE_PICTURE,
 } from '../actions/picture';
 
+import {
+  fetchShooting,
+} from '../actions/shooting';
+
 import api from './utils/api';
 
 const picturemiddleware = (store) => (next) => (action) => {
@@ -15,8 +19,7 @@ const picturemiddleware = (store) => (next) => (action) => {
         url: `picture/${action.pictureId}`,
       })
         .then((response) => {
-          // the picture is deleted on server, we have just to refresh the page to see it
-          window.location.reload(false);
+          store.dispatch(fetchShooting(action.shootingId));
         })
         .catch((error) => {
             console.log(error)
@@ -30,14 +33,14 @@ const picturemiddleware = (store) => (next) => (action) => {
         method: 'POST',
         //url: `picture/upload/${action.share}/${action.shootingId}`,
         url: `picture/upload/${action.shootingId}`,
-        data: action.formData,        
+        data: action.formData,
+        timeout: 7000,        
       })
         .then((response) => {
-          // the picture is added on server, we have just to refresh the page to see it
-          window.location.reload(false);
+          store.dispatch(fetchShooting(action.shootingId));
         })
         .catch((error) => {
-            console.log(error)
+            console.log('erreur', error)
           });
       break;
     }

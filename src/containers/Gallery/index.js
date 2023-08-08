@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 import { Gallery } from '../../components/Gallery';
 
-import { setFavorite } from '../../store/actions/shooting';
+import { setFavorite, fetchShooting } from '../../store/actions/shooting';
 import { deletePicture, sharePicture } from '../../store/actions/picture';
 
 
 const mapStateToProps = (state, ownProps) => ({
     isPhotographer: state.auth.isPhotographer,
     isClient: state.auth.isClient,
-    shootings: state.shooting.shootings,
-    shooting: state.shooting,
-    favorites: state.shooting.favorites,
+    gallery: state.shooting.shooting.pictures,
+    shooting: state.shooting.shooting,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -25,6 +24,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     sharePicture: (pictureId) => {
         dispatch(sharePicture(pictureId));
+    },
+
+    fetchShooting: (shootingId) => {
+        dispatch(fetchShooting(shootingId));
     }
   
 });

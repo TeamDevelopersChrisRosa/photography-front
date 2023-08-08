@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
-import Loading from './../Loading';
+import Loading from '../Loading';
 
 export const AddPicture = ({
   setIsLoading,

@@ -1,7 +1,6 @@
 import {
     SAVE_SHOOTINGS,
     SET_SHOOTING_ID,
-   //SET_FAVORITE,
     VALIDATE_FAVORITES_MESSAGE,
     ADD_SHOOTING_IN_STATE,
     REFRESH_THE_STATE_WITHOUT_THIS_SHOOTING,
@@ -18,15 +17,7 @@ import {
   export const initialState = {
     shootings: [],
     isLoading: true,
-    id: null,
-    date: null,
-    time: null,
-    pictures: [],
-    favorites: [],
-    photographer: null,
-    client: null,
-    theme: null,
-
+    shooting: {},
   };
 
   const reducer = (state = initialState, action = {}) => {
@@ -43,20 +34,6 @@ import {
           ...state,
             shootingId: state.shootings.find(shooting => shooting.id === Number(action.shootingId).id),
         };
-
-      /* case SET_FAVORITE:
-        let picture = state.pictures.find(picture => picture.id === Number(action.pictureId));
-
-        if (state.favorites.includes(picture)) {
-          state.favorites = state.favorites.filter(favorite => favorite.id !== picture.id);
-        } else {
-          state.favorites.push(picture);
-        }
-        return {
-          ...state
-        }; */
-
-       
 
       case VALIDATE_FAVORITES_MESSAGE:
         if (action.response === 200 ) {
@@ -109,19 +86,8 @@ import {
         case SAVE_SHOOTING:
           return {
             ...state,
-            id: action.shooting.id,
-            date: action.shooting.date,
-            time: action.shooting.time,
-            pictures: action.shooting.pictures,
-            photographer: action.shooting.photographer,
-            client: action.shooting.client,
-            favorites: [],
-            theme: action.shooting.theme,
-            nameOfGallery: action.shooting.nameOfGallery,
-            rate: action.shooting.rate,
-            // il manque des choses ....????
-            
             isLoading: false,
+            shooting: action.shooting,
           };
 
 

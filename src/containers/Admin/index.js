@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Admin } from '../../components/Admin';
-import { deleteShooting } from '../../store/actions/shooting';
+import { fetchShooting, deleteShooting } from '../../store/actions/shooting';
 
 
 
@@ -9,6 +9,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+
+  fetchShooting: (shootingId) => {
+    dispatch(fetchShooting(shootingId))
+  },
 
   deleteShooting: (shootingId) => {
     dispatch(deleteShooting(shootingId))

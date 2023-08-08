@@ -4,8 +4,8 @@ import { Favorites } from '../../components/Favorites';
 import { getValidateFavoritesMessage, fetchShooting } from '../../store/actions/shooting';
 
 const mapStateToProps = (state, ownProps) => ({
-  shooting: state.shooting,
-  isPhotographer: state.auth.isPhotographer,
+  shootings: state.shooting.shootings,
+  shooting: state.shooting.shooting,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -11,6 +11,7 @@ import { MenuAdmin } from '../MenuAdmin';
 export const Admin = ({
   shootings,
   deleteShooting,
+  fetchShooting,
 
 }) => {
 
@@ -22,6 +23,7 @@ export const Admin = ({
   let navigate = useNavigate();
 
   const handleShowShooting = (evt) => {
+    fetchShooting(evt.target.id);
     navigate(`/shooting/${evt.target.id}`);
   }
 
