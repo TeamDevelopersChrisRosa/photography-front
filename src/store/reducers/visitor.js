@@ -1,7 +1,7 @@
 import {
   SAVE_SHOOTING_PAGES,
   SAVE_PORTFOLIO_PAGES,
-  SAVE_SHARED_PICTURES,
+  SAVE_SHARED_PICTURES_BY_THEME,
   SAVE_ITS_ME_PAGE,
   } from '../actions/visitor';
 
@@ -12,7 +12,7 @@ import {
   export const initialState = {
     shootingPages: [],
     portfolioPages: [],
-    sharedPictures: [],
+    portfolioPictures: [],
     itsMePage: [],
     submenuShootingPagesIsOpen: false,
   };
@@ -32,10 +32,10 @@ import {
                 portfolioPages: action.portfolioPages,
             };
 
-        case SAVE_SHARED_PICTURES:
+        case SAVE_SHARED_PICTURES_BY_THEME:
             return {
                 ...state,
-                sharedPictures: action.sharedPictures,
+                portfolioPictures: action.sharedPictures,
             };
 
         case SAVE_ITS_ME_PAGE:

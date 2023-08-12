@@ -12,7 +12,7 @@ export const ChangeTemporaryPassword = () => {
 
        <ChangePassword />
 
-        <a href='/dashboard' className='myButton mx-auto w-25'> Retour tableau de bord</a>
+        <a href='/tableau-de-bord' className='myButton mx-auto w-25'> Retour tableau de bord</a>
 
       </div>
     </>

@@ -24,7 +24,7 @@ export const Admin = ({
 
   const handleShowShooting = (evt) => {
     fetchShooting(evt.target.id);
-    navigate(`/shooting/${evt.target.id}`);
+    navigate(`/seance/${evt.target.id}`);
   }
 
   return (

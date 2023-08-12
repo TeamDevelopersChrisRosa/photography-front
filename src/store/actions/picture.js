@@ -12,9 +12,10 @@ export const uploadImage = (formData, shootingId, /* share */) => ({
   /* share */
 });
 
-export const deletePicture = (pictureId) => ({
+export const deletePicture = (pictureId, shootingId) => ({
   type: 'DELETE_PICTURE',
   pictureId,
+  shootingId
 });
 
 export const setIsLoading = () => ({
@@ -26,8 +27,9 @@ export const setFavorite = (pictureId) => ({
   pictureId,
 });
 
-export const sharePicture = (pictureId) => ({
+export const sharePicture = (pictureId, shootingId) => ({
   type: 'SHARE_PICTURE',
   pictureId,
+  shootingId,
 });
 

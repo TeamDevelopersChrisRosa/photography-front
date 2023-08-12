@@ -69,14 +69,16 @@ const picturemiddleware = (store) => (next) => (action) => {
         url: `picture/${action.pictureId}`,
         data: {
           // set share in the opposite of the current value
-          share: !store.getState().shooting.pictures.find(picture => picture.id === Number(action.pictureId)).share,
+          share: !store.getState().shooting.shooting.pictures.find(picture => picture.id === Number(action.pictureId)).share,
         },
       })
         .then((response) => {
-          window.location.reload(false);
+          //window.location.reload(false);
+        
+          store.dispatch(fetchShooting(action.shootingId));
       })
         .catch((error) => {
-            console.log(error)
+            console.log('erreur', error)
           });
       break;
     }

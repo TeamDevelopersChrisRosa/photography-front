@@ -70,7 +70,7 @@ export const Header = ({
                 </div>
 
                 <div className='header__person__second'>
-                  <a href={/account/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
+                  <a href={/mon-compte/+id} className='mySmallButton header__person__second__button'> Mon compte </a>
                   <button className='mySmallButton header__person__second__button bg-danger' onClick={handleLogout}> Se déconnecter </button>
                 </div>
               </div>

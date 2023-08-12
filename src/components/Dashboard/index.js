@@ -16,7 +16,7 @@ export const Dashboard = ({
   
   const handleFetchShooting = (evt) => {
     evt.preventDefault();
-      navigate(`/shooting/${evt.target.id}`);
+      navigate(`/seance/${evt.target.id}`);
   }
 
    // Create a Cloudinary instance and set your cloud name.

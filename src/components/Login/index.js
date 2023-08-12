@@ -33,7 +33,7 @@ export const Login = ({
   return (
     <div className='login'>
 
-          { isLogged && client && <Navigate to='/dashboard' /> }
+          { isLogged && client && <Navigate to='/tableau-de-bord' /> }
           { isLogged && photographer && <Navigate to='/admin' /> }
 
             { showForgotPasswordForm ? <ForgotPassword /> : (

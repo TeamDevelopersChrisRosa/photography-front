@@ -21,7 +21,7 @@ export const Account = ({
        
        <ChangePassword />
 
-        <a href='/dashboard' className='myButton mx-auto'> Retour tableau de bord</a>
+        <a href='/tableau-de-bord' className='myButton mx-auto'> Retour tableau de bord</a>
         
       </div>
     </>

@@ -2,8 +2,8 @@ export const FETCH_ALL_SHOOTING_PAGES_OF_PHOTOGRAPHER = 'FETCH_ALL_SHOOTING_PAGE
 export const SAVE_SHOOTING_PAGES = 'SAVE_SHOOTING_PAGES';
 export const FETCH_ALL_PORTFOLIO_PAGES_OF_PHOTOGRAPHER = 'FETCH_ALL_PORTFOLIO_PAGES_OF_PHOTOGRAPHER';
 export const SAVE_PORTFOLIO_PAGES = 'SAVE_PORTFOLIO_PAGES';
-export const FETCH_SHARED_PICTURES_OF_PHOTOGRAPHER = 'FETCH_SHARED_PICTURES_OF_PHOTOGRAPHER';
-export const SAVE_SHARED_PICTURES = 'SAVE_SHARED_PICTURES';
+export const FETCH_SHARED_PICTURES_BY_THEME_ID = 'FETCH_SHARED_PICTURES_BY_THEME_ID';
+export const SAVE_SHARED_PICTURES_BY_THEME = 'SAVE_SHARED_PICTURES_BY_THEME';
 export const FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER = 'FETCH_ITS_ME_PAGE_OF_PHOTOGRAPHER';
 export const SAVE_ITS_ME_PAGE = 'SAVE_ITS_ME_PAGE';
 
@@ -25,12 +25,13 @@ export const savePortfolioPages = (portfolioPages) => ({
     portfolioPages,
 });
 
-export const fetchSharedPicturesOfPhotographer = () => ({
-    type: 'FETCH_SHARED_PICTURES_OF_PHOTOGRAPHER',
+export const fetchSharedPicturesByThemeId = (themeId) => ({
+    type: 'FETCH_SHARED_PICTURES_BY_THEME_ID',
+    themeId,
 });
 
-export const saveSharedPictures = (sharedPictures) => ({
-    type: 'SAVE_SHARED_PICTURES',
+export const saveSharedPicturesByTheme = (sharedPictures) => ({
+    type: 'SAVE_SHARED_PICTURES_BY_THEME',
     sharedPictures,
 });
 

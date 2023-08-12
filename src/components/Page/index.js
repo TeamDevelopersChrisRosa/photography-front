@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import nl2br from 'react-nl2br';
 import Gallery from '../../containers/Gallery';
 import MediaQuery from 'react-responsive'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
+
 
 // import PropTypes from 'prop-types';
 
@@ -14,18 +15,15 @@ export const Page = ({
   page,
   isShooting,
   isPortfolio,
-  sharedPictures,
+  portfolioPictures,
   isItsMe,
+  fetchSharedPicturesByThemeId
 }) => {
-  let sharedPicturesByThemeId = [];
-  if(isPortfolio) {
-    sharedPictures.map((picture) => {
-      if (picture.shooting.themeId === page.theme.id) {
-        sharedPicturesByThemeId.push(picture);
-      }
-      return sharedPicturesByThemeId;
-    })
-  }
+
+  useEffect(() => {
+    isPortfolio && fetchSharedPicturesByThemeId(page.theme.id);
+  });
+
 
   let myImage = null;
   if (!isPortfolio) {
@@ -43,7 +41,6 @@ export const Page = ({
 
 
   return (
-    <>
 
     <div className='page'>
       <div className='page__title'>{page.title}</div>
@@ -78,19 +75,14 @@ export const Page = ({
         {isPortfolio ? (
           <div >
             <MediaQuery minWidth={769}>
-              <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={3} withDelete={true} isPortfolio={true} onAdmin={false} />
+              <Gallery portfolioPictures={portfolioPictures} layout={"columns"} columns={3} isPortfolio={true} />
             </MediaQuery>
               <MediaQuery maxWidth={768}>
-            <Gallery gallery={sharedPicturesByThemeId} layout={"columns"} columns={1} withDelete={true} isPortfolio={true}  onAdmin={false}/>
+            <Gallery portfolioPictures={portfolioPictures} layout={"columns"} columns={1} isPortfolio={true} />
             </MediaQuery>
           </div>
         ) : null}
-     
-      
-
-      </div>
-   
-      </>
+    </div>
   );
 };
 

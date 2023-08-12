@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
 import { Page } from '../../components/Page';
 
+import { fetchSharedPicturesByThemeId } from '../../store/actions/visitor';
+
 
 const mapStateToProps = (state, ownProps) => ({
-    sharedPictures: state.visitor.sharedPictures,
+    portfolioPictures: state.visitor.portfolioPictures,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
+    fetchSharedPicturesByThemeId: (themeId) => {
+        dispatch(fetchSharedPicturesByThemeId(themeId));
+    },
   
 
 });

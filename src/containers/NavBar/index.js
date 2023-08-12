@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { NavBar } from '../../components/NavBar';
 
-import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchSharedPicturesOfPhotographer, fetchItsMePageOfPhotographer } from '../../store/actions/visitor';
+import { fetchAllShootingPagesOfPhotographer, fetchAllPortfolioPagesOfPhotographer, fetchItsMePageOfPhotographer, fetchSharedPicturesByThemeId } from '../../store/actions/visitor';
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(fetchAllPortfolioPagesOfPhotographer());
     },
 
-    getSharedPictures: () => {
-        dispatch(fetchSharedPicturesOfPhotographer());
+    fetchSharedPicturesByThemeId: (themeId) => {
+        dispatch(fetchSharedPicturesByThemeId(themeId));
     },
 
     FetchItsMePage: () => {

@@ -16,135 +16,141 @@ export const Gallery = ({
   setFavorite,
   isPhotographer,
   isClient,
-  withDelete,
   deletePicture,
   shooting,
   showFavorites,
   sharePicture,
   isPortfolio,
-  onAdmin,
-  fetchShooting,
+  portfolioPictures
 }) => {  
+
+  if (isPortfolio) {
+    gallery = portfolioPictures;
+  } 
 
   const [index, setIndex] = useState(-1);
 
   const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
   
-    const photos = gallery.map((photo, index) => {
-      console.log('photo', photo);
-      console.log('share', photo.share);
-      const width = photo.width;
-      const height = photo.height;
-      return {
-        src: `${photo.secureUrl}`,
-        key: `${index}`,
-        width,
-        height,
-        id: `${photo.id}`,
-        images: breakpoints.map((breakpoint) => {
-          const breakpointHeight = Math.round((height / width) * breakpoint);
-          return {
-            src: `${photo.secureUrl}`,
-            width: breakpoint,
-            height: breakpointHeight,
-          };
-        })
-      };
-    });
-  
+  gallery.sort((a, b) => a.id - b.id);
 
-    const slides = photos.map(({ src, key, width, height, images }) => ({
-      src,
-      key,
-      aspectRatio: width / height,
-      srcSet: images?.map((image) => ({
-        src: image.src,
-        width: image.width
-      }))
-    }));
+  const photos = gallery.map((photo, index) => {
+    //console.log('photo', photo);
+    const width = photo.width;
+    const height = photo.height;
+    const share = photo.share;
+    return {
+      src: `${photo.secureUrl}`,
+      key: `${index}`,
+      width,
+      height,
+      share,
+      id: `${photo.id}`,
+      images: breakpoints.map((breakpoint) => {
+        const breakpointHeight = Math.round((height / width) * breakpoint);
+        return {
+          src: `${photo.secureUrl}`,
+          width: breakpoint,
+          height: breakpointHeight,
+        };
+      })
+    };
+  });
 
-    const renderPhoto = ({ 
-      imageProps: { alt, style, ...restImageProps },
-      photo
-    }) => (
+
+  const slides = photos.map(({ src, key, width, height, images }) => ({
+    src,
+    key,
+    aspectRatio: width / height,
+    srcSet: images?.map((image) => ({
+      src: image.src,
+      width: image.width
+    }))
+  }));
+
+  const renderPhoto = ({ 
+    imageProps: { alt, style, ...restImageProps },
+    photo
+  }) => {
+
+    return (      
       <>
+        {/* render the favorites only (for the favorites page) */}
 
-      {/* render the favorites only (for the favorites page) */}
+        {showFavorites && (
+          <div style={{ width: style?.width}}>
+          {photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
+          {!withFavorites && isClient && (
+            <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
+              <i className="bi bi-dash-lg gallery__button__icon" id={photo.id}></i> 
+              <span className='gallery__button__caption' id={photo.id}> Retirer des favorites </span>
+            </div>
 
-      {showFavorites && (
-        <div style={{ width: style?.width}}>
-        {photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
-        {!withFavorites && isClient && (
-          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
-            <i className="bi bi-dash-lg gallery__button__icon" id={photo.id}></i> 
-            <span className='gallery__button__caption' id={photo.id}> Retirer des favorites </span>
-          </div>
-
-        )} 
-      </div>
-      )}
-
-      {/* render without favorites (for the gallery page) */} 
-
-      <div style={{ width: style?.width}}>
-        {!photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
-        {withFavorites && isClient && (
-          <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
-            <i className="bi bi-plus-lg gallery__button__icon" id={photo.id}></i> 
-            <span className='gallery__button__caption' id={photo.id}> Ajouter aux favorites </span>
-          </div>
-        )} 
-
-        {withDelete && isPhotographer && (
-          <div className='gallery__buttons'>
-            {onAdmin && (
-            <div className='gallery__buttons__button' onClick={handleDeletePicture} id={photo.id}> 
-              <i className="bi bi-x-lg gallery__buttons__button__action" id={photo.id}></i> 
-              <span className='gallery__buttons__button__legend' id={photo.id}> Supprimer </span>
-            </div> 
-            )}
-  
-            {photo.share ?
-              <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
-                <i className="bi bi-person-dash gallery__buttons__button__action gallery__buttons__button__action__share" id={photo.id}></i>
-                <span className='gallery__buttons__button__legend' id={photo.id}> Retirer du portfolio </span> 
-              </div>
-              : 
-              <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
-                <i className="bi bi-share gallery__buttons__button__action gallery__buttons__button__action__not-share" id={photo.id}></i>
-                <span className='gallery__buttons__button__legend' id={photo.id}> Ajouter au portfolio </span>
-              </div>  
-              }
-              
-          </div>
+          )} 
+        </div>
         )}
-      </div>
+
+        {/* render without favorites (for the gallery page) */} 
+
+        <div style={{ width: style?.width}}>
+          {!photo.isFavorite && <img alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} /> }
+          {withFavorites && isClient && (
+            <div className='gallery__button' onClick={handleSetFavorite} id={photo.id}> 
+              <i className="bi bi-plus-lg gallery__button__icon" id={photo.id}></i> 
+              <span className='gallery__button__caption' id={photo.id}> Ajouter aux favorites </span>
+            </div>
+          )} 
+
+          { isPhotographer && (
+            <div className='gallery__buttons'>
+              { !isPortfolio && (
+                <div className='gallery__buttons__button' onClick={handleDeletePicture} id={photo.id}> 
+                  <i className="bi bi-x-lg gallery__buttons__button__action" id={photo.id}></i> 
+                  <span className='gallery__buttons__button__legend' id={photo.id}> Supprimer </span>
+                </div>
+              )}
+
+              {photo.share ?
+                <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
+                  <i className="bi bi-person-dash gallery__buttons__button__action gallery__buttons__button__action__share" id={photo.id}></i>
+                  <span className='gallery__buttons__button__legend' id={photo.id}> Retirer du portfolio </span> 
+                </div>
+                : 
+                <div className='gallery__buttons__button' onClick={handleSharePicture} id={photo.id}>
+                  <i className="bi bi-share gallery__buttons__button__action gallery__buttons__button__action__not-share" id={photo.id}></i>
+                  <span className='gallery__buttons__button__legend' id={photo.id}> Ajouter au portfolio </span>
+                </div>  
+                }
+                
+            </div>
+          )}
+        </div>
       </>
-    );
+  )};
 
-    const favorites = findFavoritesOfShooting(shooting);
-
-
-    const handleSetFavorite = (evt) => {
-      // find if picture is already in favorites
-      const isFavorite = favorites.find((favorite) => favorite.id === parseInt(evt.target.id));
-      if (favorites.length >= shooting.rate.nbPhotos && !isFavorite) {
-        alert(`Vous avez atteint le nombre maximum de photos favorites pour ce shooting. Vous pouvez en supprimer une pour en ajouter une nouvelle. Si vous souhaitez plus de photos, veuillez contacter le photographe.`);
-      } else {
-        setFavorite(evt.target.id, shooting.id);
-      }
+  let favorites = [];
+  if (!isPortfolio) {
+    favorites = findFavoritesOfShooting(shooting);
+  }
+  const handleSetFavorite = (evt) => {
+    // find if picture is already in favorites
+    const isFavorite = favorites.find((favorite) => favorite.id === parseInt(evt.target.id));
+    if (favorites.length >= shooting.rate.nbPhotos && !isFavorite) {
+      alert(`Vous avez atteint le nombre maximum de photos favorites pour ce shooting. Vous pouvez en supprimer une pour en ajouter une nouvelle. Si vous souhaitez plus de photos, veuillez contacter le photographe.`);
+    } else {
+      setFavorite(evt.target.id, shooting.id);
     }
+  }
+  
 
-    const handleDeletePicture = (evt) => {
-      // TODO : ask for confirmation ?
-      deletePicture(evt.target.id);
-      fetchShooting(shooting.id);
-    }
+  const handleDeletePicture = (evt) => {
+    // TODO : ask for confirmation ?
+    deletePicture(evt.target.id, shooting.id);
+  }
 
-    const handleSharePicture = (evt) => {
-      evt.preventDefault();
-      sharePicture(evt.target.id);
-    }
+  const handleSharePicture = (evt) => {
+    sharePicture(evt.target.id, shooting.id);
+  }
 
   return (
     <>
@@ -166,8 +172,6 @@ export const Gallery = ({
           close={() => setIndex(-1)}
           slides={slides}
         />        
-        
-
       </div>
     </>
   );

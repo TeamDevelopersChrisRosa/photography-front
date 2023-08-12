@@ -64,7 +64,7 @@ export const Favorites = ({
       <div className='favorites'>
 
       <div className='favorites__header'> 
-          <a href={'/shooting/' + shooting.id}  className='myButton'> Retour à { isPhotographer ? 'la' : 'ma' } galerie </a>
+          <a href={'/seance/' + shooting.id}  className='myButton'> Retour à { isPhotographer ? 'la' : 'ma' } galerie </a>
           <div className='favorites__header__part'>
             <h2 className='shooting__header__title'> {shooting.nameOfGallery} - Favorites </h2>
             <p className='shooting__header__name'> {isPhotographer ? <p>{shooting.client.user.firstName} {shooting.client.user.lastName}</p> : null} </p>
@@ -72,7 +72,7 @@ export const Favorites = ({
           { isPhotographer ? 
             <a href='/admin' className='myButton'> Retour admin </a> 
             : 
-            <a href='/dashboard' className='myButton'> Tableau de bord </a>
+            <a href='/tableau-de-bord' className='myButton'> Tableau de bord </a>
           }
       </div>
 
@@ -89,11 +89,11 @@ export const Favorites = ({
       ) : null }
 
         <MediaQuery minWidth={769}>
-          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false} withDelete={false} showFavorites={true} />
+          <Gallery gallery={favorites} layout={"columns"} columns={3} withFavorites={false} showFavorites={true} />
         </MediaQuery>
         
         <MediaQuery maxWidth={768}>
-          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false} withDelete={false} showFavorites={true}/>
+          <Gallery gallery={favorites} layout={"columns"} columns={1} withFavorites={false} showFavorites={true}/>
         </MediaQuery>
 
           <button className='myButton mx-auto my-3' onClick={() => { if (window.confirm('Cette action va envoyer un mail à la photographe afin de vous permettre de télécharger vos photos, vous ne pourrez donc plus les modifier, êtes-vous sûr(e) ?')) validateFavorites() } }> Valider mes favorites </button>

@@ -28,11 +28,9 @@ export function App({
   itsMePage,
   isPhotographer,
   isClient,
-  shootings,
 }) {
 
   let location = useLocation();  
-  
 
   return (
     <div className="app">
@@ -45,25 +43,25 @@ export function App({
           <Route path='login' element={<Login />}  />
           <Route path='contact' element={<Contact />} />
           {shootingPages.map((page, index) => (
-            <Route key={index} path={`/shooting/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} isItsMe={false} />} />
+            <Route key={index} path={`/seance/${page.slug}`} element={<Page page={page} isShooting={true} isPortfolio={false} isItsMe={false} />} />
           ))}
           {portfolioPages.map((page, index) => (
             <Route key={index} path={`/portfolio/${page.slug}`} element={<Page page={page} isShooting={false} isPortfolio={true} isItsMe={false} />} />
           ))}
-          {itsMePage && <Route path='its_me' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
+          {itsMePage && <Route path='c-est-moi' element={<Page page={itsMePage} isShooting={false} isPortfolio={false} isItsMe={true} />} />}
 
-          {isLogged && isClient && <Route path='dashboard' element={<Dashboard />} />}
-          {isLogged && <Route path='shooting/:id' element={<Shooting />} />}
-          {isLogged && <Route path='shooting/:id/favorites' element={<Favorites />} />}
+          {isLogged && isClient && <Route path='tableau-de-bord' element={<Dashboard />} />}
+          {isLogged && <Route path='seance/:id' element={<Shooting />} />}
+          {isLogged && <Route path='seance/:id/favorites' element={<Favorites />} />}
 
-          {isLogged && <Route path='account/:id' element={<Account />} />}
+          {isLogged && <Route path='mon-compte/:id' element={<Account />} />}
 
           <Route path='temp' element={<ChangeTemporaryPassword />} />
 
 
           {isLogged && isPhotographer && <Route path='admin' element={<Admin />} />}
-          {isLogged && isPhotographer && <Route path='admin/newgallery' element={<NewGallery />} />}
-          {isLogged && isPhotographer && <Route path='admin/newclient' element={<NewClient />} />}
+          {isLogged && isPhotographer && <Route path='admin/nouvelle-galerie' element={<NewGallery />} />}
+          {isLogged && isPhotographer && <Route path='admin/nouveau-client' element={<NewClient />} />}
 
 
           <Route path='*' element={<Navigate to="/" replace />} />

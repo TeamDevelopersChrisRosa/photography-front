@@ -11,7 +11,7 @@ export const NavBar = ({
   shootingPages,
   FetchPortfolioPages,
   portfolioPages,
-  getSharedPictures,
+  fetchSharedPicturesByThemeId,
   isLogged,
   pathName,
   FetchItsMePage,
@@ -23,11 +23,11 @@ export const NavBar = ({
   useEffect(() => {
     FetchShootingPages();
     FetchPortfolioPages();
-    getSharedPictures();
+    fetchSharedPicturesByThemeId(2)
   }, [
     FetchShootingPages,
     FetchPortfolioPages,
-    getSharedPictures,
+    fetchSharedPicturesByThemeId
   ]);
 
     let navigate = useNavigate();
@@ -37,7 +37,7 @@ export const NavBar = ({
       FetchItsMePage();
       // wait for the page to be fetched
       setTimeout(() => {
-        navigate('/its_me');
+        navigate('/c-est-moi');
       }, 300);
     }
 
@@ -58,13 +58,13 @@ export const NavBar = ({
                 </NavDropdown>
                 <NavDropdown title="Les séances" id="nav-dropdown">
                   {shootingPages && shootingPages.map((page, index) => (
-                    <NavDropdown.Item key={index} href={`/shooting/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
+                    <NavDropdown.Item key={index} href={`/seance/${page.slug}`} id="nav-dropdown-link">{page.nameInMenu}</NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} onClick={handleFetchItsMePage} href="/its_me">C'est moi !</Nav.Link>
+                <Nav.Link className={pathName === "/its_me" ? "navbar__link active" : "navbar__link"} onClick={handleFetchItsMePage} href="/c-est-moi">C'est moi !</Nav.Link>
                 <Nav.Link className={pathName === "/contact" ? "navbar__link active" : "navbar__link"} href="/contact">Contact</Nav.Link>
                 {isLogged && isClient &&
-                   <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/dashboard">Tableau de bord</Nav.Link>  }
+                   <Nav.Link className={pathName === "/dashboard" ? "navbar__link active" : "navbar__link"} href="/tableau-de-bord">Tableau de bord</Nav.Link>  }
                 {isLogged && isPhotographer &&
                     <Nav.Link className={pathName === "/admin" ? "navbar__link active" : "navbar__link"} href="/admin">Admin</Nav.Link>  }
 
@@ -93,14 +93,14 @@ export const NavBar = ({
             
               <ul className="dropdown-item"> Les séances 
               { shootingPages && shootingPages.map((page, index) => (
-                <li key={index}><a className="dropdown-item" href={`/shooting/${page.slug}`}>{page.nameInMenu}</a></li>
+                <li key={index}><a className="dropdown-item" href={`/seance/${page.slug}`}>{page.nameInMenu}</a></li>
               ))}
               </ul>
             
-            <li><a className="dropdown-item" href="/its_me" onClick={handleFetchItsMePage}>C'est moi</a></li>
+            <li><a className="dropdown-item" href="/c-est-moi" onClick={handleFetchItsMePage}>C'est moi</a></li>
             <li><a className="dropdown-item" href="/contact">Contact</a></li>
             {isLogged &&
-                  <li><a className="dropdown-item" href="/dasboard">Tableau de bord</a></li> }
+                  <li><a className="dropdown-item" href="/tableau-de-bord">Tableau de bord</a></li> }
           </ul>
         </div>
 

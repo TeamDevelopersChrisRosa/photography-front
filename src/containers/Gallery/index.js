@@ -18,12 +18,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(setFavorite(pictureId, shootingId));
     },
 
-    deletePicture: (pictureId) => {
-        dispatch(deletePicture(pictureId));
+    deletePicture: (pictureId, shootingId) => {
+        dispatch(deletePicture(pictureId, shootingId));
     },
 
-    sharePicture: (pictureId) => {
-        dispatch(sharePicture(pictureId));
+    sharePicture: (pictureId, shootingId) => {
+        dispatch(sharePicture(pictureId, shootingId));
     },
 
     fetchShooting: (shootingId) => {
