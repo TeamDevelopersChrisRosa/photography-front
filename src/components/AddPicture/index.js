@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
 import Loading from '../Loading';
@@ -10,35 +10,32 @@ export const AddPicture = ({
 }) => {
 
   let {id} = useParams();
- 
-  /* let share = false;
-  const handleSetShare = (evt) => {
-    evt.preventDefault();
-    share = evt.target.value;
-  } */
 
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState([]);
+  const [progress, setProgress] = useState(0);
 
-    const onChange = (file: ChangeEvent) => {
-        const { files } = file.target;
-        if (files && files.length !== 0) {
-          setFile(files[0]);
-        }
+
+    const onChange = (e) => {
+      setFiles(e.target.files);
     }
-
-    const handleUpload = async () => {
+    
+    const handleUpload = useCallback(() => {
       setIsLoading();
       const formData = new FormData();
-      formData.append('file', file);
-      uploadImage(formData, id, /* share */);
-    }
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+      uploadImage(formData, id, setProgress);
+    }, [setIsLoading, files, uploadImage, id]);
+
+    console.log('progress', progress)
 
   return (
     <>
       <div className='addPicture'>
-        <form onSubmit={e => e.preventDefault()} className='addPicture__form'>
-            <input type="file" onChange={onChange} className='addPicture__form__input' />
-            <button onClick={handleUpload} className='addPicture__form__button'>Ajouter</button>
+        <form onSubmit={handleUpload} className='addPicture__form'>
+            <input type="file" multiple className='addPicture__form__input' onChange={onChange} />
+            <button type='submit' className='addPicture__form__button'>Ajouter</button>
         </form>
       </div>
         

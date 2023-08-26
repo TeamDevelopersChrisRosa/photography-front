@@ -5,11 +5,10 @@ export const SET_FAVORITE = 'SET_FAVORITE';
 export const SHARE_PICTURE = 'SHARE_PICTURE';
 
 
-export const uploadImage = (formData, shootingId, /* share */) => ({
+export const uploadImage = (formData, shootingId) => ({
   type: 'UPLOAD_IMAGE',
   formData,
   shootingId,
-  /* share */
 });
 
 export const deletePicture = (pictureId, shootingId) => ({

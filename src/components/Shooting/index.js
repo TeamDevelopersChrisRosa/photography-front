@@ -21,7 +21,10 @@ export const Shooting = ({
 
   useEffect(() => {
     fetchShooting(id);
-  }, []);
+  }, [
+    fetchShooting,
+    id,
+  ]);
 
   return (
     <>

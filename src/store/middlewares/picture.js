@@ -28,15 +28,19 @@ const picturemiddleware = (store) => (next) => (action) => {
     }
 
     case UPLOAD_IMAGE: {
-      // we send the picture to the server in body, and with the shootingId and the share boolean in parameters
       api({
         method: 'POST',
-        //url: `picture/upload/${action.share}/${action.shootingId}`,
         url: `picture/upload/${action.shootingId}`,
         data: action.formData,
-        timeout: 7000,        
+        timeout: 0,
+        onUploadProgress: function (progressEvent) {
+          var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          console.log('percentCompleted', percentCompleted)
+          document.getElementById("progress-bar").value = percentCompleted;
+        }      
       })
         .then((response) => {
+          console.log('response', response)
           store.dispatch(fetchShooting(action.shootingId));
         })
         .catch((error) => {
