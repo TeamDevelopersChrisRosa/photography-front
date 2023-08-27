@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
-    uploadImage: (formData, shootingId) => {
-        dispatch(uploadImage(formData, shootingId));
+    uploadImage: (formData, shootingId, config) => {
+        dispatch(uploadImage(formData, shootingId, config));
     },
 
     setIsLoading: () => {

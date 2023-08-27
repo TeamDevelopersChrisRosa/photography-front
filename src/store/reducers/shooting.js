@@ -27,6 +27,7 @@ import {
         return {
           ...state,
             shootings: action.shootings,
+            //isLoading: false,
         };
 
       case SET_SHOOTING_ID:

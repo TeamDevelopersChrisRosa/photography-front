@@ -33,14 +33,12 @@ const picturemiddleware = (store) => (next) => (action) => {
         url: `picture/upload/${action.shootingId}`,
         data: action.formData,
         timeout: 0,
-        onUploadProgress: function (progressEvent) {
-          var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-          console.log('percentCompleted', percentCompleted)
-          document.getElementById("progress-bar").value = percentCompleted;
-        }      
+        ...action.config,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+          },     
       })
         .then((response) => {
-          console.log('response', response)
           store.dispatch(fetchShooting(action.shootingId));
         })
         .catch((error) => {
