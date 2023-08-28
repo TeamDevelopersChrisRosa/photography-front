@@ -38,10 +38,12 @@ export const AddPicture = ({
   return (
     <div>
       <div>
-        <form onSubmit={handleUpload}>
-          <input type='file' onChange={onChange} multiple />
-          <button type='submit'>Upload</button>
+      <div className='addPicture'>
+        <form onSubmit={handleUpload} className='addPicture__form'>
+            <input type="file" onChange={onChange} multiple />
+            <button type='submit'>Ajouter</button>
         </form>
+      </div>
         
         {progressBar > 0 &&
           <div className='progress'>
